@@ -14,13 +14,24 @@ export class PacientService {
 
   constructor(private _http: HttpClient) {}
 
+  //getting all pacients information
   getAllPacients(): Promise<Pacient[]> {
     return this._http
       .get(this.urlApi + "/api/pacient")
       .toPromise()
-      .then((users: Pacient[]) => {
-        console.log(users);
-        return users;
+      .then((pacients: Pacient[]) => {
+        console.log(pacients);
+        return pacients;
+      });
+  }
+  //getting single pacients information
+  getPacient(id: number): Promise<Pacient> {
+    return this._http
+      .get(this.urlApi + "/api/pacient"+id)
+      .toPromise()
+      .then((pacient: Pacient) => {
+        console.log(pacient);
+        return pacient;
       });
   }
 

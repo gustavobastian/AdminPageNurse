@@ -12,7 +12,7 @@ export class UsersService {
   private users: Array<User> = new Array<User>();
 
   constructor(private _http: HttpClient) {}
-
+  //get information of all users
   getAllUsers(): Promise<User[]> {
     return this._http
       .get(this.urlApi + "/api/user")
@@ -22,6 +22,17 @@ export class UsersService {
         return users;
       });
   }
+//get information of a single user
+  getSingleUser(id:number): Promise<User> {
+    return this._http
+      .get(this.urlApi + "/api/user/"+id)
+      .toPromise()
+      .then((user: User) => {
+        console.log(user[0]);
+        return user[0];
+      });
+  }
+
 
   sendNewBed(newUser: User) {
     console.log(newUser);
