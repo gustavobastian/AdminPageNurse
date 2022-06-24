@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { User } from "../models/user";
 
 @Injectable({
@@ -34,12 +34,41 @@ export class UsersService {
   }
 
 
-  sendNewBed(newUser: User) {
-    console.log(newUser);
-    let output = JSON.stringify(newUser);
-    console.log(output);
+  sendNewUser(newUser: User) {
+    //console.log(newUser);
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+
+    delete newUser.userId;    
     this._http
-      .post<any>(this.urlApi + "/api/user", newUser)
+      .post<any>(this.urlApi + "/api/user/", newUser,{ headers: headers})
+      .subscribe((data) => {
+        this.postId = data.id;
+      });
+  }
+
+  sendAlterUser(newUser: User) {
+    let id=newUser.userId;  
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');    
+
+    delete newUser.userId;
+    
+    
+    this._http
+      .put<any>(this.urlApi + "/api/user/"+id, newUser,{ headers: headers})
+      .subscribe((data) => {
+        this.postId = data.id;
+      });
+  }
+
+
+  deleteUser(id:number) {
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');    
+    
+    this._http
+      .delete<any>(this.urlApi + "/api/user/"+id,{ headers: headers})
       .subscribe((data) => {
         this.postId = data.id;
       });

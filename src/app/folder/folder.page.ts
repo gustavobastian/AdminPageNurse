@@ -66,7 +66,11 @@ export class FolderPage implements OnInit {
     this.messages = listado;
   }
 
-  editarUser(userId: number){
-    
+  public deleteUsers(id:number) {
+    console.log("borrando:"+id);
+    //let listado = await this.messageServ.getAllMessages();
+    //console.log("Eliminando:" + this.users[id].username);
+    this.userServ.deleteUser(id);
   }
+
 }

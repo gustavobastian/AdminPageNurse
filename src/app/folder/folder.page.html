@@ -52,13 +52,13 @@
             collection-item-width="'25%'"
             collection-item-height="60%">
             <ion-item style="box-shadow: none">
-              <ion-label style="box-shadow: none">User: {{users[i].username}}</ion-label>
+              <ion-label style="box-shadow: none">Usuario: {{users[i].username}}</ion-label>
             </ion-item>
 
             <ion-button style="box-shadow: none" routerLink="/user/{{users[i].userId}}">Modificar</ion-button>
             <!--  (click)="editar([i])"-->
             <ion-button style="box-shadow: none" color="success">Estado</ion-button>
-            <ion-button style="box-shadow: none" color="danger" >Eliminar</ion-button >
+            <ion-button style="box-shadow: none" color="danger" (click)="deleteUsers([i])">Eliminar</ion-button >
           </ion-card>
         </div>
       </div>
@@ -85,7 +85,7 @@
             <ion-button style="box-shadow: none">Agregar Notas</ion-button>
             <!--  (click)="editar([i])"-->
             <ion-button style="box-shadow: none" color="success"> Estado</ion-button>
-            <ion-button style="box-shadow: none" color="danger">Eliminar</ion-button>
+            <ion-button style="box-shadow: none" color="danger" >Eliminar</ion-button>
           </ion-card>
         </div>
       </div>

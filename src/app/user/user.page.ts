@@ -49,7 +49,24 @@ export class UserPage implements OnInit {
 
   submitForm() {
     console.log("se envio");
-    console.log(this.ionicForm.value)
+    console.log(this.ionicForm.value);
+    let local=(this.ionicForm.value);
+    this.user.firstname=local.firstName;
+    this.user.lastname=local.lastName;
+    this.user.username=local.userName;
+    this.user.occupation=local.occupation;
+    this.user.password=local.password;
+    this.user.state=local.state;
+
+    if(this.user.userId==0)
+    {
+     this.userServ.sendNewUser(this.user);
+    }
+    else{
+      this.userServ.sendAlterUser(this.user);
+    }
+
+
   }
 
 }
