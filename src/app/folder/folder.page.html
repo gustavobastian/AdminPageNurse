@@ -17,7 +17,7 @@
   <div id="container">
 
     <div *ngIf="folder === 'Camas'">
-      <ion-button style="box-shadow: none">Agregar cama</ion-button>
+      <ion-button style="box-shadow: none" routerLink="/beds/0 ">Agregar cama</ion-button>
       <!--<div *ngIf="sensor_editing == false">  -->
       <div class="container-cards">
         <div *ngFor="let element of beds; let i=index">
@@ -34,7 +34,7 @@
             <ion-item style="box-shadow: none">
               <ion-label style="box-shadow: none">PacienteId: 0 </ion-label>
             </ion-item>
-            <ion-button style="box-shadow: none">Modificar</ion-button>
+            <ion-button style="box-shadow: none" routerLink="/beds/{{beds[i].bedId}}">Modificar</ion-button>
             <!--  (click)="editar([i])"-->
             <ion-button style="box-shadow: none" color="success">Estado</ion-button>
             <ion-button style="box-shadow: none" color="danger">Estado</ion-button>
@@ -44,7 +44,7 @@
       <!--</div>          -->
     </div>
     <div *ngIf="folder === 'Usuarios'">
-      <ion-button style="box-shadow: none">Agregar Usuario</ion-button>
+      <ion-button style="box-shadow: none" routerLink="/user/0">Agregar Usuario</ion-button>
       <div class="container-cards">
         <div *ngFor="let element of users; let i=index">
           <ion-card
@@ -55,7 +55,7 @@
               <ion-label style="box-shadow: none">User: {{users[i].username}}</ion-label>
             </ion-item>
 
-            <ion-button style="box-shadow: none">Modificar</ion-button>
+            <ion-button style="box-shadow: none" routerLink="/user/{{users[i].userId}}">Modificar</ion-button>
             <!--  (click)="editar([i])"-->
             <ion-button style="box-shadow: none" color="success">Estado</ion-button>
             <ion-button style="box-shadow: none" color="danger" >Eliminar</ion-button >
@@ -64,7 +64,7 @@
       </div>
     </div>
     <div *ngIf="folder === 'Pacientes'">
-      <ion-button style="box-shadow: none">Agregar Paciente</ion-button>
+      <ion-button style="box-shadow: none" routerLink="/pacient/0 ">Agregar Paciente</ion-button>
       <div class="container-cards">
         <div *ngFor="let element of pacients; let i=index">
           <ion-card
@@ -80,7 +80,7 @@
               <ion-label style="box-shadow: none">Pacient:
                 {{pacients[i].lastName}},{{pacients[i].firstName}}</ion-label>
             </ion-item>
-            <ion-button style="box-shadow: none">Modificar</ion-button>
+            <ion-button style="box-shadow: none" routerLink="/pacient/{{pacients[i].pacientId}}">Modificar</ion-button>
             <!--  (click)="editar([i])"-->
             <ion-button style="box-shadow: none">Agregar Notas</ion-button>
             <!--  (click)="editar([i])"-->
