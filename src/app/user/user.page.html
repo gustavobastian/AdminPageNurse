@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>user</ion-title>    
+    <ion-title>Usuarios</ion-title>    
       <ion-buttons slot="start">
         <ion-back-button defaultHref="folder/Usuarios"></ion-back-button>
       </ion-buttons>    
@@ -8,6 +8,52 @@
 </ion-header>
 
 <ion-content>
-  <h1>UserId: {{id}}</h1>
-  <h1>UserName: {{user.username}}</h1>
+
+  <Form [formGroup]="ionicForm" (ngSubmit)="submitForm()" novalidate>
+    <ion-item lines="full">
+      <ion-label position="fixed">Nombre</ion-label>
+      <ion-input color="primary" placeholder="{{user.firstname}}" formControlName="firstName" type="text" value="{{user.firstname}}" required></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="fixed">Apellido</ion-label>
+      <ion-input color="primary" placeholder="{{user.lastname}}" value="{{user.lastname}}" formControlName="lastName" type="text" required></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="fixed" >Usuario</ion-label>
+      <ion-input color="primary" placeholder="{{user.username}}" value="{{user.username}}" formControlName="userName" type="text" required></ion-input>        
+    </ion-item>         
+    <ion-item lines="full">
+      <ion-label position="fixed">Contraseña</ion-label>
+      <ion-input  color="primary" formControlName="password" type="text" required></ion-input>        
+    </ion-item>     
+        
+    <!--<ion-item lines="full">
+      <ion-label position="floating">Ocupacion</ion-label>
+      <ion-input placeholder="{{user.occupation}}" formControlName="occupation" type="text" required></ion-input>        
+    </ion-item>-->
+
+    <ion-item lines="full">
+      <ion-label>Ocupacion</ion-label>
+      <ion-select color="primary" formControlName="occupation" type="text" required placeholder="{{user.occupation}}">
+        <ion-select-option seleccion="Administrador">Administrador</ion-select-option>
+        <ion-select-option seleccion="Medico">Médico</ion-select-option>
+        <ion-select-option seleccion="Enfermero">Enfermero</ion-select-option>
+      </ion-select>
+    </ion-item>   
+    <ion-item lines="full">
+      <ion-label>Estado</ion-label>
+      <ion-select color="primary" formControlName="state" type="number" required placeholder="Activo">
+        <ion-select-option color="primary" seleccion="1">Activo</ion-select-option>
+        <ion-select-option seleccion="0">Inactivo</ion-select-option>
+        
+      </ion-select>
+    </ion-item>   
+
+    <ion-item>
+      
+        <ion-button type="submit"  expand="block">Submit</ion-button>
+      
+    </ion-item>
+  </Form>
+
 </ion-content>

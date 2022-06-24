@@ -24,6 +24,17 @@ export class BedsService {
       });
   }
 
+  //getting single beds information
+  getSingleBed(id: number): Promise<Bed> {
+    return this._http
+      .get(this.urlApi + "/api/beds/"+id)
+      .toPromise()
+      .then((bed: Bed) => {
+        console.log(bed[0]);
+        return bed[0];
+      });
+  }
+
   sendNewBed(newBed: Bed) {
     console.log(newBed);
     let output = JSON.stringify(newBed);
@@ -34,4 +45,6 @@ export class BedsService {
         this.postId = data.id;
       });
   }
+
+
 }

@@ -65,4 +65,8 @@ export class FolderPage implements OnInit {
     console.log("listado");
     this.messages = listado;
   }
+
+  editarUser(userId: number){
+    
+  }
 }

@@ -27,11 +27,11 @@ export class PacientService {
   //getting single pacients information
   getPacient(id: number): Promise<Pacient> {
     return this._http
-      .get(this.urlApi + "/api/pacient"+id)
+      .get(this.urlApi + "/api/pacient/"+id)
       .toPromise()
       .then((pacient: Pacient) => {
-        console.log(pacient);
-        return pacient;
+        console.log(pacient[0]);
+        return pacient[0];
       });
   }
 

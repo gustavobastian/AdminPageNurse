@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
+
+
 
 import { BedsPageRoutingModule } from './beds-routing.module';
 
@@ -13,6 +15,7 @@ import { BedsPage } from './beds.page';
     CommonModule,
     FormsModule,
     IonicModule,
+    ReactiveFormsModule,
     BedsPageRoutingModule
   ],
   declarations: [BedsPage]

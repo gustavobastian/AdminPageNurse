@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>beds</ion-title>
+    <ion-title>Camas</ion-title>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="folder/Camas"></ion-back-button>
     </ion-buttons>    
@@ -8,5 +8,30 @@
 </ion-header>
 
 <ion-content>
-  <h1>BedId:{{id}}</h1>
+  <!--<h1>BedId: {{id}}</h1>
+  <h1>Cuarto: {{bed.roomId}}</h1>
+  <h1>Piso: {{bed.floorId}}</h1>
+  <h1>Llamador: {{bed.callerId}}</h1>-->
+  
+    <Form [formGroup]="ionicForm" (ngSubmit)="submitForm()" novalidate>
+      <ion-item lines="full">
+        <ion-label position="fixed">Cuarto</ion-label>
+        <ion-input placeholder="{{bed.roomId}}" formControlName="room" type="number" required></ion-input>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-label position="floating">Piso</ion-label>
+        <ion-input placeholder="{{bed.floorId}}" formControlName="floor" type="number" required></ion-input>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-label position="floating">Llamador</ion-label>
+        <ion-input placeholder="{{bed.callerId}}" formControlName="caller" type="number" required></ion-input>        
+      </ion-item>     
+      <ion-item>
+        
+          <ion-button type="submit" color="danger" expand="block">Submit</ion-button>
+        
+      </ion-item>
+    </Form>
+    
+  
 </ion-content>
