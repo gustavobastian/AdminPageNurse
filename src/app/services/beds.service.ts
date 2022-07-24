@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Bed } from "../models/bed";
 import { Observable } from "rxjs/internal/Observable";
 
@@ -34,17 +34,41 @@ export class BedsService {
         return bed[0];
       });
   }
-
+/**
+ * 
+ * @param newBed Adding a bed to the system
+ */
   sendNewBed(newBed: Bed) {
-    console.log(newBed);
-    let output = JSON.stringify(newBed);
-    console.log(output);
+    newBed.bedId=22;
+    
+    
+    
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    
+    delete newBed.bedId;
+    
     this._http
-      .post<any>(this.urlApi + "/api/beds", newBed)
+      .post<any>(this.urlApi + "/api/beds", newBed,{ headers: headers})
+      .subscribe((data) => {
+        this.postId = data.id;
+      });
+   }
+/**
+ * Modify a bed parameters in the system
+ * @param newBed 
+ */
+
+  sendAlterBed(newBed: Bed) {
+    let id=newBed.bedId;  
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');    
+    delete newBed.bedId;    
+    
+    this._http
+      .put<any>(this.urlApi + "/api/beds/"+id, newBed,{ headers: headers})
       .subscribe((data) => {
         this.postId = data.id;
       });
   }
-
-
 }

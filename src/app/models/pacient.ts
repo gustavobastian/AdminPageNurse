@@ -1,22 +1,22 @@
 export class Pacient {
   private _pacientId: number;
-  private _pacientFirstName: string;
-  private _pacientLastName: string;
+  private _firstName: string;
+  private _lastName: string;
   private _bedId: number;
   private _notesTableId: number;
   private _userTableId: number;
 
   constructor(
     pacientId: number,
-    pacientFirstName: string,
-    pacientLastName: string,
+    firstName: string,
+    lastName: string,
     bedId: number,
     notesTableId: number,
     userTableId: number
   ) {
     this._pacientId = pacientId;
-    this._pacientFirstName = pacientFirstName;
-    this._pacientLastName = pacientLastName;
+    this._firstName = firstName;
+    this._lastName = lastName;
     this._bedId = bedId;
     this._notesTableId = notesTableId;
     this._userTableId = userTableId;
@@ -29,17 +29,17 @@ export class Pacient {
     return this._pacientId;
   }
 
-  public set pacientFirstName(pacient: string) {
-    this._pacientFirstName = pacient;
+  public set firstName(pacient: string) {
+    this._firstName = pacient;
   }
-  public get pacientFirstName(): string {
-    return this._pacientFirstName;
+  public get firstName(): string {
+    return this._firstName;
   }
-  public set pacientLastName(pacient: string) {
-    this._pacientLastName = pacient;
+  public set lastName(pacient: string) {
+    this._lastName = pacient;
   }
-  public get pacientLastName(): string {
-    return this._pacientLastName;
+  public get lastName(): string {
+    return this._lastName;
   }
   public set bedId(pacient: number) {
     this._bedId = pacient;

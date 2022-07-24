@@ -8,6 +8,38 @@
 </ion-header>
 
 <ion-content>
-  <h1>Paciente: {{id}}</h1>
+<!--  <h1>Paciente: {{id}}</h1>
   <h1>Paciente: {{pacient | json}}</h1>
+
+  pacientFirstName: new FormControl(),
+    pacientLastName: new FormControl(),
+    bedId: new FormControl(),
+    notesTableId: new FormControl(),
+    userTableId: new FormControl()-->
+
+  <Form [formGroup]="ionicForm" (ngSubmit)="submitForm()" novalidate>
+    <ion-item lines="full">
+      <ion-label position="fixed">Nombre</ion-label>
+      <ion-input color="primary" placeholder="{{pacientLocal.firstName}}" formControlName="firstName" type="text" value="{{pacientLocal.firstName}}" required></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="fixed">Apellido</ion-label>
+      <ion-input color="primary" placeholder="{{pacientLocal.lastname}}" value="{{pacientLocal.lastName}}" formControlName="lastName" type="text" required></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="fixed" >Cama</ion-label>
+      <ion-input color="primary" placeholder="{{pacientLocal.bedId}}" value="{{pacientLocal.bedId}}" formControlName="bedId" type="number" required></ion-input>        
+    </ion-item>         
+    <ion-item lines="full">
+      <ion-label position="fixed">Nro Doctor</ion-label>
+      <ion-input  color="primary" formControlName="userTableId" type="number" required></ion-input>        
+    </ion-item>     
+        
+    <ion-item>
+      
+        <ion-button type="submit"  expand="block">Submit</ion-button>
+      
+    </ion-item>
+  </Form>
+
 </ion-content>

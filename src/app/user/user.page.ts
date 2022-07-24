@@ -12,6 +12,8 @@ import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms"
 export class UserPage implements OnInit {
   public id: string;
   public user: User=new User(0,"","","","",0,"");
+  public newUser= true; 
+
   ionicForm: FormGroup = new FormGroup({
     firstName: new FormControl(),
     lastName: new FormControl(),
@@ -29,20 +31,19 @@ export class UserPage implements OnInit {
 
   ngOnInit() {    
     this.id = this.activatedRoute.snapshot.paramMap.get("id");
+    console.log("id:"+this.id)
     if(this.id === "0")
-    {console.log("new User");
-    
+    {console.log("new User"); 
+    this.newUser=true;  
     }    
     else{
-     console.log("loading data");
+    this.newUser=false;
     this.retrieveSingleUser(parseInt(this.id));
     }
   }
 
-  async retrieveSingleUser(id:number) {
-    console.log("Estoy en el retrieveUser y llame al service");
-    let userLocal = await this.userServ.getSingleUser(id);
-    //console.log("llego2");
+  async retrieveSingleUser(id:number) {    
+    let userLocal = await this.userServ.getSingleUser(id);    
     
     this.user = userLocal;
   }
@@ -58,7 +59,7 @@ export class UserPage implements OnInit {
     this.user.password=local.password;
     this.user.state=local.state;
 
-    if(this.user.userId==0)
+    if(this.newUser===true)
     {
      this.userServ.sendNewUser(this.user);
     }
