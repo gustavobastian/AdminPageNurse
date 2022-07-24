@@ -67,7 +67,7 @@
       </div>
     </div>
     <div *ngIf="folder === 'Pacientes'">
-      <ion-button style="box-shadow: none" routerLink="/pacient/0 ">Agregar Paciente</ion-button>
+      <ion-button style="box-shadow: none" routerLink="/pacient/0">Agregar Paciente</ion-button>
       <div class="container-cards">
         <div *ngFor="let element of pacients; let i=index">
           <ion-card
@@ -85,10 +85,10 @@
             </ion-item>
             <ion-button style="box-shadow: none" routerLink="/pacient/{{pacients[i].pacientId}}">Modificar</ion-button>
             <!--  (click)="editar([i])"-->
-            <ion-button style="box-shadow: none">Agregar Notas</ion-button>
+           <!-- <ion-button style="box-shadow: none">Agregar Notas</ion-button>
             <!--  (click)="editar([i])"-->
-            <ion-button style="box-shadow: none" color="success"> Estado</ion-button>
-            <ion-button style="box-shadow: none" color="danger" >Eliminar</ion-button>
+            <!--<ion-button style="box-shadow: none" color="success"> Estado</ion-button>-->
+            <ion-button style="box-shadow: none" color="danger" >Dar de baja</ion-button>
           </ion-card>
         </div>
       </div>

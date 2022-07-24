@@ -24,7 +24,7 @@
     </ion-item>
     <ion-item lines="full">
       <ion-label position="fixed">Apellido</ion-label>
-      <ion-input color="primary" placeholder="{{pacientLocal.lastname}}" value="{{pacientLocal.lastName}}" formControlName="lastName" type="text" required></ion-input>
+      <ion-input color="primary" placeholder="{{pacientLocal.lastName}}" value="{{pacientLocal.lastName}}" formControlName="lastName" type="text" required></ion-input>
     </ion-item>
     <ion-item lines="full">
       <ion-label position="fixed" >Cama</ion-label>
@@ -32,7 +32,11 @@
     </ion-item>         
     <ion-item lines="full">
       <ion-label position="fixed">Nro Doctor</ion-label>
-      <ion-input  color="primary" formControlName="userTableId" type="number" required></ion-input>        
+      <ion-input  color="primary" placeholder="{{pacientLocal.userTableId}}" formControlName="userTableId" type="number" required></ion-input>        
+    </ion-item>     
+    <ion-item lines="full">
+      <ion-label position="fixed">PacientId</ion-label>
+      <ion-input  color="primary" placeholder="{{pacientLocal.pacientId}}" formControlName="pacientId" type="number" required></ion-input>        
     </ion-item>     
         
     <ion-item>

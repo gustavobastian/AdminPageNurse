@@ -1,10 +1,16 @@
 export class Pacient {
-  private _pacientId: number;
+/*  private _pacientId: number;
   private _firstName: string;
   private _lastName: string;
   private _bedId: number;
   private _notesTableId: number;
-  private _userTableId: number;
+  private _userTableId: number;*/
+  public _pacientId: number;
+  public _firstName: string;
+  public _lastName: string;
+  public _bedId: number;
+  public _notesTableId: number;
+  public _userTableId: number;
 
   constructor(
     pacientId: number,
