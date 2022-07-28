@@ -63,4 +63,15 @@ export class PacientService {
   
   }
 
+  sendDeletePacient(id: number) {    
+    const headers = new HttpHeaders();    
+    headers.append('Content-Type', 'application/json');    
+    this._http
+      .delete<any>(this.urlApi + "/api/pacient/"+id, { headers: headers})
+      .subscribe((data) => {
+        this.postId = data.id;
+      });
+  
+  }
+
 }

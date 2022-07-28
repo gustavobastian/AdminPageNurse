@@ -23,6 +23,16 @@ export class BedsService {
         return beds;
       });
   }
+// Ask for information of bed status in order to get not used ones
+  getAllBedStatus(): Promise< String []> {
+    return this._http
+      .get(this.urlApi + "/api/beds/state/")
+      .toPromise()
+      .then((beds: String[]) => {
+        console.log(beds);
+        return beds;
+      });
+  }
 
   //getting single beds information
   getSingleBed(id: number): Promise<Bed> {
@@ -49,9 +59,10 @@ export class BedsService {
     delete newBed.bedId;
     
     this._http
-      .post<any>(this.urlApi + "/api/beds", newBed,{ headers: headers})
+      .post<any>(this.urlApi + "/api/beds/", newBed,{ headers: headers})
       .subscribe((data) => {
         this.postId = data.id;
+        console.log(data.id)
       });
    }
 /**

@@ -17,18 +17,26 @@
       </ion-item>
       <ion-item lines="full">
         <ion-label position="floating">Piso</ion-label>
-        <ion-input placeholder="{{bed.floorId}}" formControlName="floorId" type="number" required></ion-input>
+        <ion-input value="{{bed.floorId}}" formControlName="floorId" type="number" required></ion-input>
       </ion-item>
       <ion-item lines="full">
         <ion-label position="floating">Llamador</ion-label>
-        <ion-input placeholder="{{bed.callerId}}" formControlName="callerId" type="number" required></ion-input>        
+        <ion-input value="{{bed.callerId}}" formControlName="callerId" type="number" required></ion-input>        
       </ion-item>     
+      <ion-item lines="full">
+        <ion-label position="floating">QR</ion-label>
+        <ion-input value="{{qr_string}}" formControlName="QRString" type="text" required></ion-input>        
+      </ion-item>     
+     
+
       <ion-item>
         
           <ion-button type="submit" color="danger" expand="block">Submit</ion-button>
         
       </ion-item>
     </Form>
+
+    
     
   
 </ion-content>

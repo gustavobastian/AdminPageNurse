@@ -27,8 +27,24 @@
       <ion-input color="primary" placeholder="{{pacientLocal.lastName}}" value="{{pacientLocal.lastName}}" formControlName="lastName" type="text" required></ion-input>
     </ion-item>
     <ion-item lines="full">
-      <ion-label position="fixed" >Cama</ion-label>
+    <!--  <ion-label position="fixed" >Cama</ion-label>
       <ion-input color="primary" placeholder="{{pacientLocal.bedId}}" value="{{pacientLocal.bedId}}" formControlName="bedId" type="number" required></ion-input>        
+    -->
+    <ion-label position="fixed" >Cama</ion-label>
+    <ion-list>
+      <ion-item>
+        <ion-select interface="action-sheet" placeholder="{{pacientLocal.bedId}} " formControlName="bedId" type="number" required>
+          <div *ngFor="let element of bedState; let i=index">
+            
+            <div *ngIf="element.st==0 && element.id>0">
+              <ion-select-option value="{{element.id}}">{{element.id}}</ion-select-option>
+            </div>
+          </div>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    
+    
     </ion-item>         
     <ion-item lines="full">
       <ion-label position="fixed">Nro Doctor</ion-label>
@@ -45,5 +61,8 @@
       
     </ion-item>
   </Form>
+ 
+  
+ 
 
 </ion-content>

@@ -6,7 +6,18 @@ import { Pacient } from '../models/pacient';
 import { BedsService } from '../services/beds.service';
 import { PacientService } from '../services/pacient.service';
 
-
+class BedStatus{
+  public _id: number;
+  public _st: number;
+  constructor(id: number, st: number){
+    this._id=id;
+    this._st=st;
+  }
+  public get id(){ return this._id; }
+  public set id(val: number){ this._id=val; }
+  public get st(){ return this._st; }
+  public set st(val: number){ this._st=val; }
+}
 
 @Component({
   selector: 'app-pacient',
@@ -18,6 +29,8 @@ export class PacientPage implements OnInit {
   public pacientLocal: Pacient = new Pacient(0,"giac ","como ",0,0,0);
   public newPacient= true;
   private beds: Array<Bed> = new Array<Bed>();
+  public bedState: Array<BedStatus> = new Array<BedStatus>();
+
   ionicForm: FormGroup = new FormGroup({
     pacientId: new FormControl(),
     firstName: new FormControl(),
@@ -50,13 +63,16 @@ export class PacientPage implements OnInit {
     this.retrieveSinglePacient(parseInt(this.id));
     }
     this.retrieveBeds();
+    this.retrieveBedStates();
+    console.log(this.bedState);
+    console.log(this.bedState[0]);
   }
 
   async retrieveSinglePacient(id:number) {
     
     let pacientLocal2 = await this.pacientServ.getPacient(id);    
     this.pacientLocal = pacientLocal2;
-    console.log(JSON.stringify(this.pacientLocal));
+    console.log(this.pacientLocal);
   }
 
   async retrieveBeds() {
@@ -64,6 +80,22 @@ export class PacientPage implements OnInit {
     let listado = await this.bedServ.getAllbed();
     //console.log("llego");
     this.beds = listado;
+  }
+  async retrieveBedStates() {
+    let  localState= new BedStatus(0,0);
+    console.log("Estoy en el retrieveBedState y llame al service");
+    let listado = JSON.stringify(await this.bedServ.getAllBedStatus());
+    console.log(listado);
+    let listado2= JSON.parse(listado);
+    console.log(listado2);
+    listado2.forEach(element => {      
+      this.bedState.push(element);
+    });
+        
+    
+    
+    
+    return;
   }
 
   submitForm() {    

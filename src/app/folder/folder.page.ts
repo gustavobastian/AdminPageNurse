@@ -72,5 +72,11 @@ export class FolderPage implements OnInit {
     //console.log("Eliminando:" + this.users[id].username);
     this.userServ.deleteUser(id);
   }
-
+  public deletePacient(id:number) {
+    console.log("borrando paciente :"+id);
+    //let listado = await this.messageServ.getAllMessages();
+    //console.log("Eliminando:" + this.users[id].username);
+    this.pacientServ.sendDeletePacient(id);
+  }
+  
 }

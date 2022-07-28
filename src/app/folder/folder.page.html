@@ -31,9 +31,7 @@
               <ion-label style="box-shadow: none">cuarto: {{beds[i].roomId}} piso: {{beds[i].floorId}}
               </ion-label>
             </ion-item>
-            <ion-item style="box-shadow: none">
-              <ion-label style="box-shadow: none">PacienteId: 0 </ion-label>
-            </ion-item>
+            
             <ion-button style="box-shadow: none" routerLink="/beds/{{beds[i].bedId}}">Modificar</ion-button>
             <!--  (click)="editar([i])"-->
             <ion-button style="box-shadow: none" color="success">Estado</ion-button>
@@ -88,7 +86,7 @@
            <!-- <ion-button style="box-shadow: none">Agregar Notas</ion-button>
             <!--  (click)="editar([i])"-->
             <!--<ion-button style="box-shadow: none" color="success"> Estado</ion-button>-->
-            <ion-button style="box-shadow: none" color="danger" >Dar de baja</ion-button>
+            <ion-button style="box-shadow: none" color="danger" (click)="deletePacient(pacients[i].pacientId)" >Dar de baja</ion-button>
           </ion-card>
         </div>
       </div>
