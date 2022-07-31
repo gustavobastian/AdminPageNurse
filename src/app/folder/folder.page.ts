@@ -19,6 +19,7 @@ export class FolderPage implements OnInit {
   public folder: string;
   private beds: Array<Bed> = new Array<Bed>();
   private users: Array<User> = new Array<User>();
+  public pacientNumber: number = 0;
   private pacients: Array<Pacient> = new Array<Pacient>();
   private messages: Array<Message> = new Array<Message>();
 
@@ -77,6 +78,10 @@ export class FolderPage implements OnInit {
     //let listado = await this.messageServ.getAllMessages();
     //console.log("Eliminando:" + this.users[id].username);
     this.pacientServ.sendDeletePacient(id);
+  }
+  public upgradingNumber(i: number){
+    console.log("number:"+i)
+    this.pacientNumber=i;
   }
   
 }

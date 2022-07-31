@@ -69,7 +69,8 @@
     </div>
   <!--***************************** Pacients*********************************************************************************************************************-->  
     <div *ngIf="folder === 'Pacientes'">
-      <ion-button style="box-shadow: none" routerLink="/pacient/0">Agregar Paciente</ion-button>
+      <ion-button style="box-shadow: none" routerLink="/pacient/0">Agregar nuevo Paciente</ion-button>
+      <!--
       <div class="container-cards">
         <div *ngFor="let element of pacients; let i=index">
           <ion-card
@@ -85,15 +86,28 @@
               <ion-label style="box-shadow: none">Pacient:
                 {{pacients[i].lastName}},{{pacients[i].firstName}}</ion-label>
             </ion-item>
-            <ion-button style="box-shadow: none" routerLink="/pacient/{{pacients[i].pacientId}}">Modificar</ion-button>
-            <!--  (click)="editar([i])"-->
-           <!-- <ion-button style="box-shadow: none">Agregar Notas</ion-button>
-            <!--  (click)="editar([i])"-->
-            <!--<ion-button style="box-shadow: none" color="success"> Estado</ion-button>-->
+            <ion-button style="box-shadow: none" routerLink="/pacient/{{pacients[i].pacientId}}">Modificar</ion-button>            
             <ion-button style="box-shadow: none" color="danger" (click)="deletePacient(pacients[i].pacientId)" >Dar de baja</ion-button>
           </ion-card>
         </div>
       </div>
+      -->
+     <ion-item>
+      <ion-label>Buscar :</ion-label>
+     </ion-item>
+      <ion-item>
+        <ion-select interface="action-sheet" #C (ionChange)="upgradingNumber(C.value)" type="number" required>
+          <div *ngFor="let element of pacients; let i=index">           
+           
+           <ion-select-option  value="{{pacients[i].pacientId}}">{{pacients[i].pacientId}}:{{pacients[i].lastName}},{{pacients[i].firstName}}</ion-select-option>                   
+          </div>
+        </ion-select>
+      </ion-item>
+        <ion-item>  
+        <ion-button style="box-shadow: none" routerLink="/pacient/{{pacientNumber}}">Editar</ion-button>  
+        <ion-button style="box-shadow: none" (click)="deletePacient(pacientNumber)">Dar de baja</ion-button>  
+        </ion-item>
+    
     </div>
 <!--***************************** Messages*********************************************************************************************************************-->  
     <div *ngIf="folder === 'Mensajes'">

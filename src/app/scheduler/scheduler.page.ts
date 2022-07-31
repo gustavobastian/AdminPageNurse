@@ -18,6 +18,7 @@ export class SchedulerPage implements OnInit {
   private calendarEventLocal: CalendarEvent=new CalendarEvent(0,0,"","","")
   private calendarEventsLocal: Array<CalendarEvent>=new Array<CalendarEvent>();
   private pacients: Array<Pacient>=new Array<Pacient>();
+  private pacientNumber=0;
   private pacientLocal: Pacient=new Pacient(0,"giac ","como ",0,0,0);
   private eventsUpgraded: boolean=false;
   private id =0; //used to now what the user wants to do
@@ -72,7 +73,16 @@ export class SchedulerPage implements OnInit {
     let listado = await this.pacientServ.getAllPacients();    
     this.pacients = listado;
   }
-  BajaEvento(){
+  upgradingNumber (id:number) {
+    this.pacientNumber=id;
+  }
+  deleteEvent(i:number) {
+
+  }
+  editEvent(i:number){
+
+  }
+  addEvent(i:number){
 
   }
 }

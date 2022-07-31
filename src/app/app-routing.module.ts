@@ -34,6 +34,10 @@ const routes: Routes = [
     path: 'scheduler/:id',
     loadChildren: () => import('./scheduler/scheduler.module').then( m => m.SchedulerPageModule)
   },
+  {
+    path: 'event/:id',
+    loadChildren: () => import('./event/event.module').then( m => m.EventPageModule)
+  },
 ];
 
 @NgModule({

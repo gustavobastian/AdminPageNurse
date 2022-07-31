@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-header>
+    <ion-toolbar>    
+      <ion-buttons slot="start">
+        <ion-back-button text="Volver" defaultHref="folder/event"></ion-back-button>
+      </ion-buttons>    
+    </ion-toolbar>
+  </ion-header>  
+</ion-header>
+
+
+<ion-content>
+  
+    <ion-item lines="full">
+      <ion-label position="fixed">Nota</ion-label>
+      <ion-input placeholder="{{calendarEventLocal.note}}" #L (ionChange)="upgradingNote(L.value)" type="text" ></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="fixed">Tipo</ion-label>
+      <ion-select interface="action-sheet" #C (ionChange)="upgradingtype(C.value)" type="text" >
+         <ion-select-option  value="daily">Diario</ion-select-option>                   
+         <ion-select-option  value="weekly">Semanal</ion-select-option>                   
+         <ion-select-option  value="monthly">Mensual</ion-select-option>                          
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-button (click)="send()">Send</ion-button>
+    </ion-item>
+
+    <ion-datetime #D (ionChange)="upgradingDay(D.value)"></ion-datetime>
+
+
+  
+</ion-content>

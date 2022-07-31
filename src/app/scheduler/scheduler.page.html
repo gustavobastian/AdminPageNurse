@@ -11,19 +11,21 @@
 <ion-content>
 <p>{{this.title}}</p>
 <!--Mostrando según el tipo de acción-->
-<!--************************************************************Cargando eventos del paciente**************************************************************-->
+<!--************************************************************Cargando nuevo evento del paciente**************************************************************-->
 <div *ngIf="this.id===1">
   <ion-item>
     <ion-label>Paciente:</ion-label>
     <ion-item>
-      <ion-select interface="action-sheet" placeholder="{{pacientLocal.pacientId}} "  type="number" required>
+      <ion-select interface="action-sheet" placeholder="{{pacientLocal.pacientId}} " #C (ionChange)="upgradingNumber(C.value)"  type="number" required>
         <div *ngFor="let element of pacients; let i=index">                    
-          <ion-select-option value="{{element.pacientId}}">{{element.pacientId}}:{{element.lastName}}</ion-select-option>          
+          <ion-select-option value="{{element.pacientId}}">{{element.pacientId}}:{{element.lastName}},{{element.firstName}}</ion-select-option>          
         </div>
       </ion-select>
     </ion-item>
-  </ion-item>
-  <ion-item><ion-button type="button">Buscar</ion-button></ion-item>  
+  </ion-item>  
+  <ion-item>
+    <ion-button type="button" routerLink="/event/{{pacientNumber}}">Agregar Evento</ion-button>
+  </ion-item>  
 
 
 
@@ -35,7 +37,7 @@
     <ion-item>
       <ion-select interface="action-sheet" placeholder="{{pacientLocal.pacientId}} "  type="number" required>
         <div *ngFor="let element of pacients; let i=index">                    
-          <ion-select-option value="{{element.pacientId}}">{{element.pacientId}}:{{element.lastName}}</ion-select-option>          
+          <ion-select-option value="{{element.pacientId}}">{{element.pacientId}}:{{element.lastName}},{{element.firstName}}</ion-select-option>                   
         </div>
       </ion-select>
     </ion-item>
@@ -68,8 +70,8 @@
             <!--  (click)="editar([i])"-->
            <!-- <ion-button style="box-shadow: none">Agregar Notas</ion-button>
             -  (click)="editar([i])"-->
-            <ion-button style="box-shadow: none" color="success"> Editar</ion-button>
-            <ion-button style="box-shadow: none" color="danger" (click)="bajaEvento()" >Dar de baja</ion-button>
+            <ion-button style="box-shadow: none" color="success"  (click)="editEvent(i)" > Editar</ion-button>
+            <ion-button style="box-shadow: none" color="danger" (click)="deleteEvent(i)" >Dar de baja</ion-button>
           </ion-card>
 
     </div>
@@ -109,8 +111,8 @@
             <!--  (click)="editar([i])"-->
            <!-- <ion-button style="box-shadow: none">Agregar Notas</ion-button>
             -  (click)="editar([i])"-->
-            <ion-button style="box-shadow: none" color="success"> Editar</ion-button>
-            <ion-button style="box-shadow: none" color="danger" (click)="bajaEvento()" >Dar de baja</ion-button>
+            <ion-button style="box-shadow: none" color="success" (click)="editEvent(i)"> Editar</ion-button>
+            <ion-button style="box-shadow: none" color="danger" (click)="deleteEvent(i)" >Dar de baja</ion-button>
           </ion-card>
        </div>
       </div>   
