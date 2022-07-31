@@ -30,6 +30,10 @@ const routes: Routes = [
     path: 'beds/:id',
     loadChildren: () => import('./beds/beds.module').then( m => m.BedsPageModule)
   },
+  {
+    path: 'scheduler/:id',
+    loadChildren: () => import('./scheduler/scheduler.module').then( m => m.SchedulerPageModule)
+  },
 ];
 
 @NgModule({

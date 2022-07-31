@@ -43,7 +43,7 @@ export class FolderPage implements OnInit {
   async retrieveBeds() {
     console.log("Estoy en el retrieveBeds y llame al service");
     let listado = await this.bedServ.getAllbed();
-    //console.log("llego");
+    console.log("beds:"+listado);
     this.beds = listado;
   }
   async retrieveUsers() {

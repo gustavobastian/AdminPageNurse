@@ -10,6 +10,7 @@ export class AppComponent {
     { title: "Usuarios", url: "/folder/Usuarios", icon: "person" },
     { title: "Pacientes", url: "/folder/Pacientes", icon: "medkit" },
     { title: "Mensajes", url: "/folder/Mensajes", icon: "mail" },
+    { title: "Eventos", url: "/folder/Calendario", icon: "calendar" }
   ];
 
   constructor() {}

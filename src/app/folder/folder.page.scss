@@ -4,11 +4,11 @@ ion-menu-button {
 
 #container {
   text-align: center;
-  position: absolute;
+  position: sticky;
   left: 0;
   right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 10%;
+ // transform: translateY(-50%);
 }
 
 #container strong {

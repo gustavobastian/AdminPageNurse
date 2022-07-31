@@ -8,13 +8,14 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+<!--  <ion-header collapse="condense" [translucent]="true">
     <ion-toolbar>
       <ion-title size="large">{{ folder }}</ion-title>
     </ion-toolbar>
   </ion-header>
-
-  <div id="container">
+-->
+ <div id="container">
+<!--***************************** Beds*********************************************************************************************************************-->  
 
     <div *ngIf="folder === 'Camas'">
       <ion-button style="box-shadow: none" routerLink="/beds/0 ">Agregar cama</ion-button>
@@ -41,6 +42,8 @@
       </div>
       <!--</div>          -->
     </div>
+
+<!--***************************** USERS*********************************************************************************************************************-->
     <div *ngIf="folder === 'Usuarios'">
       <ion-button style="box-shadow: none" routerLink="/user/0">Agregar Usuario</ion-button>
       <div class="container-cards">
@@ -64,6 +67,7 @@
         </div>
       </div>
     </div>
+  <!--***************************** Pacients*********************************************************************************************************************-->  
     <div *ngIf="folder === 'Pacientes'">
       <ion-button style="box-shadow: none" routerLink="/pacient/0">Agregar Paciente</ion-button>
       <div class="container-cards">
@@ -91,15 +95,36 @@
         </div>
       </div>
     </div>
-
+<!--***************************** Messages*********************************************************************************************************************-->  
     <div *ngIf="folder === 'Mensajes'">
       <div *ngFor="let element of messages; let i=index">    
         <ion-label style="box-shadow: none">Message:
           {{messages[i] | json}}</ion-label>
       </div>
-    <strong class="capitalize">{{ folder }}</strong>
-  
-  
-  </div>
+    <strong class="capitalize">{{ folder }}</strong>   
+    </div>
+<!--***************************** Scheduler*********************************************************************************************************************-->      
+  <div *ngIf="folder === 'Calendario'">
+    <!--<strong class="capitalize">{{ folder }}</strong>   -->
+    <p></p>
+    <ion-item>
+      <ion-label >Agregar nuevo evento para paciente</ion-label>
+      <ion-button routerLink="/scheduler/1">
+        <ion-icon name="arrow-forward-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+    <ion-item>
+      <ion-label >Ver/editar eventos de paciente</ion-label>
+      <ion-button routerLink="/scheduler/2">
+        <ion-icon name="arrow-forward-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+    <ion-item>
+      <ion-label >Ver/editar eventos del día</ion-label>
+      <ion-button routerLink="/scheduler/3">
+        <ion-icon name="arrow-forward-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </div>  
 </div>
 </ion-content>

@@ -1,0 +1,119 @@
+<ion-header>
+  <ion-header>
+    <ion-toolbar>    
+      <ion-buttons slot="start">
+        <ion-back-button text="Volver" defaultHref="folder/"></ion-back-button>
+      </ion-buttons>    
+    </ion-toolbar>
+  </ion-header>  
+</ion-header>
+
+<ion-content>
+<p>{{this.title}}</p>
+<!--Mostrando según el tipo de acción-->
+<!--************************************************************Cargando eventos del paciente**************************************************************-->
+<div *ngIf="this.id===1">
+  <ion-item>
+    <ion-label>Paciente:</ion-label>
+    <ion-item>
+      <ion-select interface="action-sheet" placeholder="{{pacientLocal.pacientId}} "  type="number" required>
+        <div *ngFor="let element of pacients; let i=index">                    
+          <ion-select-option value="{{element.pacientId}}">{{element.pacientId}}:{{element.lastName}}</ion-select-option>          
+        </div>
+      </ion-select>
+    </ion-item>
+  </ion-item>
+  <ion-item><ion-button type="button">Buscar</ion-button></ion-item>  
+
+
+
+</div>
+<!--************************************************************Viendo/editando eventos del paciente**************************************************************-->
+<div *ngIf="this.id===2">
+  <ion-item>
+    <ion-label>Paciente:</ion-label>
+    <ion-item>
+      <ion-select interface="action-sheet" placeholder="{{pacientLocal.pacientId}} "  type="number" required>
+        <div *ngFor="let element of pacients; let i=index">                    
+          <ion-select-option value="{{element.pacientId}}">{{element.pacientId}}:{{element.lastName}}</ion-select-option>          
+        </div>
+      </ion-select>
+    </ion-item>
+  </ion-item>
+  <ion-item><ion-button type="button">Buscar</ion-button></ion-item>  
+  <div *ngIf="eventsUpgraded==true">
+    <div *ngFor="let event of calendarEventsLocal; let i=index">
+      <ion-card
+            style="
+              width: 300px;
+              border-style: solid;
+              box-shadow: none;
+              --ion-background-color: rgb(227, 243, 158); ;
+            "
+            collection-item-width="'25%'"
+            collection-item-height="60%">
+            <ion-item style="box-shadow: none">
+             <ion-label style="box-shadow: none">Nro de evento:
+                {{calendarEventsLocal[i].eventId}}</ion-label>
+            </ion-item>
+            <ion-item style="box-shadow: none">
+              <ion-label style="box-shadow: none">Hora:
+                 {{calendarEventsLocal[i].datetime }}</ion-label>
+             </ion-item>
+             <ion-item style="box-shadow: none">
+              <ion-label style="box-shadow: none">Tipo:
+                 {{calendarEventsLocal[i].type}}</ion-label>
+             </ion-item>
+            <!--<ion-button style="box-shadow: none" routerLink="/pacient/{{pacients[i].pacientId}}">Modificar</ion-button>-->
+            <!--  (click)="editar([i])"-->
+           <!-- <ion-button style="box-shadow: none">Agregar Notas</ion-button>
+            -  (click)="editar([i])"-->
+            <ion-button style="box-shadow: none" color="success"> Editar</ion-button>
+            <ion-button style="box-shadow: none" color="danger" (click)="bajaEvento()" >Dar de baja</ion-button>
+          </ion-card>
+
+    </div>
+  </div>
+
+</div>
+<!--************************************************************Viendo/editando eventos del día**************************************************************-->
+<div *ngIf="this.id===3">
+  <div *ngIf="eventsUpgraded==true">
+    <div *ngFor="let event of calendarEventsLocal; let i=index">
+      <ion-card
+            style="
+              width: 300px;
+              border-style: solid;
+              box-shadow: none;
+              --ion-background-color: rgb(227, 243, 158); ;
+            "
+            collection-item-width="'25%'"
+            collection-item-height="60%">
+            <ion-item style="box-shadow: none">
+             <ion-label style="box-shadow: none">Nro de evento:
+                {{calendarEventsLocal[i].eventId}}</ion-label>
+            </ion-item>
+            <ion-item style="box-shadow: none">
+              <ion-label style="box-shadow: none">Hora:
+                 {{calendarEventsLocal[i].datetime }}</ion-label>
+             </ion-item>
+             <ion-item style="box-shadow: none">
+              <ion-label style="box-shadow: none">Tipo:
+                 {{calendarEventsLocal[i].type}}</ion-label>
+             </ion-item>
+             <ion-item style="box-shadow: none">
+              <ion-label style="box-shadow: none">Paciente:
+                 {{calendarEventsLocal[i].pacientId}}</ion-label>
+             </ion-item>
+            <!--<ion-button style="box-shadow: none" routerLink="/pacient/{{pacients[i].pacientId}}">Modificar</ion-button>-->
+            <!--  (click)="editar([i])"-->
+           <!-- <ion-button style="box-shadow: none">Agregar Notas</ion-button>
+            -  (click)="editar([i])"-->
+            <ion-button style="box-shadow: none" color="success"> Editar</ion-button>
+            <ion-button style="box-shadow: none" color="danger" (click)="bajaEvento()" >Dar de baja</ion-button>
+          </ion-card>
+       </div>
+      </div>   
+</div>
+
+</ion-content>
