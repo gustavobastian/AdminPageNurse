@@ -47,7 +47,7 @@
     
     </ion-item>         
     <ion-item lines="full">
-      <ion-label position="fixed">Nro Doctor</ion-label>
+      <ion-label position="fixed">Lista Médicos</ion-label>
       <ion-input  color="primary" placeholder="{{pacientLocal.userTableId}}" formControlName="userTableId" type="number" required></ion-input>        
     </ion-item>     
     <ion-item lines="full">
@@ -62,7 +62,17 @@
     </ion-item>
   </Form>
  
-  
- 
+  <ion-item >  
+    <p class="User_Label_Medical">Medicos responsables:</p>    
+  </ion-item> 
+   
+   
+   
+  <div *ngFor="let element of MDT; let i=index">            
+          <ion-item>         
+            <ion-item >{{lookForUsers(element.userId)}}</ion-item>
+          </ion-item>
+  </div>   
+  <ion-button type="rounded">+</ion-button>
 
 </ion-content>

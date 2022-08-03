@@ -1,8 +1,8 @@
 export class Bed {
-  public _bedId: number;
-  public _roomId: number;
-  public _callerId: number;
-  public _floorId: number;
+  private _bedId: number;
+  private _roomId: number;
+  private _callerId: number;
+  private _floorId: number;
 
   constructor(
     bedId: number,

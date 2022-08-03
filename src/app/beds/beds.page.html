@@ -24,11 +24,15 @@
         <ion-input value="{{bed.callerId}}" formControlName="callerId" type="number" required></ion-input>        
       </ion-item>     
       <ion-item lines="full">
-        <ion-label position="floating">QR</ion-label>
-        <ion-input value="{{qr_string}}" formControlName="QRString" type="text" required></ion-input>        
-      </ion-item>     
-     
+        <ion-label position="fixed">QR</ion-label>
+        <!--<ion-input value="{{qr_string}}"  type="text" required></ion-input>        -->
+        <ion-select interface="action-sheet" #C (ionChange)="upgradingQRNumber(C.value)" type="number" required>
+          <div *ngFor="let element of qrs; let i=index">                      
+           <ion-select-option  value="{{i}}">{{qrs[i].QRId}}:{{qrs[i].QR}}</ion-select-option>                   
+          </div>
+        </ion-select>
 
+      </ion-item>     
       <ion-item>
         
           <ion-button type="submit" color="danger" expand="block">Submit</ion-button>
@@ -36,7 +40,13 @@
       </ion-item>
     </Form>
 
-    
+    <ion-item>
+      <ion-label position="floating">Nuevo texto QR</ion-label>  
+      <ion-input value="{{qr_string}}" #d (ionChange)="upgradingQR(d.value)" ></ion-input>
+      <ion-button  color="danger" (click)="submitQR(qr_string)">Enviar nuevo QR</ion-button>    
+  </ion-item>
+
+  
     
   
 </ion-content>

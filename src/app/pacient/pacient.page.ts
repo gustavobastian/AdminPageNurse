@@ -2,9 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Bed } from '../models/bed';
+import { medicalTable } from '../models/medicalTable';
 import { Pacient } from '../models/pacient';
+import { User } from '../models/user';
 import { BedsService } from '../services/beds.service';
+import { MedicalTableService } from '../services/medical-table.service';
 import { PacientService } from '../services/pacient.service';
+import { UsersService } from '../services/users.service';
+
+
 
 class BedStatus{
   public _id: number;
@@ -30,6 +36,11 @@ export class PacientPage implements OnInit {
   public newPacient= true;
   private beds: Array<Bed> = new Array<Bed>();
   public bedState: Array<BedStatus> = new Array<BedStatus>();
+  private users: Array<User> = new Array<User>();
+  private pacientUsers: Array<User> = new Array<User>();
+
+  private MDT : Array<medicalTable>=new Array<medicalTable>;
+
 
   ionicForm: FormGroup = new FormGroup({
     pacientId: new FormControl(),
@@ -46,9 +57,11 @@ export class PacientPage implements OnInit {
     private activatedRoute: ActivatedRoute,
     public formBuilder: FormBuilder,
     public bedServ: BedsService,
-    public pacientServ: PacientService ) { }
+    private medTabServ: MedicalTableService,
+    public pacientServ: PacientService,
+    public userServ: UsersService ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.id = this.activatedRoute.snapshot.paramMap.get("id");    
     console.log(this.id.toString())
     if(parseInt(this.id) < 1)
@@ -60,17 +73,36 @@ export class PacientPage implements OnInit {
     {
      this.newPacient=false;
      console.log("loading data");
-    this.retrieveSinglePacient(parseInt(this.id));
+    await this.retrieveSinglePacient(parseInt(this.id));
+    
     }
     this.retrieveBeds();
     this.retrieveBedStates();
-    console.log(this.bedState);
-    console.log(this.bedState[0]);
+    //bring list of users
+    let listado = await this.userServ.getAllUsers();
+    //console.log("llego2");
+    let data = listado[0];        
+    this.users=listado;
+
+  }
+
+   lookForUsers(userIdP: number): string  {
+    let i=1;
+    let d=0;
+    
+    this.users.forEach(element => {      
+      d++;
+      if(element.userId==userIdP){i=d;}
+    });
+    console.log(this.users[i])
+    return JSON.stringify(this.users[i].userId+":"+this.users[i].lastname+","+this.users[i].firstname);
+    
   }
 
   async retrieveSinglePacient(id:number) {
     
     let pacientLocal2 = await this.pacientServ.getPacient(id);    
+    await this.retrieveMedicalTable(pacientLocal2.userTableId);
     this.pacientLocal = pacientLocal2;
     console.log(this.pacientLocal);
   }
@@ -91,10 +123,15 @@ export class PacientPage implements OnInit {
     listado2.forEach(element => {      
       this.bedState.push(element);
     });
-        
+    return;
+  }
+
+  async retrieveMedicalTable(index: number) {
     
-    
-    
+    console.log("Estoy en el retrieve MedicalTableService y llame al service:"+index);
+    let listado = JSON.stringify(await this.medTabServ.getSingleMedicalsTable(index));
+    this.MDT=JSON.parse(listado);
+    console.log(listado)
     return;
   }
 

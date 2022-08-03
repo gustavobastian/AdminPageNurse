@@ -1,5 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { environment } from '../../environments/environment'
+
 
 
 @Injectable({
@@ -7,10 +9,10 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 })
 export class QRService {
   postId;
-  //array of beds
+  //array of qrs
   private qrs: Array<string> = new Array<string>();
   //port for api--> must be changed to a global variable
-  urlApi = "http://localhost:8000";
+  urlApi = environment.urlApi;
 
   constructor(private _http: HttpClient) { }
 
@@ -58,15 +60,26 @@ getSingleQR(id: number): Promise<string> {
   headers.append('Content-Type', 'application/json');
   let message=[{"QR": "example"}]
   message[0].QR=QRData;
+  console.log(JSON.stringify(message[0]));
   ;  
   
   this._http
     .post<any>(this.urlApi + "/api/QR/", message[0],{ headers: headers})
     .subscribe((data) => {
-      this.postId = data.id;
+      this.postId = data;
     });
  }
 
+//getting all QR information
+getAllQR(): Promise<string[]> {
+  return this._http
+    .get(this.urlApi + "/api/QR/")
+    .toPromise()
+    .then((output: string[]) => {
+      console.log(output);
+      return output;
+    });
+}
 
 }
 

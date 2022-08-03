@@ -15,13 +15,16 @@ export class BedsPage implements OnInit {
   public id: string;
   public bed:  Bed = new Bed(0,0,0,0);
   public newBed= true;
+  public bedStates : Array<string> = new Array<string>();
   public qr_string :string
+  public qrIdLocal: number;
+  public qrIdLocalE: number;//for deleting
+  public qrs : Array<string> = new Array<string>();
   
   ionicForm: FormGroup = new FormGroup({
     roomId: new FormControl(),
     floorId: new FormControl(),
-    callerId: new FormControl(),
-    QRString: new FormControl()
+    callerId: new FormControl(),    
   });
 
 
@@ -38,7 +41,7 @@ export class BedsPage implements OnInit {
    
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.id = this.activatedRoute.snapshot.paramMap.get("id");
     console.log("id:"+this.id);
     if(parseInt(this.id) == 0)
@@ -56,7 +59,7 @@ export class BedsPage implements OnInit {
      this.newBed=false;
      this.retrieveSingleBed(parseInt(this.id)) 
     }
-
+    await this.getAllQR();
   }
 
   async retrieveSingleBed(id:number) {
@@ -73,30 +76,57 @@ export class BedsPage implements OnInit {
   }
 
   async submitForm() {
-    console.log("se envio");
-    console.log("original bed:"+JSON.stringify(this.bed));
+      console.log("original bed:"+JSON.stringify(this.bed));
     //console.log(this.ionicForm.value)
     let local=(this.ionicForm.value);
     console.log(JSON.stringify(local));
     this.bed.roomId=parseInt(local.roomId);
     this.bed.floorId=parseInt(local.floorId);
     this.bed.callerId=parseInt(local.callerId);
-    this.qr_string=local.QRString;
+
+    
     console.log(JSON.stringify(this.bed));
     if(this.newBed===true){            
       console.log("bed:"+JSON.stringify(this.bed))
-      await this.bedServ.sendNewBed(this.bed);
-      await this.QRServ.sendNewQR(this.qr_string);
-    
+      await this.bedServ.sendNewBed(this.bed);      
     }
       
     else{      
+      
+      let qrdata= JSON.stringify("QR:"+this.qr_string+",bed:"+this.bed.bedId);
+      console.log(qrdata)
+    
       console.log("bed:"+JSON.stringify(this.bed))
-      await this.bedServ.sendAlterBed(this.bed);
-      await this.QRServ.sendAlterQR(parseInt(this.id), this.qr_string)
+      await this.bedServ.sendAlterBed(this.bed);      
+      await this.QRServ.sendAlterQR(this.qrIdLocal,qrdata)
       console.log("modificando")}
+
+  }
+
+  async upgradingQRNumber(qr: number){
+    this.qrIdLocal=qr;    
+    console.log(JSON.stringify(this.qrs[qr]));
+    let d=JSON.stringify(this.qrs[qr]);
+    let data = JSON.parse(d);
+    console.log(data.QR)
+    //this.qr_string=JSON.parse(this.qrs[qr]).QR;
+  }
+  async upgradingQRENumber(qr: number){
+    this.qrIdLocalE=qr;
+  }
+
+  async submitQR(qr: string) {   
+  //console.log("qr:" + qr)
+  await this.QRServ.sendNewQR(this.qr_string);
+  this.qrs=[];
+  this.qrs=await this.QRServ.getAllQR();     
   }
  
-
+  async upgradingQR(qr: string) {
+    this.qr_string = qr;
+  }
+  async getAllQR(){
+    this.qrs=await this.QRServ.getAllQR();
+  }
 }
 

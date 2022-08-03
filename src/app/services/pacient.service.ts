@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Pacient } from "../models/pacient";
+import { environment } from "src/environments/environment";
 
 @Injectable({
   providedIn: "root",
@@ -10,7 +11,7 @@ export class PacientService {
   //array of Pacient
   private beds: Array<Pacient> = new Array<Pacient>();
   //port for api--> must be changed to a global variable
-  urlApi = "http://localhost:8000";
+  urlApi = environment.urlApi;
 
   constructor(private _http: HttpClient) {}
 

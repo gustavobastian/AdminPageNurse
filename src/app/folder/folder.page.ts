@@ -8,6 +8,8 @@ import { Message } from "../models/message";
 import { UsersService } from "../services/users.service";
 import { PacientService } from "../services/pacient.service";
 import { MessagesService } from "../services/messages.service";
+import { AlertController } from '@ionic/angular';
+
 
 
 @Component({
@@ -20,14 +22,20 @@ export class FolderPage implements OnInit {
   private beds: Array<Bed> = new Array<Bed>();
   private users: Array<User> = new Array<User>();
   public pacientNumber: number = 0;
+  public userNumber: number = 0;
   private pacients: Array<Pacient> = new Array<Pacient>();
   private messages: Array<Message> = new Array<Message>();
+
+  handlerMessage = '';
+  roleMessage = '';
+
 
   constructor(
     private activatedRoute: ActivatedRoute,
     public bedServ: BedsService,
     public userServ: UsersService,
     public pacientServ: PacientService,
+    private alertController: AlertController,
     public messageServ: MessagesService
   ) {
     //console.log("in constructor");
@@ -71,7 +79,7 @@ export class FolderPage implements OnInit {
     console.log("borrando:"+id);
     //let listado = await this.messageServ.getAllMessages();
     //console.log("Eliminando:" + this.users[id].username);
-    this.userServ.deleteUser(id);
+   // this.userServ.deleteUser(id);
   }
   public deletePacient(id:number) {
     console.log("borrando paciente :"+id);
@@ -83,5 +91,60 @@ export class FolderPage implements OnInit {
     console.log("number:"+i)
     this.pacientNumber=i;
   }
-  
+  upgradingUserNumber(i:number){
+  console.log("Usernumber:"+i)
+    this.userNumber=i;
+  }
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: 'Desea eliminar Usuario?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancelada',
+          handler: () => {             
+            this.handlerMessage = 'Accion'; }
+        },
+        {
+          text: 'OK',
+          role: 'confirmada',
+          handler: () => { 
+            this.deleteUsers(this.userNumber);
+            this.handlerMessage = 'Acción'; }
+        }
+      ]
+    });
+
+    await alert.present();
+
+    const { role } = await alert.onDidDismiss();
+    this.roleMessage = `: ${role}`;
+  }
+
+  async presentAlertPacient() {
+    const alert = await this.alertController.create({
+      header: 'Desea dar de baja Paciente?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancelada',
+          handler: () => {             
+            this.handlerMessage = 'Accion'; }
+        },
+        {
+          text: 'OK',
+          role: 'confirmada',
+          handler: () => { 
+           this.deletePacient(this.pacientNumber);
+            this.handlerMessage = 'Accion'; }
+        }
+      ]
+    });
+
+    await alert.present();
+
+    const { role } = await alert.onDidDismiss();
+    this.roleMessage = `: ${role}`;
+  }
 }

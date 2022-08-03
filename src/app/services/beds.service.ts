@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Bed } from "../models/bed";
-import { Observable } from "rxjs/internal/Observable";
+import { environment } from '../../environments/environment'
 
 @Injectable({
   providedIn: "root",
@@ -9,9 +9,10 @@ import { Observable } from "rxjs/internal/Observable";
 export class BedsService {
   postId;
   //array of beds
-  private beds: Array<Bed> = new Array<Bed>();
-  //port for api--> must be changed to a global variable
-  urlApi = "http://localhost:8000";
+  private beds: Array<Bed> = new Array<Bed>();  
+  urlApi =environment.urlApi;
+
+
   constructor(private _http: HttpClient) {}
 
   getAllbed(): Promise<Bed[]> {

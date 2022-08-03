@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { User } from "../models/user";
+import { environment } from '../../environments/environment'
 
 @Injectable({
   providedIn: "root",
@@ -8,7 +9,7 @@ import { User } from "../models/user";
 export class UsersService {
   postId;
   //array of beds
-  urlApi = "http://localhost:8000";
+  urlApi = environment.urlApi;
   private users: Array<User> = new Array<User>();
 
   constructor(private _http: HttpClient) {}

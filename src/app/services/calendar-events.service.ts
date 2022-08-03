@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { CalendarEvent } from '../models/calendarEvent';
-
+import { environment } from '../../environments/environment'
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class CalendarEventsService {
-  urlApi = "http://localhost:8000";
+  urlApi = environment.urlApi;
   private CalendarEventsLocal: Array<CalendarEvent> = new Array<CalendarEvent>();
   postId;
 
@@ -50,7 +50,7 @@ export class CalendarEventsService {
     
     
     this._http
-      .post<any>(this.urlApi + "/api/beds/", calevent,{ headers: headers})
+      .post<any>(this.urlApi + "/api/events/", calevent,{ headers: headers})
       .subscribe((data) => {
         this.postId = data.id;
         console.log(data.id)
