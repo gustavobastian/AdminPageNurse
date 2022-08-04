@@ -42,6 +42,7 @@ export class PacientPage implements OnInit {
   private doctorNumber=0;
 
   private MDT : Array<medicalTable>=new Array<medicalTable>;
+  private allMDT : Array<medicalTable>=new Array<medicalTable>;
 
 
   ionicForm: FormGroup = new FormGroup({
@@ -65,7 +66,7 @@ export class PacientPage implements OnInit {
 
   async ngOnInit() {
     this.id = this.activatedRoute.snapshot.paramMap.get("id");    
-    console.log(this.id.toString())
+    
     if(parseInt(this.id) < 1)
     {
     console.log("new Pacient");
@@ -80,6 +81,7 @@ export class PacientPage implements OnInit {
     }
     this.retrieveBeds();
     this.retrieveBedStates();
+    this.retrieveAllMedicalTable();
     //bring list of users
     let listado = await this.userServ.getAllUsers();
     //console.log("llego2");
@@ -106,22 +108,22 @@ export class PacientPage implements OnInit {
     let pacientLocal2 = await this.pacientServ.getPacient(id);    
     await this.retrieveMedicalTable(pacientLocal2.userTableId);
     this.pacientLocal = pacientLocal2;
-    console.log(this.pacientLocal);
+   
   }
 
   async retrieveBeds() {
-    console.log("Estoy en el retrieveBeds y llame al service");
+
     let listado = await this.bedServ.getAllbed();
-    //console.log("llego");
+
     this.beds = listado;
   }
   async retrieveBedStates() {
     let  localState= new BedStatus(0,0);
-    console.log("Estoy en el retrieveBedState y llame al service");
+
     let listado = JSON.stringify(await this.bedServ.getAllBedStatus());
-    console.log(listado);
+
     let listado2= JSON.parse(listado);
-    console.log(listado2);
+
     listado2.forEach(element => {      
       this.bedState.push(element);
     });
@@ -130,15 +132,19 @@ export class PacientPage implements OnInit {
 
   async retrieveMedicalTable(index: number) {
     this.MDT= [];
-    console.log("Estoy en el retrieve MedicalTableService y llame al service:"+index);
+    
     let listado = JSON.stringify(await this.medTabServ.getSingleMedicalsTable(index));
     this.MDT=JSON.parse(listado);
-    console.log(listado)
+    
     return;
+  }
+  async retrieveAllMedicalTable() {
+    let listado = JSON.stringify(await this.medTabServ.getAllMedicalsTable());
+      this.allMDT=JSON.parse(listado);
   }
 
   submitForm() {    
-    console.log("id:"+this.id);
+    //console.log("id:"+this.id);
     let localsend: Pacient=new Pacient(0,"giac ","como ",0,0,0);
     //console.log("nombre : "+localsend.firstName);
     
@@ -146,7 +152,7 @@ export class PacientPage implements OnInit {
     if(this.ionicForm.value.pacientId<1){alert("Error en nro de paciente!!!");return;}
     
     localsend.firstName=(this.ionicForm.value.firstName).toString();
-    console.log("nombre : "+localsend.firstName);
+   // console.log("nombre : "+localsend.firstName);
     localsend.lastName=this.ionicForm.value.lastName;
     localsend.pacientId=this.ionicForm.value.pacientId;
     localsend.bedId=this.ionicForm.value.bedId;
@@ -160,7 +166,7 @@ export class PacientPage implements OnInit {
 
     localsend.userTableId=this.ionicForm.value.userTableId;
     console.log((localsend));
-    console.log((this.id));
+    //console.log((this.id));
 
     if(parseInt(this.id) < 1)
     {
@@ -188,19 +194,21 @@ export class PacientPage implements OnInit {
     this.doctorNumber=userId;
   }
   async sendDoctor(){
-    console.log("Aqui")
+   
     let correct=true;
     this.MDT.forEach(element => {
       console.log("number: "+element.userId)
       if(element.userId==this.doctorNumber){
-        console.log("repetido")
+     //   console.log("repetido")
         alert("Doctor ya presente en la lista")
         correct=false;        
       }      
     });
-    if(correct==true){  console.log("adding:", this.doctorNumber);
+    if(correct==true){  
       await this.medTabServ.sendDoctorTable(this.doctorNumber,this.pacientLocal.userTableId)
-      await this.retrieveMedicalTable(this.pacientLocal.userTableId);
+    
+      setTimeout(()=>{  this.retrieveMedicalTable(this.pacientLocal.userTableId); }, 1000)
+      
       this.addingDoctor=false;
       }
     else console.log("already present:", this.doctorNumber);
@@ -211,13 +219,26 @@ export class PacientPage implements OnInit {
     console.log(JSON.stringify(this.MDT))
     this.MDT.forEach(element => {      
       if(element.userId==i){
-        //console.log(JSON.stringify(element))
+     
         console.log("medicalTable index:"+element.MedicalTableId)
         index=element.MedicalTableId;
       }      
     });
     await this.medTabServ.deleteDoctorFromTable(index);
-    await this.retrieveMedicalTable(this.pacientLocal.userTableId);
     console.log("removing:"+i)
+    setTimeout(()=>{  this.retrieveMedicalTable(this.pacientLocal.userTableId); }, 1000)
+    
+    
+  }
+  async newMDT(){
+    let maximunUlist = 0;
+    this.allMDT.forEach(element => {
+      if (maximunUlist<element.userTableId){maximunUlist=element.userTableId;}
+    });
+    await this.medTabServ.sendDoctorTable(3,maximunUlist+1)
+    
+  }
+  upgradingMDTNumber(i:number){
+    setTimeout(()=>{  this.retrieveMedicalTable(i); }, 1000)
   }
 }

@@ -27,9 +27,7 @@
       <ion-input color="primary" placeholder="{{pacientLocal.lastName}}" value="{{pacientLocal.lastName}}" formControlName="lastName" type="text" required></ion-input>
     </ion-item>
     <ion-item lines="full">
-    <!--  <ion-label position="fixed" >Cama</ion-label>
-      <ion-input color="primary" placeholder="{{pacientLocal.bedId}}" value="{{pacientLocal.bedId}}" formControlName="bedId" type="number" required></ion-input>        
-    -->
+    
     <ion-label position="fixed" >Cama</ion-label>
     <ion-list>
       <ion-item>
@@ -45,23 +43,29 @@
     </ion-list>
     
     
-    </ion-item>         
+    </ion-item >     
+    <ion-item>
+    <ion-label position="fixed">Lista Médicos</ion-label><br>
+    <ion-select interface="action-sheet" placeholder="{{pacientLocal.userTableId}}" #Z (ionChange)="upgradingMDTNumber(Z.value)"  formControlName="userTableId" type="number" required>
+      <div *ngFor="let element of allMDT; let i=index">            
+        <div *ngIf="element.MedicalTableId>0">
+          <ion-select-option value="{{element.MedicalTableId}}">{{element.MedicalTableId}}</ion-select-option>              
+        </div>        
+      </div>
+    </ion-select>
+  </ion-item >     
+    
     <ion-item lines="full">
-      <ion-label position="fixed">Lista Médicos</ion-label>
-      <ion-input  color="primary" placeholder="{{pacientLocal.userTableId}}" formControlName="userTableId" type="number" required></ion-input>        
-    </ion-item>     
-    <ion-item lines="full">
-      <ion-label position="fixed">PacientId</ion-label>
+      <ion-label position="fixed">PacientId</ion-label> 
       <ion-input  color="primary" placeholder="{{pacientLocal.pacientId}}" formControlName="pacientId" type="number" required></ion-input>        
     </ion-item>     
         
     <ion-item>
       
-        <ion-button type="submit"  expand="block">Submit</ion-button>
-      
+        <ion-button type="submit"  expand="block">Enviar</ion-button>        
     </ion-item>
   </Form>
- 
+  <ion-button type="round" (click)="newMDT()" >Generar Lista de Medicos nueva</ion-button>
   <ion-item >  
     <p class="User_Label_Medical">Medicos responsables:</p>    
   </ion-item> 

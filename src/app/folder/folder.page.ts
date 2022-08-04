@@ -23,6 +23,7 @@ export class FolderPage implements OnInit {
   private users: Array<User> = new Array<User>();
   public pacientNumber: number = 0;
   public userNumber: number = 0;
+  public bedNumber: number = 0;
   private pacients: Array<Pacient> = new Array<Pacient>();
   private messages: Array<Message> = new Array<Message>();
 
@@ -86,6 +87,7 @@ export class FolderPage implements OnInit {
     //let listado = await this.messageServ.getAllMessages();
     //console.log("Eliminando:" + this.users[id].username);
     this.pacientServ.sendDeletePacient(id);
+    setTimeout(()=>{  this.retrievePacients(); }, 1000)
   }
   public upgradingNumber(i: number){
     console.log("number:"+i)
@@ -147,4 +149,10 @@ export class FolderPage implements OnInit {
     const { role } = await alert.onDidDismiss();
     this.roleMessage = `: ${role}`;
   }
+
+  upgradingBedNumber(i : number){
+    this.bedNumber=i;
+    console.log(i)
+  }
+
 }
