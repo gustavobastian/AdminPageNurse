@@ -71,8 +71,25 @@
   <div *ngFor="let element of MDT; let i=index">            
           <ion-item>         
             <ion-item >{{lookForUsers(element.userId)}}</ion-item>
+            <ion-button color="warning" (click)="removeDoctor(element.userId)" type="rounded">Quitar</ion-button>
           </ion-item>
   </div>   
-  <ion-button type="rounded">+</ion-button>
-
+  <ion-button (click)="addingNewDoctor()" type="rounded">+</ion-button>
+  <div *ngIf="addingDoctor===true">      
+    <ion-label position="fixed" >Busqueda de Doctor</ion-label>
+    <ion-list>
+      <ion-item>
+        <ion-select interface="action-sheet"  #G (ionChange)="upgradingDoctorNumber(G.value)"  type="number" required>
+          <div *ngFor="let element of users; let i=index">            
+            <div *ngIf="element.userId>0 && element.occupation=== 'doctor'">
+              <ion-select-option value="{{element.userId}}">{{element.userId}}:{{element.lastname}},{{element.firstname}}</ion-select-option>              
+            </div>
+            
+          </div>
+        </ion-select>
+        <ion-button (click)="sendDoctor()" type="rounded">Agregar</ion-button>
+        <ion-button (click)="done()" (click)="quitAddingNewDoctor()" type="rounded">Finalizar</ion-button>
+      </ion-item>
+    </ion-list>
+  </div>
 </ion-content>

@@ -13,6 +13,9 @@ export class medicalTable {
     public get medicalTableId():number{
         return this._medicalTableId;
     }
+    public get MedicalTableId():number{
+        return this._medicalTableId;
+    }
     public get userid():number{
         return this._userId;
     }

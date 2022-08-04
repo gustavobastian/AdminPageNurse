@@ -38,6 +38,8 @@ export class PacientPage implements OnInit {
   public bedState: Array<BedStatus> = new Array<BedStatus>();
   private users: Array<User> = new Array<User>();
   private pacientUsers: Array<User> = new Array<User>();
+  private addingDoctor= false;
+  private doctorNumber=0;
 
   private MDT : Array<medicalTable>=new Array<medicalTable>;
 
@@ -90,9 +92,9 @@ export class PacientPage implements OnInit {
     let i=1;
     let d=0;
     
-    this.users.forEach(element => {      
+    this.users.forEach(element => {            
+      if(element.userId==userIdP){i=d;return;}
       d++;
-      if(element.userId==userIdP){i=d;}
     });
     console.log(this.users[i])
     return JSON.stringify(this.users[i].userId+":"+this.users[i].lastname+","+this.users[i].firstname);
@@ -127,7 +129,7 @@ export class PacientPage implements OnInit {
   }
 
   async retrieveMedicalTable(index: number) {
-    
+    this.MDT= [];
     console.log("Estoy en el retrieve MedicalTableService y llame al service:"+index);
     let listado = JSON.stringify(await this.medTabServ.getSingleMedicalsTable(index));
     this.MDT=JSON.parse(listado);
@@ -170,7 +172,52 @@ export class PacientPage implements OnInit {
       this.pacientServ.sendAlterPacient(localsend);
       console.log("editing "+this.id)
     }
+  }
 
+  /***
+   * Adding new doctors to the list of doctors
+   */
 
+  addingNewDoctor(){
+    this.addingDoctor=true;
+  }
+  quitAddingNewDoctor(){
+    this.addingDoctor=false;
+  }
+  upgradingDoctorNumber(userId:number){
+    this.doctorNumber=userId;
+  }
+  async sendDoctor(){
+    console.log("Aqui")
+    let correct=true;
+    this.MDT.forEach(element => {
+      console.log("number: "+element.userId)
+      if(element.userId==this.doctorNumber){
+        console.log("repetido")
+        alert("Doctor ya presente en la lista")
+        correct=false;        
+      }      
+    });
+    if(correct==true){  console.log("adding:", this.doctorNumber);
+      await this.medTabServ.sendDoctorTable(this.doctorNumber,this.pacientLocal.userTableId)
+      await this.retrieveMedicalTable(this.pacientLocal.userTableId);
+      this.addingDoctor=false;
+      }
+    else console.log("already present:", this.doctorNumber);
+  }
+
+  async removeDoctor(i:number){
+    let index=0;
+    console.log(JSON.stringify(this.MDT))
+    this.MDT.forEach(element => {      
+      if(element.userId==i){
+        //console.log(JSON.stringify(element))
+        console.log("medicalTable index:"+element.MedicalTableId)
+        index=element.MedicalTableId;
+      }      
+    });
+    await this.medTabServ.deleteDoctorFromTable(index);
+    await this.retrieveMedicalTable(this.pacientLocal.userTableId);
+    console.log("removing:"+i)
   }
 }
