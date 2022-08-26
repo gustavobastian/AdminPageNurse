@@ -56,17 +56,24 @@ export class SchedulerPage implements OnInit {
   }
 
   async retrieveEvents() {
+    this.calendarEventsLocal=[];
     console.log("Estoy en el calling events y llame al service");
     let listado = await this.calServ.getAllCalendarEvents();
     //console.log("llego");
     this.calendarEventsLocal = listado;
     this.eventsUpgraded=true;
   }
+  /***
+   * Note: it only refers to the original retrieve Events function, the filter is donde in the html element
+   */
   async retrieveEventsPacient(id:number) {
+    this.eventsUpgraded=false;
     console.log("Estoy en el calling filtering pacient y llame al service");
-    let listado = await this.calServ.getPacientCalendarEvents(id);
+
+    let listado = await this.calServ.getAllCalendarEvents();
     //console.log("llego");
     this.calendarEventsLocal = listado;
+    this.eventsUpgraded=true;
   }
   async retrievePacients() {
     console.log("Estoy en el retrievePacient y llame al service");
@@ -75,13 +82,18 @@ export class SchedulerPage implements OnInit {
   }
   upgradingNumber (id:number) {
     this.pacientNumber=id;
+    console.log(this.pacientNumber)
   }
-  deleteEvent(i:number) {
+  async deleteEvent(i:number) {
+    let evId=this.calendarEventsLocal[i].eventId;
+    console.log("Removing event " + evId);
+    await this.calServ.sendDeleteEvent(evId);
+    await this.retrieveEvents() ;   
 
   }
-  editEvent(i:number){
 
-  }
+  
+
   addEvent(i:number){
 
   }

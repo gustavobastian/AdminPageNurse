@@ -8,14 +8,6 @@
 </ion-header>
 
 <ion-content>
-<!--  <h1>Paciente: {{id}}</h1>
-  <h1>Paciente: {{pacient | json}}</h1>
-
-  pacientFirstName: new FormControl(),
-    pacientLastName: new FormControl(),
-    bedId: new FormControl(),
-    notesTableId: new FormControl(),
-    userTableId: new FormControl()-->
 
   <Form [formGroup]="ionicForm" (ngSubmit)="submitForm()" novalidate>
     <ion-item lines="full">
@@ -85,7 +77,7 @@
       <ion-item>
         <ion-select interface="action-sheet"  #G (ionChange)="upgradingDoctorNumber(G.value)"  type="number" required>
           <div *ngFor="let element of users; let i=index">            
-            <div *ngIf="element.userId>0 && element.occupation=== 'doctor'">
+            <div *ngIf="element.userId>0 && element.occupation=== 'Médico'">
               <ion-select-option value="{{element.userId}}">{{element.userId}}:{{element.lastname}},{{element.firstname}}</ion-select-option>              
             </div>
             

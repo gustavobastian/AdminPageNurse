@@ -81,12 +81,38 @@
     
     </div>
 <!--***************************** Messages*********************************************************************************************************************-->  
-    <div *ngIf="folder === 'Mensajes'">
+    <div *ngIf="folder === 'LogEventos'">
       <div *ngFor="let element of messages; let i=index">    
-        <ion-label style="box-shadow: none">Message:
+        <ion-label style="box-shadow: none">LogEventos:
           {{messages[i] | json}}</ion-label>
       </div>
     <strong class="capitalize">{{ folder }}</strong>   
+
+   <ul>
+      <div *ngFor="let item of logEventsLocal; let i=index">
+        <li>
+          <ion-item>            
+            <div *ngIf="logEventsLocal[i].type === 1">
+              <ion-icon style="padding-top: 10pt; padding-left: 10pt;" name="notifications"></ion-icon>     
+            </div>
+            <div *ngIf="logEventsLocal[i].type === 2">
+              <ion-icon style="padding-top: 10pt; padding-left: 10pt;" name="alarm"></ion-icon>     
+            </div>                   
+               <br> 
+               Paciente: {{logEventsLocal[i].pacientId}} Atendió: {{logEventsLocal[i].userId}}
+          </ion-item>  
+          <ion-item>
+            Hora inicio: {{logEventsLocal[i].init}} <br>
+            Hora fin: {{logEventsLocal[i].finish}}                                               
+            </ion-item>  
+         
+          <ion-item>
+            Nota:{{logEventsLocal[i].Note2}} 
+            </ion-item>  
+        </li>
+      </div>
+      
+    </ul>
     </div>
 <!--***************************** Scheduler*********************************************************************************************************************-->      
   <div *ngIf="folder === 'Calendario'">
@@ -104,12 +130,12 @@
         <ion-icon name="arrow-forward-outline"></ion-icon>
       </ion-button>
     </ion-item>
-    <ion-item>
+  <!--  <ion-item>
       <ion-label >Ver/editar eventos del día</ion-label>
       <ion-button routerLink="/scheduler/3">
         <ion-icon name="arrow-forward-outline"></ion-icon>
       </ion-button>
-    </ion-item>
+    </ion-item>-->
   </div>  
 </div>
 </ion-content>

@@ -9,6 +9,8 @@ import { UsersService } from "../services/users.service";
 import { PacientService } from "../services/pacient.service";
 import { MessagesService } from "../services/messages.service";
 import { AlertController } from '@ionic/angular';
+import { LogEventsService } from "../services/log-events.service";
+import { logEvent } from "../models/logEvent";
 
 
 
@@ -26,6 +28,7 @@ export class FolderPage implements OnInit {
   public bedNumber: number = 0;
   private pacients: Array<Pacient> = new Array<Pacient>();
   private messages: Array<Message> = new Array<Message>();
+  private logEventsLocal: Array<logEvent> = new Array<logEvent>();
 
   handlerMessage = '';
   roleMessage = '';
@@ -37,13 +40,15 @@ export class FolderPage implements OnInit {
     public userServ: UsersService,
     public pacientServ: PacientService,
     private alertController: AlertController,
-    public messageServ: MessagesService
+    public messageServ: MessagesService,
+    public logEvents: LogEventsService
   ) {
     //console.log("in constructor");
     this.retrieveBeds();
     this.retrieveUsers();
     this.retrievePacients();
     this.retrieveMessages();
+    this.retrieveLogs();
   }
 
   ngOnInit() {
@@ -155,4 +160,21 @@ export class FolderPage implements OnInit {
     console.log(i)
   }
 
+
+  //asking for logs events
+
+
+  async retrieveLogs() {
+    console.log("Estoy en el retrieveLogs y llame al service");
+    let listado = JSON.stringify(await this.logEvents.getAllLogEvents());
+    let listado2= JSON.parse(JSON.stringify( listado));
+    /*listado.forEach(element => {
+      console.log("logs:"+element);  
+      
+    });*/
+    
+    
+    this.logEventsLocal=JSON.parse(listado2);
+    console.log(this.logEventsLocal)
+  }
 }

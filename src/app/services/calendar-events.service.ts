@@ -28,7 +28,10 @@ export class CalendarEventsService {
       });
 
   }
-
+/**
+ * 
+ * Do not use... not implemented in the backend. Use html filtering instead
+ */
   getPacientCalendarEvents(id: number):Promise<CalendarEvent[]> {
     return this._http
       .get(this.urlApi + "/api/events/pacient/"+id)
@@ -56,5 +59,19 @@ export class CalendarEventsService {
         console.log(data.id)
       });
    }
+  /**
+   * 
+   * @param caleventId removing a calendar event from the system
+   */
+   sendDeleteEvent(id: number) {    
+    const headers = new HttpHeaders();    
+    headers.append('Content-Type', 'application/json');    
+    this._http
+      .delete<any>(this.urlApi + "/api/events/"+id, { headers: headers})
+      .subscribe((data) => {
+        this.postId = data.id;
+      });
+  
+  }
 
 }

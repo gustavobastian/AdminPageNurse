@@ -9,7 +9,7 @@ export class AppComponent {
     { title: "Camas", url: "/folder/Camas", icon: "bed" },
     { title: "Usuarios", url: "/folder/Usuarios", icon: "person" },
     { title: "Pacientes", url: "/folder/Pacientes", icon: "medkit" },
-    { title: "Mensajes", url: "/folder/Mensajes", icon: "mail" },
+    { title: "Log Eventos", url: "/folder/LogEventos", icon: "mail" },
     { title: "Eventos", url: "/folder/Calendario", icon: "calendar" }
   ];
 
