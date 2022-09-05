@@ -102,13 +102,15 @@
                Paciente: {{logEventsLocal[i].pacientId}} Atendió: {{logEventsLocal[i].userId}}
           </ion-item>  
           <ion-item>
-            Hora inicio: {{logEventsLocal[i].init}} <br>
-            Hora fin: {{logEventsLocal[i].finish}}                                               
+            Hora inicio: {{logEventsLocal[i].init | date :'medium'}} <br>
+            Hora fin: {{logEventsLocal[i].finish | date :'medium'}}                                               
             </ion-item>  
-         
-          <ion-item>
-            Nota:{{logEventsLocal[i].Note2}} 
-            </ion-item>  
+          
+          <div *ngIf="item.Note2!=''">
+              <ion-item>
+                Nota:{{logEventsLocal[i].Note2}} 
+              </ion-item>  
+          </div>      
         </li>
       </div>
       
