@@ -27,9 +27,28 @@
             </div>
           </ion-select>
       </ion-item>
+
+      
       <ion-item>
-        <ion-button style="box-shadow: none" routerLink="/beds/{{bedNumber}}">Editar</ion-button>  
+        <ion-button style="box-shadow: none" routerLink="/beds/0">Nueva</ion-button>  
+        <div *ngIf="bedNumber!=0">
+            <ion-button style="box-shadow: none" routerLink="/beds/{{bedNumber}}">Editar</ion-button>  
+            <ion-button style="box-shadow: none" (click)="sendPriority()">Enviar prioridad</ion-button>  
+        </div>
       </ion-item>    
+
+      <ion-item>        
+        <div *ngIf="bedNumber!=0">
+          <ion-label>Prioridad actual:{{bedPriority}} </ion-label>       
+          <ion-label>Prioridad(5 max- 0 min)</ion-label>       
+          <ion-select interface="action-sheet" #H (ionChange)="upgradingPriorityNumber(H.value)" type="number" required> <!---->
+            <div *ngFor="let element of priorities; let i=index">  
+              <ion-select-option  value="{{priorities[i]}}" >{{priorities[i]}}</ion-select-option>                 
+            </div>
+          </ion-select>  
+        </div>
+      </ion-item>
+      
     </div>
 
 <!--***************************** USERS*********************************************************************************************************************-->

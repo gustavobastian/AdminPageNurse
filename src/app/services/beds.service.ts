@@ -51,9 +51,6 @@ export class BedsService {
  */
   sendNewBed(newBed: Bed) {
     newBed.bedId=22;
-    
-    
-    
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
     
@@ -83,4 +80,37 @@ export class BedsService {
         this.postId = data.id;
       });
   }
+
+  /**
+   * working with beds priorities
+   */
+//getting single beds information
+ async getSinglePriority(id: number): Promise<number> {
+  return this._http
+    .get(this.urlApi + "/api/beds/priority/"+id)
+    .toPromise()
+    .then((received: number) => {
+      console.log(received[0]);
+      return received[0];
+    });
+}
+/**
+ * Modify a bed parameters in the system
+ * @param newBed 
+ */
+
+ async SendAlterPriority(bedNumber:number, priority:number) {
+  
+  const headers = new HttpHeaders();
+  headers.append('Content-Type', 'application/json');    
+  let newData=[{"priority":priority}]
+  let data=(newData)
+  console.log(data)
+  this._http
+    .put<any>(this.urlApi + "/api/beds/priority/"+bedNumber, data,{ headers: headers})
+    .subscribe((data) => {
+      this.postId = data.id;
+    });
+}
+
 }

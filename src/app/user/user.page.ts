@@ -25,7 +25,10 @@ export class UserPage implements OnInit {
 
 
 
-  constructor(private activatedRoute: ActivatedRoute,public formBuilder: FormBuilder,public userServ: UsersService) {
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    public formBuilder: FormBuilder,
+    public userServ: UsersService) {
     
    }
 

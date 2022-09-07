@@ -44,7 +44,7 @@ export class MedicalTableService {
   } 
   /**
  * 
- * @param 
+ * sending a doctor to a medical Table  
  */
    sendDoctorTable(userId: number, userTable:number) {
     const headers = new HttpHeaders();

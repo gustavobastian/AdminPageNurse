@@ -30,6 +30,8 @@ export class FolderPage implements OnInit {
   private messages: Array<Message> = new Array<Message>();
   private logEventsLocal: Array<logEvent> = new Array<logEvent>();
 
+  priorities: Array<number> = [0,1,2,3,4,5];
+  bedPriority=0;
   handlerMessage = '';
   roleMessage = '';
 
@@ -53,6 +55,7 @@ export class FolderPage implements OnInit {
 
   ngOnInit() {
     this.folder = this.activatedRoute.snapshot.paramMap.get("id");
+    this.bedPriority=0;
   }
 
   async retrieveBeds() {
@@ -155,11 +158,17 @@ export class FolderPage implements OnInit {
     this.roleMessage = `: ${role}`;
   }
 
-  upgradingBedNumber(i : number){
+  async upgradingBedNumber(i : number){
     this.bedNumber=i;
     console.log(i)
+    this.retrievePriority(i);
+    
   }
 
+  upgradingPriorityNumber(i : number){
+    this.bedPriority=i;
+    console.log("priority:"+(this.bedPriority).toString())
+  }
 
   //asking for logs events
 
@@ -176,5 +185,25 @@ export class FolderPage implements OnInit {
     
     this.logEventsLocal=JSON.parse(listado2);
     console.log(this.logEventsLocal)
+  }
+  /**
+   *  getting priority information of a single bed
+   * @param i bed number
+   */
+  async retrievePriority(i:number)  {
+    let received = await (this.bedServ.getSinglePriority(i))
+    console.log((received))
+    let received2= JSON.parse(JSON.stringify(received))
+    console.log("p:"+JSON.stringify(received2.priority))
+    this.bedPriority=received2.priority
+  }
+
+  /**
+   * 
+   * setting priority information of a single bed
+   */
+   async sendPriority()  {    
+    console.log("sending bed " + this.bedNumber.toString() +" prioridad:" + this.bedPriority.toString() )
+    this.bedServ.SendAlterPriority(this.bedNumber,this.bedPriority)
   }
 }
