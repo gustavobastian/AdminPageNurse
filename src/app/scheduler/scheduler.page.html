@@ -23,10 +23,11 @@
       </ion-select>
     </ion-item>
   </ion-item>  
-  <ion-item>
-    <ion-button type="button" routerLink="/event/{{pacientNumber}}">Agregar Evento</ion-button>
-  </ion-item>  
-
+  <div *ngIf="pacientNumber!=0">
+    <ion-item>
+      <ion-button type="button" routerLink="/event/{{pacientNumber}}">Agregar Evento</ion-button>
+    </ion-item>  
+  </div>
 
 
 </div>

@@ -13,11 +13,22 @@ export class StatisticsService {
 
   constructor(private _http: HttpClient) { }
 
-  //getting single pacients information
+  //getting all pacients information
   getStatsAllPacient(): Promise<string> {
     console.log("here 2")
     return this._http
       .get(this.urlApi + "/api/Statistics/promPacient")
+      .toPromise()
+      .then((response: string) => {
+        console.log(response);
+        return response;
+      });
+  }
+
+  //getting all nurses information
+  getStatsAllNurse(): Promise<string> {    
+    return this._http
+      .get(this.urlApi + "/api/Statistics/promNurse")
       .toPromise()
       .then((response: string) => {
         console.log(response);

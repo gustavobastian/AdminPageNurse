@@ -9,7 +9,28 @@
 
 <ion-content>
   <ion-item>
-    <ion-button>General</ion-button>
-    <ion-button>Individual</ion-button>
+    <ion-button (click)="onClickG()">General</ion-button>
+    <ion-button (click)="onClickI()">Individual</ion-button>
     </ion-item>
+    
+    <div *ngIf="selection==1">
+    <ion-label>General</ion-label>
+    <ion-label>Total Llamados a la habitación atendidos por usuario</ion-label>
+    <ul>
+      <div *ngFor="let item of data" class>
+        <div *ngIf="item.userID!=0">
+          <li>
+            Usuario {{item.userID}} => {{item.cn}} veces
+          </li>
+        </div>
+      </div>
+    </ul>
+    
+    </div>
+    
+    
+    <div *ngIf="selection==2">
+    <p>Individual</p>
+    </div>
+    
 </ion-content>

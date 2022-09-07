@@ -15,11 +15,11 @@
 
 <div *ngIf="selection==1">
 <ion-label>General</ion-label>
-
+<ion-label>Total Llamados a la habitación por paciente</ion-label>
 <ul>
   <div *ngFor="let item of data" class>
     <li>
-      {{item|json}}
+      Paciente {{item.pacientID}} => {{item.cn}} veces
     </li>
 
   </div>

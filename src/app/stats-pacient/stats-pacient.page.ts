@@ -25,9 +25,7 @@ export class StatsPacientPage implements OnInit {
     console.log(JSON.stringify(dataLocal));
     let data2=JSON.parse(dataLocal)
     this.data=[]
-    data2.forEach(element => {
-      console.log(element.pacientID)
-      console.log(element)
+    data2.forEach(element => {      
       this.data.push(element);
     });
     
