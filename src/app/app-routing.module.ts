@@ -38,6 +38,14 @@ const routes: Routes = [
     path: 'event/:id',
     loadChildren: () => import('./event/event.module').then( m => m.EventPageModule)
   },
+  {
+    path: 'stats-nurse',
+    loadChildren: () => import('./stats-nurse/stats-nurse.module').then( m => m.StatsNursePageModule)
+  },
+  {
+    path: 'stats-pacient',
+    loadChildren: () => import('./stats-pacient/stats-pacient.module').then( m => m.StatsPacientPageModule)
+  },
 ];
 
 @NgModule({

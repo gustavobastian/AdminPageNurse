@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Estadisticas Pacientes</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button text="Volver" defaultHref="folder/Estadisticas"></ion-back-button>
+    </ion-buttons>    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-item>
+<ion-button (click)="onClickG()">General</ion-button>
+<ion-button (click)="onClickI()">Individual</ion-button>
+</ion-item>
+
+<div *ngIf="selection==1">
+<ion-label>General</ion-label>
+
+<ul>
+  <div *ngFor="let item of data" class>
+    <li>
+      {{item|json}}
+    </li>
+
+  </div>
+</ul>
+
+</div>
+
+
+<div *ngIf="selection==2">
+<p>Individual</p>
+</div>
+
+
+
+</ion-content>

@@ -150,13 +150,28 @@
       <ion-button routerLink="/scheduler/2">
         <ion-icon name="arrow-forward-outline"></ion-icon>
       </ion-button>
-    </ion-item>
-  <!--  <ion-item>
-      <ion-label >Ver/editar eventos del día</ion-label>
-      <ion-button routerLink="/scheduler/3">
+     </ion-item>
+  
+  </div>  
+
+  <!--***************************** Statidistics *********************************************************************************************************************-->      
+  <div *ngIf="folder === 'Estadística'">
+    <!--<strong class="capitalize">{{ folder }}</strong>   -->
+    <p></p>
+    <ion-item>
+      <ion-label >Paciente</ion-label>
+      <ion-button routerLink="/stats-pacient"> <!--routerLink="stats-pacient">-->
         <ion-icon name="arrow-forward-outline"></ion-icon>
       </ion-button>
-    </ion-item>-->
-  </div>  
+    </ion-item>
+    <ion-item>
+      <ion-label >Enfermera</ion-label>
+      <ion-button routerLink="/stats-nurse"> <!--routerLink="/stats-nurse">-->
+        <ion-icon name="arrow-forward-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+
+  </div>   
+
 </div>
 </ion-content>
