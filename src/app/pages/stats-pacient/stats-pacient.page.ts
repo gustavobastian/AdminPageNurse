@@ -1,24 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import { StatisticsService } from '../services/statistics.service';
+import { StatisticsService } from '../../services/statistics.service';
 
 @Component({
-  selector: 'app-stats-nurse',
-  templateUrl: './stats-nurse.page.html',
-  styleUrls: ['./stats-nurse.page.scss'],
+  selector: 'app-stats-pacient',
+  templateUrl: './stats-pacient.page.html',
+  styleUrls: ['./stats-pacient.page.scss'],
 })
-export class StatsNursePage implements OnInit {
+export class StatsPacientPage implements OnInit {
   private data: Array<String> = new Array<String>();
   private selection=0;
 
-  constructor(
+
+    constructor(
     private statisticsServ: StatisticsService
   ) { }
 
   ngOnInit() {
+    
+    this.selection=0;
   }
-  async getAllNurseStats() {
+  async getAllPacientsStats() {
     console.log("here!")
-    let dataLocal=JSON.stringify(await this.statisticsServ.getStatsAllNurse());
+    let dataLocal=JSON.stringify(await this.statisticsServ.getStatsAllPacient());
     console.log(JSON.stringify(dataLocal));
     let data2=JSON.parse(dataLocal)
     this.data=[]
@@ -26,12 +29,11 @@ export class StatsNursePage implements OnInit {
       this.data.push(element);
     });
     
-    
   }
 
   onClickG(){
     this.selection=1;
-    this.getAllNurseStats();
+    this.getAllPacientsStats();
   }
   onClickI(){
     this.selection=2;

@@ -1,51 +1,58 @@
 import { NgModule } from "@angular/core";
 import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
-import { AuthModule } from "./module/auth.module";
+
+
 
 const routes: Routes = [
   {
-    path: "",
-    redirectTo: "folder/" + "Camas", //'loging',//'folder/:id',
-    pathMatch: "full",
+    path: 'login',
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule),
+    
   },
+  {
+    path: '',
+    redirectTo: 'login',pathMatch:'full',
+    
+  },
+  /*{
+    path: "main",
+    redirectTo: "folder/" + "Camas", //'loging',//'folder/:id',
+    
+  },*/
   {
     path: "folder/:id", //'folder/:id',
     loadChildren: () =>
       import("./folder/folder.module").then((m) => m.FolderPageModule),
-  },
-  {
-    path: "loging",
-    loadChildren: () =>
-      import("./module/auth.module").then((m) => m.AuthModule),
-  },
+  },  
   {
     path: 'user/:id',
-    loadChildren: () => import('./user/user.module').then( m => m.UserPageModule)
+    loadChildren: () => import('./pages/user/user.module').then( m => m.UserPageModule)
   },
   {
     path: 'pacient/:id',
-    loadChildren: () => import('./pacient/pacient.module').then( m => m.PacientPageModule)
+    loadChildren: () => import('./pages/pacient/pacient.module').then( m => m.PacientPageModule)
   },
   {
     path: 'beds/:id',
-    loadChildren: () => import('./beds/beds.module').then( m => m.BedsPageModule)
+    loadChildren: () => import('./pages/beds/beds.module').then( m => m.BedsPageModule)
   },
   {
     path: 'scheduler/:id',
-    loadChildren: () => import('./scheduler/scheduler.module').then( m => m.SchedulerPageModule)
+    loadChildren: () => import('./pages/scheduler/scheduler.module').then( m => m.SchedulerPageModule)
   },
   {
     path: 'event/:id',
-    loadChildren: () => import('./event/event.module').then( m => m.EventPageModule)
+    loadChildren: () => import('./pages/event/event.module').then( m => m.EventPageModule)
   },
   {
     path: 'stats-nurse',
-    loadChildren: () => import('./stats-nurse/stats-nurse.module').then( m => m.StatsNursePageModule)
+    loadChildren: () => import('./pages/stats-nurse/stats-nurse.module').then( m => m.StatsNursePageModule)
   },
   {
     path: 'stats-pacient',
-    loadChildren: () => import('./stats-pacient/stats-pacient.module').then( m => m.StatsPacientPageModule)
+    loadChildren: () => import('./pages/stats-pacient/stats-pacient.module').then( m => m.StatsPacientPageModule)
   },
+  
 ];
 
 @NgModule({

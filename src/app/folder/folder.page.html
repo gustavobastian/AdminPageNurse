@@ -3,175 +3,190 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>{{ folder }}</ion-title>
+    <ion-item>
+      <ion-title>{{ folder }}</ion-title>
+      <div *ngIf="logStatus.logged==true">
+        <ion-button (click)="onClick2()">logout</ion-button>
+      </div>  
+      <div *ngIf="logStatus.logged!=true">
+        <ion-button (click)="onClickLogin()">login</ion-button>
+      </div>  
+  </ion-item>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-<!--  <ion-header collapse="condense" [translucent]="true">
-    <ion-toolbar>
-      <ion-title size="large">{{ folder }}</ion-title>
-    </ion-toolbar>
-  </ion-header>
--->
- <div id="container">
-<!--***************************** Beds*********************************************************************************************************************-->  
-
-    <div *ngIf="folder === 'Camas'">
-
-      <ion-item>
-        <ion-label>Buscar :</ion-label>       
-          <ion-select interface="action-sheet" #D (ionChange)="upgradingBedNumber(D.value)" type="number" required>
-            <div *ngFor="let element of beds; let i=index">              
-             <ion-select-option  value="{{beds[i].bedId}}">{{beds[i].bedId}}:piso {{beds[i].floorId}},cuarto {{beds[i].roomId}}</ion-select-option>                 
-            </div>
-          </ion-select>
-      </ion-item>
-
-      
-      <ion-item>
-        <ion-button style="box-shadow: none" routerLink="/beds/0">Nueva</ion-button>  
-        <div *ngIf="bedNumber!=0">
-            <ion-button style="box-shadow: none" routerLink="/beds/{{bedNumber}}">Editar</ion-button>  
-            <ion-button style="box-shadow: none" (click)="sendPriority()">Enviar prioridad</ion-button>  
-        </div>
-      </ion-item>    
-
-      <ion-item>        
-        <div *ngIf="bedNumber!=0">
-          <ion-label>Prioridad actual:{{bedPriority}} </ion-label>       
-          <ion-label>Prioridad(5 max- 0 min)</ion-label>       
-          <ion-select interface="action-sheet" #H (ionChange)="upgradingPriorityNumber(H.value)" type="number" required> <!---->
-            <div *ngFor="let element of priorities; let i=index">  
-              <ion-select-option  value="{{priorities[i]}}" >{{priorities[i]}}</ion-select-option>                 
-            </div>
-          </ion-select>  
-        </div>
-      </ion-item>
-      
-    </div>
-
-<!--***************************** USERS*********************************************************************************************************************-->
-    <div *ngIf="folder === 'Usuarios'">
-      <ion-item>
-        <ion-label>Buscar :</ion-label>       
-          <ion-select interface="action-sheet" #F (ionChange)="upgradingUserNumber(F.value)" type="number" required>
-            <div *ngFor="let element of users; let i=index">              
-             <ion-select-option  value="{{users[i].userId}}">{{users[i].userId}}:{{users[i].lastname}},{{users[i].firstname}}</ion-select-option>                 
-            </div>
-          </ion-select>
-      </ion-item>
-      <ion-item>
-          <ion-button style="box-shadow: none" routerLink="/user/{{userNumber}}">Editar</ion-button>  
-        </ion-item>    
-          <ion-item>
-
-          <ion-button (click)="presentAlert()">Dar de baja</ion-button>          
-            <p>{{ handlerMessage }}</p>
-            <p>{{ roleMessage }}</p>       
-          
-      </ion-item>     
-      
-    </div>
-  <!--***************************** Pacients*********************************************************************************************************************-->  
-    <div *ngIf="folder === 'Pacientes'">      
-      
-     <ion-item>
-      <ion-label>Buscar :</ion-label>
-     
-        <ion-select interface="action-sheet" #C (ionChange)="upgradingNumber(C.value)" type="number" required>
-          <div *ngFor="let element of pacients; let i=index">           
-           
-           <ion-select-option  value="{{pacients[i].pacientId}}">{{pacients[i].pacientId}}:{{pacients[i].lastName}},{{pacients[i].firstName}}</ion-select-option>                   
-          </div>
-        </ion-select>
-      </ion-item>
-        <ion-item>  
-        <ion-button style="box-shadow: none" routerLink="/pacient/{{pacientNumber}}">Editar</ion-button>  
-      </ion-item>
-      <ion-item>
-
-          <ion-button (click)="presentAlertPacient()">Dar de baja</ion-button>          
-            <p>{{ handlerMessage }}</p>
-            <p>{{ roleMessage }}</p>       
-          
-      </ion-item>     
-     
+    <!--  <ion-header collapse="condense" [translucent]="true">
+        <ion-toolbar>
+          <ion-title size="large">{{ folder }}</ion-title>
+        </ion-toolbar>
+      </ion-header>
+    -->
+    <div *ngIf="logStatus.logged==true">
     
-    </div>
-<!--***************************** Messages*********************************************************************************************************************-->  
-    <div *ngIf="folder === 'LogEventos'">
-      <div *ngFor="let element of messages; let i=index">    
-        <ion-label style="box-shadow: none">LogEventos:
-          {{messages[i] | json}}</ion-label>
-      </div>
-    <strong class="capitalize">{{ folder }}</strong>   
+    <div id="container">
+    <!--***************************** Beds*********************************************************************************************************************-->  
 
-   <ul>
-      <div *ngFor="let item of logEventsLocal; let i=index">
-        <li>
-          <ion-item>            
-            <div *ngIf="logEventsLocal[i].type === 1">
-              <ion-icon style="padding-top: 10pt; padding-left: 10pt;" name="notifications"></ion-icon>     
-            </div>
-            <div *ngIf="logEventsLocal[i].type === 2">
-              <ion-icon style="padding-top: 10pt; padding-left: 10pt;" name="alarm"></ion-icon>     
-            </div>                   
-               <br> 
-               Paciente: {{logEventsLocal[i].pacientId}} Atendió: {{logEventsLocal[i].userId}}
-          </ion-item>  
+        <div *ngIf="folder === 'Camas'">
+
           <ion-item>
-            Hora inicio: {{logEventsLocal[i].init | date :'medium'}} <br>
-            Hora fin: {{logEventsLocal[i].finish | date :'medium'}}                                               
-            </ion-item>  
+            <ion-label>Buscar :</ion-label>       
+              <ion-select interface="action-sheet" #D (ionChange)="upgradingBedNumber(D.value)" type="number" required>
+                <div *ngFor="let element of beds; let i=index">              
+                <ion-select-option  value="{{beds[i].bedId}}">{{beds[i].bedId}}:piso {{beds[i].floorId}},cuarto {{beds[i].roomId}}</ion-select-option>                 
+                </div>
+              </ion-select>
+          </ion-item>
+
           
-          <div *ngIf="item.Note2!=''">
+          <ion-item>
+            <ion-button style="box-shadow: none" routerLink="/beds/0">Nueva</ion-button>  
+            <div *ngIf="bedNumber!=0">
+                <ion-button style="box-shadow: none" routerLink="/beds/{{bedNumber}}">Editar</ion-button>  
+                <ion-button style="box-shadow: none" (click)="sendPriority()">Enviar prioridad</ion-button>  
+            </div>
+          </ion-item>    
+
+          <ion-item>        
+            <div *ngIf="bedNumber!=0">
+              <ion-label>Prioridad actual:{{bedPriority}} </ion-label>       
+              <ion-label>Prioridad(5 max- 0 min)</ion-label>       
+              <ion-select interface="action-sheet" #H (ionChange)="upgradingPriorityNumber(H.value)" type="number" required> <!---->
+                <div *ngFor="let element of priorities; let i=index">  
+                  <ion-select-option  value="{{priorities[i]}}" >{{priorities[i]}}</ion-select-option>                 
+                </div>
+              </ion-select>  
+            </div>
+          </ion-item>
+          
+        </div>
+
+    <!--***************************** USERS*********************************************************************************************************************-->
+        <div *ngIf="folder === 'Usuarios'">
+          <ion-item>
+            <ion-label>Buscar :</ion-label>       
+              <ion-select interface="action-sheet" #F (ionChange)="upgradingUserNumber(F.value)" type="number" required>
+                <div *ngFor="let element of users; let i=index">              
+                <ion-select-option  value="{{users[i].userId}}">{{users[i].userId}}:{{users[i].lastname}},{{users[i].firstname}}</ion-select-option>                 
+                </div>
+              </ion-select>
+          </ion-item>
+          <ion-item>
+              <ion-button style="box-shadow: none" routerLink="/user/{{userNumber}}">Editar</ion-button>  
+            </ion-item>    
               <ion-item>
-                Nota:{{logEventsLocal[i].Note2}} 
+
+              <ion-button (click)="presentAlert()">Dar de baja</ion-button>          
+                <p>{{ handlerMessage }}</p>
+                <p>{{ roleMessage }}</p>       
+              
+          </ion-item>     
+          
+        </div>
+      <!--***************************** Pacients*********************************************************************************************************************-->  
+        <div *ngIf="folder === 'Pacientes'">      
+          
+        <ion-item>
+          <ion-label>Buscar :</ion-label>
+        
+            <ion-select interface="action-sheet" #C (ionChange)="upgradingNumber(C.value)" type="number" required>
+              <div *ngFor="let element of pacients; let i=index">           
+              
+              <ion-select-option  value="{{pacients[i].pacientId}}">{{pacients[i].pacientId}}:{{pacients[i].lastName}},{{pacients[i].firstName}}</ion-select-option>                   
+              </div>
+            </ion-select>
+          </ion-item>
+            <ion-item>  
+            <ion-button style="box-shadow: none" routerLink="/pacient/{{pacientNumber}}">Editar</ion-button>  
+          </ion-item>
+          <ion-item>
+
+              <ion-button (click)="presentAlertPacient()">Dar de baja</ion-button>          
+                <p>{{ handlerMessage }}</p>
+                <p>{{ roleMessage }}</p>       
+              
+          </ion-item>     
+        
+        
+        </div>
+    <!--***************************** Messages*********************************************************************************************************************-->  
+        <div *ngIf="folder === 'LogEventos'">
+          <div *ngFor="let element of messages; let i=index">    
+            <ion-label style="box-shadow: none">LogEventos:
+              {{messages[i] | json}}</ion-label>
+          </div>
+        <strong class="capitalize">{{ folder }}</strong>   
+
+      <ul>
+          <div *ngFor="let item of logEventsLocal; let i=index">
+            <li>
+              <ion-item>            
+                <div *ngIf="logEventsLocal[i].type === 1">
+                  <ion-icon style="padding-top: 10pt; padding-left: 10pt;" name="notifications"></ion-icon>     
+                </div>
+                <div *ngIf="logEventsLocal[i].type === 2">
+                  <ion-icon style="padding-top: 10pt; padding-left: 10pt;" name="alarm"></ion-icon>     
+                </div>                   
+                  <br> 
+                  Paciente: {{logEventsLocal[i].pacientId}} Atendió: {{logEventsLocal[i].userId}}
               </ion-item>  
-          </div>      
-        </li>
-      </div>
+              <ion-item>
+                Hora inicio: {{logEventsLocal[i].init | date :'medium'}} <br>
+                Hora fin: {{logEventsLocal[i].finish | date :'medium'}}                                               
+                </ion-item>  
+              
+              <div *ngIf="item.Note2!=''">
+                  <ion-item>
+                    Nota:{{logEventsLocal[i].Note2}} 
+                  </ion-item>  
+              </div>      
+            </li>
+          </div>
+          
+        </ul>
+        </div>
+    <!--***************************** Scheduler*********************************************************************************************************************-->      
+      <div *ngIf="folder === 'Calendario'">
+        <!--<strong class="capitalize">{{ folder }}</strong>   -->
+        <p></p>
+        <ion-item>
+          <ion-label >Agregar nuevo evento para paciente</ion-label>
+          <ion-button routerLink="/scheduler/1">
+            <ion-icon name="arrow-forward-outline"></ion-icon>
+          </ion-button>
+        </ion-item>
+        <ion-item>
+          <ion-label >Ver/editar eventos de paciente</ion-label>
+          <ion-button routerLink="/scheduler/2">
+            <ion-icon name="arrow-forward-outline"></ion-icon>
+          </ion-button>
+        </ion-item>
       
-    </ul>
+      </div>  
+
+      <!--***************************** Statidistics *********************************************************************************************************************-->      
+      <div *ngIf="folder === 'Estadística'">
+        <!--<strong class="capitalize">{{ folder }}</strong>   -->
+        <p></p>
+        <ion-item>
+          <ion-label >Paciente</ion-label>
+          <ion-button routerLink="/stats-pacient"> <!--routerLink="stats-pacient">-->
+            <ion-icon name="arrow-forward-outline"></ion-icon>
+          </ion-button>
+        </ion-item>
+        <ion-item>
+          <ion-label >Enfermera</ion-label>
+          <ion-button routerLink="/stats-nurse"> <!--routerLink="/stats-nurse">-->
+            <ion-icon name="arrow-forward-outline"></ion-icon>
+          </ion-button>
+        </ion-item>
+
+      </div>  
     </div>
-<!--***************************** Scheduler*********************************************************************************************************************-->      
-  <div *ngIf="folder === 'Calendario'">
-    <!--<strong class="capitalize">{{ folder }}</strong>   -->
-    <p></p>
-    <ion-item>
-      <ion-label >Agregar nuevo evento para paciente</ion-label>
-      <ion-button routerLink="/scheduler/1">
-        <ion-icon name="arrow-forward-outline"></ion-icon>
-      </ion-button>
-    </ion-item>
-    <ion-item>
-      <ion-label >Ver/editar eventos de paciente</ion-label>
-      <ion-button routerLink="/scheduler/2">
-        <ion-icon name="arrow-forward-outline"></ion-icon>
-      </ion-button>
-     </ion-item>
-  
-  </div>  
-
-  <!--***************************** Statidistics *********************************************************************************************************************-->      
-  <div *ngIf="folder === 'Estadística'">
-    <!--<strong class="capitalize">{{ folder }}</strong>   -->
-    <p></p>
-    <ion-item>
-      <ion-label >Paciente</ion-label>
-      <ion-button routerLink="/stats-pacient"> <!--routerLink="stats-pacient">-->
-        <ion-icon name="arrow-forward-outline"></ion-icon>
-      </ion-button>
-    </ion-item>
-    <ion-item>
-      <ion-label >Enfermera</ion-label>
-      <ion-button routerLink="/stats-nurse"> <!--routerLink="/stats-nurse">-->
-        <ion-icon name="arrow-forward-outline"></ion-icon>
-      </ion-button>
-    </ion-item>
-
-  </div>   
+</div>
+<div *ngIf="logStatus.logged==false">
+  <p class="MensajeNoLogeado">not Logged</p>
 
 </div>
+
 </ion-content>

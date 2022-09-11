@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
-import { Bed } from '../models/bed';
-import { BedsService } from '../services/beds.service';
+import { Bed } from '../../models/bed';
+import { BedsService } from '../../services/beds.service';
 import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
-import { QRService } from '../services/qr.service';
+import { QRService } from '../../services/qr.service';
 
 
 @Component({

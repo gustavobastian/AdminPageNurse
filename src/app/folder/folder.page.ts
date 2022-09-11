@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { BedsService } from "../services/beds.service";
 import { Bed } from "../models/bed";
 import { User } from "../models/user";
@@ -11,6 +11,7 @@ import { MessagesService } from "../services/messages.service";
 import { AlertController } from '@ionic/angular';
 import { LogEventsService } from "../services/log-events.service";
 import { logEvent } from "../models/logEvent";
+import { LogStatusService } from "../services/log-status.service";
 
 
 
@@ -30,6 +31,7 @@ export class FolderPage implements OnInit {
   private messages: Array<Message> = new Array<Message>();
   private logEventsLocal: Array<logEvent> = new Array<logEvent>();
 
+
   priorities: Array<number> = [0,1,2,3,4,5];
   bedPriority=0;
   handlerMessage = '';
@@ -37,12 +39,14 @@ export class FolderPage implements OnInit {
 
 
   constructor(
+    private routes: Router,
     private activatedRoute: ActivatedRoute,
     public bedServ: BedsService,
     public userServ: UsersService,
     public pacientServ: PacientService,
     private alertController: AlertController,
     public messageServ: MessagesService,
+    private logStatus: LogStatusService,
     public logEvents: LogEventsService
   ) {
     //console.log("in constructor");
@@ -56,6 +60,7 @@ export class FolderPage implements OnInit {
   ngOnInit() {
     this.folder = this.activatedRoute.snapshot.paramMap.get("id");
     this.bedPriority=0;
+    //this.logStatus.setLogged(false);
   }
 
   async retrieveBeds() {
@@ -205,5 +210,13 @@ export class FolderPage implements OnInit {
    async sendPriority()  {    
     console.log("sending bed " + this.bedNumber.toString() +" prioridad:" + this.bedPriority.toString() )
     this.bedServ.SendAlterPriority(this.bedNumber,this.bedPriority)
+  }
+  //playing with view
+  public onClick2(){
+    this.logStatus.setLogged(false);
+    this.routes.navigateByUrl("/login");
+  }
+  public onClickLogin(){    
+    this.routes.navigateByUrl("/login");
   }
 }

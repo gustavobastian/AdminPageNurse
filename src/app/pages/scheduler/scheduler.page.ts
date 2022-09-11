@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { CalendarEvent } from '../models/calendarEvent';
-import { BedsService } from '../services/beds.service';
-import { PacientService } from '../services/pacient.service';
-import {CalendarEventsService} from '../services/calendar-events.service'
-import { Pacient } from '../models/pacient';
+import { CalendarEvent } from '../../models/calendarEvent';
+import { BedsService } from '../../services/beds.service';
+import { PacientService } from '../../services/pacient.service';
+import {CalendarEventsService} from '../../services/calendar-events.service'
+import { Pacient } from '../../models/pacient';
 
 
 

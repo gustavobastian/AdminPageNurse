@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Bed } from '../models/bed';
-import { medicalTable } from '../models/medicalTable';
-import { Pacient } from '../models/pacient';
-import { User } from '../models/user';
-import { BedsService } from '../services/beds.service';
-import { MedicalTableService } from '../services/medical-table.service';
-import { PacientService } from '../services/pacient.service';
-import { UsersService } from '../services/users.service';
+import { Bed } from '../../models/bed';
+import { medicalTable } from '../../models/medicalTable';
+import { Pacient } from '../../models/pacient';
+import { User } from '../../models/user';
+import { BedsService } from '../../services/beds.service';
+import { MedicalTableService } from '../../services/medical-table.service';
+import { PacientService } from '../../services/pacient.service';
+import { UsersService } from '../../services/users.service';
 
 
 

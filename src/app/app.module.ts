@@ -9,8 +9,9 @@ import { HttpClientModule } from "@angular/common/http";
 
 import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing.module";
-import { AuthTabsComponent } from "./components/auth-tabs/auth-tabs.component";
-import { AuthModule } from "./module/auth.module";
+import { LoginPageModule } from "./pages/login/login.module";
+
+
 
 const routesA: Routes = [];
 
@@ -20,9 +21,8 @@ const routesA: Routes = [];
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    HttpClientModule,
+    HttpClientModule,    
     RouterModule.forRoot(routesA),
-    AuthModule,
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
