@@ -4,6 +4,7 @@ import { Bed } from '../../models/bed';
 import { BedsService } from '../../services/beds.service';
 import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
 import { QRService } from '../../services/qr.service';
+import { AuthInterceptorService } from 'src/app/services/auth-interceptor.service';
 
 
 @Component({
@@ -30,7 +31,7 @@ export class BedsPage implements OnInit {
 
 
   constructor(
-    private activatedRoute: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,    
     public formBuilder: FormBuilder,
     public QRServ: QRService,
     public bedServ: BedsService) { 

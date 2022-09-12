@@ -30,15 +30,15 @@ export class LogStatusService {
     let data={"username":username.toString(), "password":password.toString()};
     
     let data2=JSON.stringify(data);
-    console.log(data2)
-  
-    
-    await this._http
-      .post<any>(this.urlApi + "/api/authentication/",data ,{ headers: headers})
-      .subscribe((data) => {
-        this.postId = data.id;
-        console.log(data.token);
-        console.log(data.id)
-      });
+    console.log(data2) 
+    let response = await this._http.post<any>(this.urlApi + "/api/authentication/",data,{ headers: headers}).toPromise();
+    if(response!=null) {        
+        this.postId = response.signed_user.username;
+        localStorage.setItem('token', response.token);
+        //this.postId=response.username;
+        console.log(response.token);
+        console.log(this.postId);
+        //console.log(data.id)
+      };
     }    
 }
