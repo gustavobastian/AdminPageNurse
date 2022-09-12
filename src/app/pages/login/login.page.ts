@@ -12,6 +12,7 @@ import { LogStatusService } from 'src/app/services/log-status.service';
 export class LoginPage implements OnInit {
   username=""
   password=""
+  
   constructor(
     private routes: Router,
     private logStatus: LogStatusService

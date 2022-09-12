@@ -9,6 +9,8 @@ import { environment } from 'src/environments/environment';
 })
 export class LogStatusService {
   logged=false;
+  mode="";
+  username="";
   urlApi =  environment.urlApi;
   postId=""
 
@@ -38,8 +40,11 @@ export class LogStatusService {
         this.postId = response.signed_user;
         localStorage.setItem('token', response.token);
         //this.postId=response.username;
-        console.log(response.token);
-        console.log(this.postId);        //console.log(data.id)
+        //console.log(response.token);
+     //   console.log(this.postId);        //console.log(data.id)
+        this.mode=response.signed_user.occupation;
+        this.username=response.signed_user.username;
+      //  console.log(this.mode)
         
     }
     

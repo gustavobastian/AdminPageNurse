@@ -6,6 +6,8 @@
     <ion-item>
       <ion-title>{{ folder }}</ion-title>
       <div *ngIf="logStatus.logged==true">
+        <p>Logeado: {{logStatus.username}}</p>
+        <p>Modo: {{logStatus.mode}}</p>
         <ion-button (click)="onClick2()">logout</ion-button>
       </div>  
       <div *ngIf="logStatus.logged!=true">
@@ -22,9 +24,9 @@
         </ion-toolbar>
       </ion-header>
     -->
-    <div *ngIf="logStatus.logged==true">
+    <div *ngIf="logStatus.logged==true && logStatus.mode==='Administrador'" >
     
-    <div id="container">
+      <div id="container">
     <!--***************************** Beds*********************************************************************************************************************-->  
 
         <div *ngIf="folder === 'Camas'">
@@ -183,10 +185,41 @@
 
       </div>  
     </div>
-</div>
-<div *ngIf="logStatus.logged==false">
-  <p class="MensajeNoLogeado">not Logged</p>
+  </div>
 
+<div *ngIf="logStatus.logged==true && logStatus.mode==='Enfermero'" >
+   <div id="container">
+        <!--***************************** Statidistics *********************************************************************************************************************-->      
+        <div *ngIf="folder === 'Estadística'">
+          <!--<strong class="capitalize">{{ folder }}</strong>   -->
+          <p></p>
+          <ion-item>
+            <ion-label >Paciente</ion-label>
+            <ion-button routerLink="/stats-pacient"> <!--routerLink="stats-pacient">-->
+              <ion-icon name="arrow-forward-outline"></ion-icon>
+            </ion-button>
+          </ion-item>
+          <ion-item>
+            <ion-label >Enfermera</ion-label>
+            <ion-button routerLink="/stats-nurse"> <!--routerLink="/stats-nurse">-->
+              <ion-icon name="arrow-forward-outline"></ion-icon>
+            </ion-button>
+          </ion-item>
+        </div>     
+   </div>
+   <div *ngIf="folder !== 'Estadística'">  
+    <p class="MensajeNoLogeado">Sin Permiso</p>
+  </div>  
+</div>    
+<div *ngIf="logStatus.logged==true && logStatus.mode==='Médico'">
+  <p class="MensajeNoLogeado">Sin permiso</p>
 </div>
+
+<div *ngIf="logStatus.logged==false">
+  <p class="MensajeNoLogeado">No logeado</p>
+</div>
+
+
+
 
 </ion-content>
