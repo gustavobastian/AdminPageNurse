@@ -214,6 +214,7 @@ export class FolderPage implements OnInit {
   //playing with view
   public onClick2(){
     this.logStatus.setLogged(false);
+    this.logStatus.mode=""
     this.routes.navigateByUrl("/login");
   }
   public onClickLogin(){    

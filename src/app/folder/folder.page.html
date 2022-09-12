@@ -27,6 +27,12 @@
     <div *ngIf="logStatus.logged==true && logStatus.mode==='Administrador'" >
     
       <div id="container">
+        <!--***************************** Beds*********************************************************************************************************************-->  
+
+        <div *ngIf="folder === 'Mqtt'">
+          <ion-button style="box-shadow: none" routerLink="/mqtt-config">Config</ion-button>  
+        </div>
+
     <!--***************************** Beds*********************************************************************************************************************-->  
 
         <div *ngIf="folder === 'Camas'">

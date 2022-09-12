@@ -9,6 +9,7 @@ import { LoginPageModule } from "./pages/login/login.module";
 })
 export class AppComponent implements OnInit{
   public appPages = [
+    { title: "MQTT", url: "/folder/Mqtt", icon: "wifi" },
     { title: "Camas", url: "/folder/Camas", icon: "bed" },
     { title: "Usuarios", url: "/folder/Usuarios", icon: "person" },
     { title: "Pacientes", url: "/folder/Pacientes", icon: "medkit" },
