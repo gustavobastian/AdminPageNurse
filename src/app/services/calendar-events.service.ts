@@ -51,9 +51,18 @@ export class CalendarEventsService {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
     
+    calevent
     
+    let data= {"pacientId":calevent.pacientId,
+              "type": calevent.type,
+              "note": calevent.note,
+              "dateTime": JSON.stringify(calevent.dateTime)
+            }
+    
+    
+    console.log(JSON.stringify(data))
     this._http
-      .post<any>(this.urlApi + "/api/events/", calevent,{ headers: headers})
+      .post<any>(this.urlApi + "/api/events/", data,{ headers: headers})
       .subscribe((data) => {
         this.postId = data.id;
         console.log(data.id)

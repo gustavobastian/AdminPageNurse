@@ -45,10 +45,10 @@ export class EventPage implements OnInit {
   let dt= new Date(this.calendarEventLocal._dateTime);
   let date=this.calendarEventLocal._dateTime.split("T");  
   let time=date[1].split("-");
+  console.log(dt)
   
 
   let data= JSON.stringify(date[0].toString()+" "+time[0].toString());
-  
   console.log(data);
   this.calendarEventLocal._dateTime=data;
   
@@ -64,7 +64,7 @@ export class EventPage implements OnInit {
   }
   upgradingDay(s : string){
     this.calendarEventLocal.dateTime=s;
- //  console.log(i);
+   console.log(s);
   }
 
 }

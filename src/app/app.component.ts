@@ -14,7 +14,7 @@ export class AppComponent implements OnInit{
     { title: "Usuarios", url: "/folder/Usuarios", icon: "person" },
     { title: "Pacientes", url: "/folder/Pacientes", icon: "medkit" },
     { title: "Log Eventos", url: "/folder/LogEventos", icon: "mail" },
-    { title: "Eventos", url: "/folder/Calendario", icon: "calendar" },
+    { title: "Calendario", url: "/folder/Calendario", icon: "calendar" },
     { title: "Estadística", url: "/folder/Estadística", icon: "bar-chart" }
   ];
   id=""
