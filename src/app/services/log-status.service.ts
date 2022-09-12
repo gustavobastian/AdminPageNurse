@@ -25,15 +25,16 @@ export class LogStatusService {
   
   //asking jwt token
 
-  public async askToken(username:string,password:string) : Promise<any> {
-    
+  public async askToken(username:string,password:string) {
+    console.log("username:"+username)
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
     
     let data={"username":username.toString(), "password":password.toString()};    
 
-    let response=await this._http.post<any>(this.urlApi + "/api/authentication/",data,{ headers: headers}).toPromise()
+    let response=await this._http.post<any>(this.urlApi + "/api/authentication/",data,{ headers: headers}).toPromise();
     if (response!=null){    
+      
         this.postId = response.signed_user;
         localStorage.setItem('token', response.token);
         //this.postId=response.username;
@@ -41,6 +42,7 @@ export class LogStatusService {
         console.log(this.postId);        //console.log(data.id)
         
     }
+    
     }
     
 public async logout() {
