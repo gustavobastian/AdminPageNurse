@@ -25,12 +25,10 @@ export class LoginPage implements OnInit {
     this.routes.navigateByUrl("/folder/camas");
     //this.navCtrl.navigateRoot("/app/tabs/(home:home)")
 }
-  public onclick(){
+   public async onclick(){
     this.logStatus.setLogged(true);
     console.log("setting status logged")
     this.logStatus.askToken(this.username, this.password)
   }
-  public onclick2(){
-    this.logStatus.setLogged(false);
-  }
+ 
 }
