@@ -27,7 +27,7 @@
     <div *ngIf="logStatus.logged==true && logStatus.mode==='Administrador'" >
     
       <div id="container">
-        <!--***************************** Beds*********************************************************************************************************************-->  
+    <!--***************************** MQTT*********************************************************************************************************************-->  
 
         <div *ngIf="folder === 'Mqtt'">
           <ion-button style="box-shadow: none" routerLink="/mqtt-config">Config</ion-button>  
@@ -191,6 +191,14 @@
 
       </div>  
     </div>
+
+    <!--***************************** Especialidades ********************************************************************************************************************-->  
+
+    <div *ngIf="folder === 'Especialidades'">
+      <ion-button style="box-shadow: none" routerLink="/tabla-spec-treat">Especialidades/tratamientos</ion-button>  
+    </div>
+
+
   </div>
 
 <div *ngIf="logStatus.logged==true && logStatus.mode==='Enfermero'" >

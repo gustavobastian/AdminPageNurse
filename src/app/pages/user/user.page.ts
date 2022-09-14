@@ -3,6 +3,10 @@ import { ActivatedRoute } from '@angular/router';
 import { User } from '../../models/user';
 import { UsersService } from '../../services/users.service';
 import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
+import { NurseSpecService } from 'src/app/services/nurse-spec.service';
+import { Spec } from 'src/app/models/spec';
+import { TableSpecService } from 'src/app/services/table-spec.service';
+import { NurseSpec } from 'src/app/models/nurseSpec';
 
 @Component({
   selector: 'app-user',
@@ -13,6 +17,9 @@ export class UserPage implements OnInit {
   public id: string;
   public user: User=new User(0,"","","","",0,"");
   public newUser= true; 
+  public modeNurse=false;
+  private specTable: Array<Spec> = new Array<Spec>();
+  private NurseSpecTable: Array<NurseSpec> = new Array<NurseSpec>();
 
   ionicForm: FormGroup = new FormGroup({
     firstName: new FormControl(),
@@ -28,7 +35,11 @@ export class UserPage implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     public formBuilder: FormBuilder,
-    public userServ: UsersService) {
+    public userServ: UsersService,
+    public nurseSpecServ:NurseSpecService,
+    private tableSpecServ:TableSpecService,
+
+    ) {
     
    }
 
@@ -71,6 +82,18 @@ export class UserPage implements OnInit {
     }
 
 
+  }
+
+  async onClickAddingNurses(){
+    this.modeNurse=true;
+    this.specTable= await this.tableSpecServ.getAllSpec();
+    if(this.newUser!=true){
+      console.log("debo buscar tabla de especialidades")
+      this.NurseSpecTable= await this.nurseSpecServ.getAllNurseSpec(parseInt(this.id))
+    }
+  }
+  onClickNoAddingNurses(){
+    this.modeNurse=false;
   }
 
 }

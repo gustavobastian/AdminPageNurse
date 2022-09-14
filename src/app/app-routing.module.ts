@@ -56,6 +56,10 @@ const routes: Routes = [
     path: 'mqtt-config',
     loadChildren: () => import('./pages/mqtt-config/mqtt-config.module').then( m => m.MqttConfigPageModule)
   },
+  {
+    path: 'tabla-spec-treat',
+    loadChildren: () => import('./pages/tabla-spec-treat/tabla-spec-treat.module').then( m => m.TablaSpecTreatPageModule)
+  },
   
 ];
 
