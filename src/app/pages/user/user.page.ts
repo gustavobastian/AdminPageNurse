@@ -95,26 +95,32 @@ export class UserPage implements OnInit {
     }
   }
 
-  public async onAddNewSpect(){
+  public async onAddNewSpect(): Promise<boolean>{
     console.log("check if it is in the actual list")
     if(await this.checkIfPresent(this.specToAddId)===true){
       alert("la especificación ya está en la lista")
     }
     else{
     console.log("user:"+this.id+" spec to add:"+this.specToAddId)
+
+                  this.nurseSpecServ.sendNurseNewSpec(this.specToAddId,parseInt(this.id))
     }
+    return true;
   }
 
-  public async onDeleteSpect(){
+  public async onDeleteSpect(): Promise<boolean>{
     console.log("user:"+this.id+" spec to remove:"+this.specToAddId)
+    return true;
   }
 
   public onClickNoAddingNurses(){
     this.modeNurse=false;
+    
   }
 
-  public async upgradeSpecId(i:number){
+  public async upgradeSpecId(i:number): Promise<boolean>{
     this.specToAddId=i;
+    return true;
   }
 
   //do not repeat spec for a person

@@ -14,10 +14,10 @@ export class StatisticsService {
   constructor(private _http: HttpClient) { }
 
   //getting all pacients information
-  getStatsAllPacient(): Promise<string> {
+  getStatsAllPatient(): Promise<string> {
     console.log("here 2")
     return this._http
-      .get(this.urlApi + "/api/Statistics/promPacient")
+      .get(this.urlApi + "/api/Statistics/promPatient")
       .toPromise()
       .then((response: string) => {
         console.log(response);

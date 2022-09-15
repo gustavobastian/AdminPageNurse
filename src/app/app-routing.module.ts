@@ -49,8 +49,8 @@ const routes: Routes = [
     loadChildren: () => import('./pages/stats-nurse/stats-nurse.module').then( m => m.StatsNursePageModule)
   },
   {
-    path: 'stats-pacient',
-    loadChildren: () => import('./pages/stats-pacient/stats-pacient.module').then( m => m.StatsPacientPageModule)
+    path: 'stats-patient',
+    loadChildren: () => import('./pages/stats-patient/stats-patient.module').then( m => m.StatsPatientPageModule)
   },
   {
     path: 'mqtt-config',

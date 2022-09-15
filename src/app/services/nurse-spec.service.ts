@@ -26,18 +26,16 @@ export class NurseSpecService {
   }
   //sending new spec 
   //[{Spec: "Enfermeria de salud mental"}]
-/*async sendNewSpec(name: string) {
-    console.log(name);
-    let output = ({Spec: name});
+  async sendNurseNewSpec(specId: number,userId: number){
+    let data=[{"specId": specId, "userId": userId}]
     //console.log(JSON.stringify(output));
-    let data=[];
-    data.push(output);
+        
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');    
     this._http
-      .post<any>(this.urlApi + "/api/specTable/", data, {headers})
+      .post<any>(this.urlApi + "/api/NurseSpecTable/", data, {headers})
       .subscribe((data) => {
         this.postId = data.id;
       });
-  }*/
+  }
 }

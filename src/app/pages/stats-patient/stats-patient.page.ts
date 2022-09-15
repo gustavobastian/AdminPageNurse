@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { StatisticsService } from '../../services/statistics.service';
 
 @Component({
-  selector: 'app-stats-pacient',
-  templateUrl: './stats-pacient.page.html',
-  styleUrls: ['./stats-pacient.page.scss'],
+  selector: 'app-stats-patient',
+  templateUrl: './stats-patient.page.html',
+  styleUrls: ['./stats-patient.page.scss'],
 })
-export class StatsPacientPage implements OnInit {
+export class StatsPatientPage implements OnInit {
   private data: Array<String> = new Array<String>();
   private selection=0;
 
@@ -19,9 +19,9 @@ export class StatsPacientPage implements OnInit {
     
     this.selection=0;
   }
-  async getAllPacientsStats() {
+  async getAllPatientsStats() {
     console.log("here!")
-    let dataLocal=JSON.stringify(await this.statisticsServ.getStatsAllPacient());
+    let dataLocal=JSON.stringify(await this.statisticsServ.getStatsAllPatient());
     console.log(JSON.stringify(dataLocal));
     let data2=JSON.parse(dataLocal)
     this.data=[]
@@ -33,7 +33,7 @@ export class StatsPacientPage implements OnInit {
 
   onClickG(){
     this.selection=1;
-    this.getAllPacientsStats();
+    this.getAllPatientsStats();
   }
   onClickI(){
     this.selection=2;
