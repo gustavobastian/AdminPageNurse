@@ -12,7 +12,7 @@ export class Spec {
     
   }
 
-  public get_specId() {
+  public get_id(): number {
     return this._id;
   }
   
@@ -23,7 +23,7 @@ export class Spec {
   public set_name(name: string) {
     this._name = name;
   }
-  public set specId(specId: number) {
+  public set_specId(specId: number) {
     this._id = specId;
   }
   

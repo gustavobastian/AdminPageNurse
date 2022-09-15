@@ -14,12 +14,13 @@ import { NurseSpec } from 'src/app/models/nurseSpec';
   styleUrls: ['./user.page.scss'],
 })
 export class UserPage implements OnInit {
-  public id: string;
-  public user: User=new User(0,"","","","",0,"");
-  public newUser= true; 
-  public modeNurse=false;
+  private id: string;
+  private user: User=new User(0,"","","","",0,"");
+  private newUser= true; 
+  private modeNurse=false;
   private specTable: Array<Spec> = new Array<Spec>();
   private NurseSpecTable: Array<NurseSpec> = new Array<NurseSpec>();
+  private specToAddId = 0;
 
   ionicForm: FormGroup = new FormGroup({
     firstName: new FormControl(),
@@ -84,7 +85,8 @@ export class UserPage implements OnInit {
 
   }
 
-  async onClickAddingNurses(){
+  public async onClickAddingNurses(){
+    this.specToAddId=0;
     this.modeNurse=true;
     this.specTable= await this.tableSpecServ.getAllSpec();
     if(this.newUser!=true){
@@ -92,8 +94,45 @@ export class UserPage implements OnInit {
       this.NurseSpecTable= await this.nurseSpecServ.getAllNurseSpec(parseInt(this.id))
     }
   }
-  onClickNoAddingNurses(){
+
+  public async onAddNewSpect(){
+    console.log("check if it is in the actual list")
+    if(await this.checkIfPresent(this.specToAddId)===true){
+      alert("la especificación ya está en la lista")
+    }
+    else{
+    console.log("user:"+this.id+" spec to add:"+this.specToAddId)
+    }
+  }
+
+  public async onDeleteSpect(){
+    console.log("user:"+this.id+" spec to remove:"+this.specToAddId)
+  }
+
+  public onClickNoAddingNurses(){
     this.modeNurse=false;
+  }
+
+  public async upgradeSpecId(i:number){
+    this.specToAddId=i;
+  }
+
+  //do not repeat spec for a person
+  public async checkIfPresent(specId: number): Promise<boolean>{
+    let d=0;
+    await this.NurseSpecTable.forEach(element => {
+      console.log(element)
+      if(element.specId==specId){
+        console.log("found")
+        d=1;
+      } 
+      
+    });
+    if(d==0)
+    {return false;}
+    else{
+      return true;
+    }
   }
 
 }

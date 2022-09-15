@@ -69,20 +69,19 @@
       <div *ngFor="let item of NurseSpecTable">
           <li>
             Especialidad: {{item.Name}}
-            <ion-button color="warning"  type="rounded">Quitar</ion-button> <!--<ion-button color="warning" (click)="removeDoctor(element.userId)" type="rounded">Quitar</ion-button>-->
+            <ion-button color="warning"  type="rounded" (click)="onDeleteSpect(item.get_specId())">Quitar</ion-button> 
           </li>
       </div>
     </ul>
     <ion-item>
     <ion-label>otra</ion-label>
-      <ion-select color="primary" >
-        <div *ngFor="let spec of specTable">
-        <ion-select-option seleccion="{{spec.Name}}">{{spec.Name}}</ion-select-option>  
-              
+      <ion-select color="primary" #WW (ionChange)="upgradeSpecId(WW.value)" >
+        <div *ngFor="let spec of specTable">          
+            <ion-select-option value="{{spec.id}}" >{{spec.Name}}</ion-select-option>                          
         </div>
       </ion-select>
     </ion-item>   
-    <ion-button >Agregar</ion-button>
+    <ion-button (click)="onAddNewSpect()">Agregar</ion-button>
   </div>
 
  </ion-content>
