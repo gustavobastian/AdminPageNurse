@@ -1,5 +1,5 @@
 export class NurseSpec {
-  private _id: number;  
+  public _id: number;  
   private _specId: number;
   private _name: string;
   
@@ -16,7 +16,7 @@ export class NurseSpec {
   }
 
   public get_specId() {
-    return this._id;
+    return this._specId;
   }
   
   public get_name() {

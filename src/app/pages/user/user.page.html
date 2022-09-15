@@ -66,10 +66,10 @@
     </ion-toolbar>
 
     <ul>
-      <div *ngFor="let item of NurseSpecTable">
+      <div *ngFor="let item of NurseSpecTable">          
           <li>
             Especialidad: {{item.Name}}
-            <ion-button color="warning"  type="rounded" (click)="onDeleteSpect(item.get_specId())">Quitar</ion-button> 
+            <ion-button color="warning"  type="rounded" (click)="onDeleteSpec(item.nurseSpecId)">Quitar</ion-button> 
           </li>
       </div>
     </ul>

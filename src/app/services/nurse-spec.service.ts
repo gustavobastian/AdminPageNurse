@@ -38,4 +38,19 @@ export class NurseSpecService {
         this.postId = data.id;
       });
   }
+
+  /**
+    * removing a especialization from the table
+    *  
+    */
+   async deleteSpecFromTable(specId:number) {
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');           
+    
+    this._http
+      .delete<any>(this.urlApi + "/api/NurseSpecTable/"+specId,{ headers: headers})
+      .subscribe((data) => {
+        this.postId = data;
+      });
+  }
 }

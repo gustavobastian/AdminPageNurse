@@ -21,6 +21,7 @@ export class UserPage implements OnInit {
   private specTable: Array<Spec> = new Array<Spec>();
   private NurseSpecTable: Array<NurseSpec> = new Array<NurseSpec>();
   private specToAddId = 0;
+  private specToDeleteId = 0;
 
   ionicForm: FormGroup = new FormGroup({
     firstName: new FormControl(),
@@ -108,8 +109,9 @@ export class UserPage implements OnInit {
     return true;
   }
 
-  public async onDeleteSpect(): Promise<boolean>{
-    console.log("user:"+this.id+" spec to remove:"+this.specToAddId)
+  public async onDeleteSpec(id: number): Promise<boolean>{
+ //   console.log("user:"+this.id+" spec to remove:"+id)
+    this.nurseSpecServ.deleteSpecFromTable(id);
     return true;
   }
 
