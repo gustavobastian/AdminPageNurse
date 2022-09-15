@@ -99,7 +99,7 @@ export class FolderPage implements OnInit {
     console.log("borrando paciente :"+id);
     //let listado = await this.messageServ.getAllMessages();
     //console.log("Eliminando:" + this.users[id].username);
-    this.pacientServ.sendDeletePacient(id);
+    this.pacientServ.sendDeletePatient(id);
     setTimeout(()=>{  this.retrievePacients(); }, 1000)
   }
   public upgradingNumber(i: number){

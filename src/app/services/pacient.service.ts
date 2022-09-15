@@ -15,20 +15,20 @@ export class PacientService {
 
   constructor(private _http: HttpClient) {}
 
-  //getting all pacients information
+  //getting all patients information
   getAllPacients(): Promise<Pacient[]> {
     return this._http
-      .get(this.urlApi + "/api/pacient")
+      .get(this.urlApi + "/api/patient")
       .toPromise()
       .then((pacients: Pacient[]) => {
         console.log(pacients);
         return pacients;
       });
   }
-  //getting single pacients information
-  getPacient(id: number): Promise<Pacient> {
+  //getting single patients information
+  getPatient(id: number): Promise<Pacient> {
     return this._http
-      .get(this.urlApi + "/api/pacient/"+id)
+      .get(this.urlApi + "/api/patient/"+id)
       .toPromise()
       .then((pacient: Pacient) => {
         console.log(pacient[0]);
@@ -36,39 +36,39 @@ export class PacientService {
       });
   }
 
-  sendNewPacient(newPacient: Pacient) {
-    console.log(newPacient);
-    let output = JSON.stringify(newPacient);
+  sendNewPatient(newPatient: Pacient) {
+    console.log(newPatient);
+    let output = JSON.stringify(newPatient);
     console.log(output);
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');    
     this._http
-      .post<any>(this.urlApi + "/api/pacient", newPacient)
+      .post<any>(this.urlApi + "/api/patient", newPatient)
       .subscribe((data) => {
         this.postId = data.id;
       });
   }
 
-  sendAlterPacient(pacient: Pacient) {
-    console.log(pacient);
-    let output = JSON.stringify(pacient);
+  sendAlterPatient(patient: Pacient) {
+    console.log(patient);
+    let output = JSON.stringify(patient);
     console.log(output);
-    let id=pacient.pacientId;
+    let id=patient.pacientId;
     const headers = new HttpHeaders();
-    delete pacient.pacientId;
+    delete patient.pacientId;
     this._http
-      .put<any>(this.urlApi + "/api/pacient/"+id, pacient,{ headers: headers})
+      .put<any>(this.urlApi + "/api/patient/"+id, patient,{ headers: headers})
       .subscribe((data) => {
         this.postId = data.id;
       });
   
   }
 
-  sendDeletePacient(id: number) {    
+  sendDeletePatient(id: number) {    
     const headers = new HttpHeaders();    
     headers.append('Content-Type', 'application/json');    
     this._http
-      .delete<any>(this.urlApi + "/api/pacient/"+id, { headers: headers})
+      .delete<any>(this.urlApi + "/api/patient/"+id, { headers: headers})
       .subscribe((data) => {
         this.postId = data.id;
       });

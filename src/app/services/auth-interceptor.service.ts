@@ -46,7 +46,7 @@ export class AuthInterceptorService implements HttpInterceptor {
   }
 
   private agregarToken(request: HttpRequest<any>, token: string) {
-     console.log("Agrego token",`Bearer ${token}`)
+    // console.log("Agrego token",`Bearer ${token}`)
     return request.clone({
       setHeaders: {
         'Authorization': `Bearer ${token}`

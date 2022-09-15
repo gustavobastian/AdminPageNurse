@@ -5,9 +5,9 @@ import { FormsModule ,ReactiveFormsModule} from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { PacientPageRoutingModule } from './pacient-routing.module';
+import { PacientPageRoutingModule } from './patient-routing.module';
 
-import { PacientPage } from './pacient.page';
+import { PatientPage } from './patient.page';
 
 @NgModule({
   imports: [
@@ -17,6 +17,6 @@ import { PacientPage } from './pacient.page';
     IonicModule,
     PacientPageRoutingModule
   ],
-  declarations: [PacientPage]
+  declarations: [PatientPage]
 })
-export class PacientPageModule {}
+export class PatientPageModule {}

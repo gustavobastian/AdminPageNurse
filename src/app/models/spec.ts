@@ -1,6 +1,6 @@
 export class Spec {
-  private _id: number;
-  private _name: string;
+  public _id: number;
+  public _name: string;
   
 
   constructor(

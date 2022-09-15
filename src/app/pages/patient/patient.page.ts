@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { PatientTreat } from 'src/app/models/patientTreat';
+import { Spec } from 'src/app/models/spec';
+import { PatientTreatService } from 'src/app/services/patient-treat.service';
+import { TableSpecService } from 'src/app/services/table-spec.service';
 import { Bed } from '../../models/bed';
 import { medicalTable } from '../../models/medicalTable';
 import { Pacient } from '../../models/pacient';
@@ -26,11 +30,11 @@ class BedStatus{
 }
 
 @Component({
-  selector: 'app-pacient',
-  templateUrl: './pacient.page.html',
-  styleUrls: ['./pacient.page.scss'],
+  selector: 'app-patient',
+  templateUrl: './patient.page.html',
+  styleUrls: ['./patient.page.scss'],
 })
-export class PacientPage implements OnInit {
+export class PatientPage implements OnInit {
   public id: string;
   public pacientLocal: Pacient = new Pacient(0,"giac ","como ",0,0,0);
   public newPacient= true;
@@ -40,6 +44,13 @@ export class PacientPage implements OnInit {
   private pacientUsers: Array<User> = new Array<User>();
   private addingDoctor= false;
   private doctorNumber=0;
+  private editingTreatment=false;
+  private specToAddId=0;
+
+  private specTable: Array<Spec> = new Array<Spec>();
+
+  private patientTreatLocal= new PatientTreat(0,0,0,"")
+
 
   private MDT : Array<medicalTable>=new Array<medicalTable>;
   private allMDT : Array<medicalTable>=new Array<medicalTable>;
@@ -62,10 +73,14 @@ export class PacientPage implements OnInit {
     public bedServ: BedsService,
     private medTabServ: MedicalTableService,
     public pacientServ: PacientService,
-    public userServ: UsersService ) { }
+    public userServ: UsersService,
+    private patientTreatServ: PatientTreatService,
+    private tableSpecServ:TableSpecService,
+    ) { }
 
   async ngOnInit() {
     this.id = this.activatedRoute.snapshot.paramMap.get("id");    
+    this.specTable= await this.tableSpecServ.getAllSpec();
     
     if(parseInt(this.id) < 1)
     {
@@ -76,7 +91,7 @@ export class PacientPage implements OnInit {
     {
      this.newPacient=false;
      console.log("loading data");
-    await this.retrieveSinglePacient(parseInt(this.id));
+    await this.retrieveSinglePatient(parseInt(this.id));
     
     }
     this.retrieveBeds();
@@ -87,25 +102,44 @@ export class PacientPage implements OnInit {
     //console.log("llego2");
     let data = listado[0];        
     this.users=listado;
+    if(this.newPacient!=true){
+      let response=await this.patientTreatServ.getAllPatientSpec(parseInt(this.id));
+      if(response.length==0){console.log("No esta definido");
+      response=await this.patientTreatServ.getAllPatientSpec(1);
+    }
+      /*if(response==null){
+        response=await this.patientTreatServ.getAllPatientSpec(1);
+      }*/
+      this.patientTreatLocal=response[0];
+      console.log("Tratamiento:"+ JSON.stringify(this.patientTreatLocal));
 
+    }
+    else{
+      this.patientTreatLocal.Name="";
+      this.patientTreatLocal.patientId=0;
+      this.patientTreatLocal.patientSpecId=0;
+      this.patientTreatLocal.specId=0;
+    }
+    
   }
 
    lookForUsers(userIdP: number): string  {
     let i=1;
     let d=0;
-    
+    if(this.users.length>0){
     this.users.forEach(element => {            
       if(element.userId==userIdP){i=d;return;}
       d++;
     });
-    console.log(this.users[i])
+    //console.log(this.users[i])
     return JSON.stringify(this.users[i].userId+":"+this.users[i].lastname+","+this.users[i].firstname);
-    
+    }
+    else {return ""}
   }
 
-  async retrieveSinglePacient(id:number) {
+  async retrieveSinglePatient(id:number) {
     
-    let pacientLocal2 = await this.pacientServ.getPacient(id);    
+    let pacientLocal2 = await this.pacientServ.getPatient(id);    
     await this.retrieveMedicalTable(pacientLocal2.userTableId);
     this.pacientLocal = pacientLocal2;
    
@@ -130,19 +164,7 @@ export class PacientPage implements OnInit {
     return;
   }
 
-  async retrieveMedicalTable(index: number) {
-    this.MDT= [];
-    
-    let listado = JSON.stringify(await this.medTabServ.getSingleMedicalsTable(index));
-    this.MDT=JSON.parse(listado);
-    
-    return;
-  }
-  async retrieveAllMedicalTable() {
-    let listado = JSON.stringify(await this.medTabServ.getAllMedicalsTable());
-      this.allMDT=JSON.parse(listado);
-  }
-
+  
   submitForm() {    
     //console.log("id:"+this.id);
     let localsend: Pacient=new Pacient(0,"giac ","como ",0,0,0);
@@ -165,19 +187,35 @@ export class PacientPage implements OnInit {
     if(status==0){alert("No existe esa cama");return;}
 
     localsend.userTableId=this.ionicForm.value.userTableId;
-    console.log((localsend));
+    //console.log((localsend));
     //console.log((this.id));
 
     if(parseInt(this.id) < 1)
     {
-      console.log("sending new")
-     this.pacientServ.sendNewPacient(localsend);
+     // console.log("sending new")
+     this.pacientServ.sendNewPatient(localsend);
     }
     else
     {
-      this.pacientServ.sendAlterPacient(localsend);
+      this.pacientServ.sendAlterPatient(localsend);
       console.log("editing "+this.id)
     }
+  }
+/**
+ * Medical table 
+ */
+  
+  async retrieveMedicalTable(index: number) {
+    this.MDT= [];
+    
+    let listado = JSON.stringify(await this.medTabServ.getSingleMedicalsTable(index));
+    this.MDT=JSON.parse(listado);
+    
+    return;
+  }
+  async retrieveAllMedicalTable() {
+    let listado = JSON.stringify(await this.medTabServ.getAllMedicalsTable());
+      this.allMDT=JSON.parse(listado);
   }
 
   /***
@@ -238,7 +276,50 @@ export class PacientPage implements OnInit {
     await this.medTabServ.sendDoctorTable(3,maximunUlist+1)
     
   }
-  upgradingMDTNumber(i:number){
+  public upgradingMDTNumber(i:number){
     setTimeout(()=>{  this.retrieveMedicalTable(i); }, 1000)
+  }
+  /**
+   * Patient treatment
+   */
+  public editTreatment(){
+  this.editingTreatment=true;
+  }
+  public exitEditTreatment(){
+    this.editingTreatment=false;
+    }
+  
+  public async upgradeSpecId(i:number): Promise<boolean>{
+      this.specToAddId=i;
+      console.log("Treatment:"+this.specToAddId);
+
+    this.specTable.forEach(element => {
+      let element2=JSON.parse(JSON.stringify(element));
+      
+      if(this.specToAddId==element2.id){        
+      //  console.log("find:"+element2.id+"|"+this.specToAddId)
+      //  console.log("find:"+element2.Name);
+        this.patientTreatLocal.specId=element2.id;
+        this.patientTreatLocal.Name=element2.Name;
+        this.patientTreatLocal.patientId=this.pacientLocal.pacientId;
+       
+      //  console.log("Treatment:"+JSON.stringify( this.patientTreatLocal));
+      }
+    });
+      return true;      
+  }  
+
+  public updateTreatment(){
+    console.log("Treatment:"+this.specToAddId);  
+    
+    
+    console.log("sending treatment")  
+  }
+
+  public newTreatment(){
+    console.log("Treatment:"+this.specToAddId);  
+    this.patientTreatServ.sendNewTreatment(this.patientTreatLocal);
+    
+    console.log("sending treatment")  
   }
 }

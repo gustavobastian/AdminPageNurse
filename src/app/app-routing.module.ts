@@ -30,7 +30,7 @@ const routes: Routes = [
   },
   {
     path: 'pacient/:id',
-    loadChildren: () => import('./pages/pacient/pacient.module').then( m => m.PacientPageModule)
+    loadChildren: () => import('./pages/patient/patient.module').then( m => m.PatientPageModule)
   },
   {
     path: 'beds/:id',

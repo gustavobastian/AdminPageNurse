@@ -57,6 +57,29 @@
         <ion-button type="submit"  expand="block">Enviar</ion-button>        
     </ion-item>
   </Form>
+<!--Patient Treatment -->
+  <div *ngIf="editingTreatment==false">
+    <ion-item > <p class="User_Label_Treatment">Tratamiento:{{patientTreatLocal.Name}} </p>    </ion-item>     
+    <ion-item > <ion-button (click)="editTreatment()" item-end>Modificar</ion-button>  </ion-item> 
+  </div>  
+  <div *ngIf="editingTreatment==true">
+    <ion-item > <p class="User_Label_Treatment" position="fixed">Tratamiento: </p>    </ion-item>
+    <ion-item>
+      <ion-select color="primary" #WF (ionChange)="upgradeSpecId(WF.value)" >
+          <div *ngFor="let spec of specTable"> 
+              <ion-item>
+                <ion-label position="fixed">Seleccione:</ion-label>       
+                <ion-select-option value="{{spec.id}}" >{{spec.Name}}</ion-select-option>                          
+              </ion-item>
+          </div>
+        </ion-select>
+      </ion-item>   
+
+
+    <ion-item >  <ion-button item-end (click)="updateTreatment()">Enviar</ion-button> <ion-button (click)="exitEditTreatment() " item-end>Salir</ion-button>  </ion-item> 
+  </div>    
+
+  <!--Medical list -->
   <ion-button type="round" (click)="newMDT()" >Generar Lista de Medicos nueva</ion-button>
   <ion-item >  
     <p class="User_Label_Medical">Medicos responsables:</p>    
