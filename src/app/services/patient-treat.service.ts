@@ -17,7 +17,7 @@ export class PatientTreatService {
     console.log("asking for patient")
     const headers = new HttpHeaders();
     return this._http
-      .get(this.urlApi + "/api/patient/treatment/"+patientId,{ headers: headers})
+      .get(this.urlApi + "/api/treatment/"+patientId,{ headers: headers})
       .toPromise()
       .then((specs: PatientTreat[]) => {
         console.log(specs);
@@ -36,7 +36,7 @@ export class PatientTreatService {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');    
     this._http
-      .post<any>(this.urlApi + "/api/patient/treatment/", data2, {headers})
+      .post<any>(this.urlApi + "/api/treatment/", data2, {headers})
       .subscribe((data) => {
         this.postId = data.id;
       });
@@ -50,7 +50,7 @@ export class PatientTreatService {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');    
     this._http
-      .put<any>(this.urlApi + "/api/patient/treatment/", data, {headers})
+      .put<any>(this.urlApi + "/api/treatment/", data, {headers})
       .subscribe((data) => {
         this.postId = data.id;
       });

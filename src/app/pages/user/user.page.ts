@@ -22,6 +22,7 @@ export class UserPage implements OnInit {
   private NurseSpecTable: Array<NurseSpec> = new Array<NurseSpec>();
   private specToAddId = 0;
   private specToDeleteId = 0;
+  private needNurseOptions=false;
 
   ionicForm: FormGroup = new FormGroup({
     firstName: new FormControl(),
@@ -87,6 +88,11 @@ export class UserPage implements OnInit {
   }
 
   public async onClickAddingNurses(){
+
+    if(this.user.occupation!=="Enfermero"){
+      alert("Solo valido para enfermeros!");
+      return;
+    }
     this.specToAddId=0;
     this.modeNurse=true;
     this.specTable= await this.tableSpecServ.getAllSpec();
@@ -140,6 +146,14 @@ export class UserPage implements OnInit {
     {return false;}
     else{
       return true;
+    }
+  }
+
+  public checkNurse(idlocal:string){
+    console.log("parameter:"+idlocal);
+    if(idlocal=="Enfermero" && this.newUser==false){
+      console.log("adding enfermero must select spec")
+      this.needNurseOptions==true;
     }
   }
 

@@ -34,7 +34,7 @@
 
     <ion-item lines="full">
       <ion-label>Ocupacion</ion-label>
-      <ion-select color="primary" formControlName="occupation" type="text" required placeholder="{{user.occupation}}">
+      <ion-select color="primary" formControlName="occupation" type="text" required placeholder="{{user.occupation}}" #DD (ionChange)="checkNurse(DD.value)">
         <ion-select-option seleccion="Administrador">Administrador</ion-select-option>
         <ion-select-option seleccion="Medico">Médico</ion-select-option>
         <ion-select-option seleccion="Enfermero">Enfermero</ion-select-option>
@@ -53,9 +53,11 @@
         <ion-button type="submit"  expand="block">Submit</ion-button>      
     </ion-item>
   </Form>
-  <ion-item>      
-    <ion-button (click)="onClickAddingNurses()"  expand="block">Opciones Enfermera?</ion-button>  
-  </ion-item>
+
+
+    <ion-item>      
+      <ion-button (click)="onClickAddingNurses()"  expand="block">Opciones Enfermera?</ion-button>  
+    </ion-item>
 
   <div *ngIf="modeNurse===true">
     <ion-toolbar>

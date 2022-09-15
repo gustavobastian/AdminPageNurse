@@ -46,6 +46,7 @@ export class PatientPage implements OnInit {
   private doctorNumber=0;
   private editingTreatment=false;
   private specToAddId=0;
+  private canSend=false;
 
   private specTable: Array<Spec> = new Array<Spec>();
 
@@ -92,7 +93,7 @@ export class PatientPage implements OnInit {
      this.newPacient=false;
      console.log("loading data");
     await this.retrieveSinglePatient(parseInt(this.id));
-    
+    this.canSend=true;
     }
     this.retrieveBeds();
     this.retrieveBedStates();
@@ -201,6 +202,12 @@ export class PatientPage implements OnInit {
       console.log("editing "+this.id)
     }
   }
+
+
+  async upgradingpacientID(i:number){
+    this.canSend=true;
+  }
+
 /**
  * Medical table 
  */
@@ -311,7 +318,7 @@ export class PatientPage implements OnInit {
 
   public updateTreatment(){
     console.log("Treatment:"+this.specToAddId);  
-    
+    this.patientTreatServ.sendAlterTreatment(this.patientTreatLocal);
     
     console.log("sending treatment")  
   }

@@ -23,7 +23,7 @@
     <ion-label position="fixed" >Cama</ion-label>
     <ion-list>
       <ion-item>
-        <ion-select interface="action-sheet" placeholder="{{pacientLocal.bedId}} " formControlName="bedId" type="number" required>
+        <ion-select interface="action-sheet" value="{{pacientLocal.bedId}}" placeholder="{{pacientLocal.bedId}} " formControlName="bedId" type="number" required>
           <div *ngFor="let element of bedState; let i=index">
             
             <div *ngIf="element.st==0 && element.id>0">
@@ -38,7 +38,7 @@
     </ion-item >     
     <ion-item>
     <ion-label position="fixed">Lista Médicos</ion-label><br>
-    <ion-select interface="action-sheet" placeholder="{{pacientLocal.userTableId}}" #Z (ionChange)="upgradingMDTNumber(Z.value)"  formControlName="userTableId" type="number" required>
+    <ion-select interface="action-sheet" value="{{pacientLocal.userTableId}}" placeholder="{{pacientLocal.userTableId}}" #Z (ionChange)="upgradingMDTNumber(Z.value)"  formControlName="userTableId" type="number" required>
       <div *ngFor="let element of allMDT; let i=index">            
         <div *ngIf="element.MedicalTableId>0">
           <ion-select-option value="{{element.MedicalTableId}}">{{element.MedicalTableId}}</ion-select-option>              
@@ -49,13 +49,14 @@
     
     <ion-item lines="full">
       <ion-label position="fixed">PacientId</ion-label> 
-      <ion-input  color="primary" placeholder="{{pacientLocal.pacientId}}" formControlName="pacientId" type="number" required></ion-input>        
+      <ion-input  color="primary" placeholder="{{pacientLocal.pacientId}}" value="{{pacientLocal.pacientId}}" #LZ (ionChange)="upgradingpacientID(LZ.value)" formControlName="pacientId" type="number" required></ion-input>        
     </ion-item>     
-        
-    <ion-item>
-      
-        <ion-button type="submit"  expand="block">Enviar</ion-button>        
-    </ion-item>
+     
+    <div *ngIf="canSend==true">
+      <ion-item>            
+          <ion-button type="submit"  expand="block">Enviar</ion-button>        
+      </ion-item>
+    </div>
   </Form>
 <!--Patient Treatment -->
   <div *ngIf="editingTreatment==false">
@@ -63,6 +64,7 @@
     <ion-item > <ion-button (click)="editTreatment()" item-end>Modificar</ion-button>  </ion-item> 
   </div>  
   <div *ngIf="editingTreatment==true">
+    
     <ion-item > <p class="User_Label_Treatment" position="fixed">Tratamiento: </p>    </ion-item>
     <ion-item>
       <ion-select color="primary" #WF (ionChange)="upgradeSpecId(WF.value)" >
