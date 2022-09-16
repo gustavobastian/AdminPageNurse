@@ -12,6 +12,9 @@ import { MqttService } from './services/mqtt.service';
 
 
 
+
+
+
 const routesA: Routes = [];
 
 @NgModule({
@@ -20,7 +23,7 @@ const routesA: Routes = [];
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    HttpClientModule,    
+    HttpClientModule,
     RouterModule.forRoot(routesA),
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },{provide: HTTP_INTERCEPTORS,
