@@ -60,6 +60,10 @@ const routes: Routes = [
     path: 'tabla-spec-treat',
     loadChildren: () => import('./pages/tabla-spec-treat/tabla-spec-treat.module').then( m => m.TablaSpecTreatPageModule)
   },
+  {
+    path: 'monitoring/:id',
+    loadChildren: () => import('./pages/monitoring/monitoring.module').then( m => m.MonitoringPageModule)
+  },
   
 ];
 

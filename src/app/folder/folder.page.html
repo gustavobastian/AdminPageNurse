@@ -32,6 +32,16 @@
         <div *ngIf="folder === 'Mqtt'">
           <ion-button style="box-shadow: none" routerLink="/mqtt-config">Config</ion-button>  
         </div>
+    <!--***************************** Monitoring*********************************************************************************************************************-->  
+
+    <div *ngIf="folder === 'Monitoring'">
+      <p>En este subsector se pueden monitorizar los estados de las habitaciones o de los usuarios</p>
+      <ion-item>
+                <ion-button style="width: 50%;" routerLink="/monitoring/beds">Camas</ion-button>
+                <ion-button style="width: 50%;" routerLink="/monitoring/users">Usuarios</ion-button>
+      </ion-item>
+      
+    </div>
 
     <!--***************************** Beds*********************************************************************************************************************-->  
 
@@ -111,11 +121,8 @@
 
               <ion-button (click)="presentAlertPacient()">Dar de baja</ion-button>          
                 <p>{{ handlerMessage }}</p>
-                <p>{{ roleMessage }}</p>       
-              
+                <p>{{ roleMessage }}</p>                     
           </ion-item>     
-        
-        
         </div>
     <!--***************************** Messages*********************************************************************************************************************-->  
         <div *ngIf="folder === 'LogEventos'">

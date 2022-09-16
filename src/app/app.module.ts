@@ -8,6 +8,7 @@ import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
+import { MqttService } from './services/mqtt.service';
 
 
 
@@ -24,7 +25,7 @@ const routesA: Routes = [];
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },{provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptorService,
-    multi: true}],
+    multi: true},MqttService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

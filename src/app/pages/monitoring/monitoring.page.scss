@@ -1,0 +1,13 @@
+.container-cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: center;
+    .row {
+        padding: 0;
+    }
+    .col {
+        padding: 5px 0;
+    }
+  }

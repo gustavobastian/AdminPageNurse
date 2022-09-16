@@ -1,0 +1,98 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Monitoreo </ion-title>
+    
+      <!-- Back button with a default href -->
+      <ion-buttons slot="start">
+        <ion-back-button    defaultHref="/folder" [text]=""></ion-back-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content>
+<ion-item><ion-button style="width: 50%;" (click)="onClickBeds()">Camas</ion-button><ion-button style="width: 50%;" (click)="onClickUser()">Usuarios</ion-button></ion-item>
+
+<div *ngIf="view==2">
+
+  <div class="container-cards">
+    <div *ngFor="let bed of messagesBeds2">
+          <div *ngIf="bed._bedId!=0">
+              <div *ngIf="bed._st==0">
+                <ion-card style="background-color: #000; color:white" >
+                  <ion-card-content>          
+                    id:{{bed._bedId}} estado:{{bedstates[bed._st]}}
+                  </ion-card-content>
+                </ion-card>      
+              </div>
+              <div *ngIf="bed._st==1">
+                <ion-card style="background-color: #0F0;color:black" >
+                  <ion-card-content>          
+                    id:{{bed._bedId}} estado:{{bedstates[bed._st]}}
+                  </ion-card-content>
+                </ion-card>      
+              </div>  
+              <div *ngIf="bed._st==2">
+                <ion-card style="background-color: #F00;color:black" >
+                  <ion-card-content>          
+                    id:{{bed._bedId}} estado:{{bedstates[bed._st]}}
+                  </ion-card-content>
+                </ion-card>      
+              </div>  
+              <div *ngIf="bed._st==3">
+                <ion-card style="background-color: #00F;color:white" >
+                  <ion-card-content>          
+                    id:{{bed._bedId}} estado:{{bedstates[bed._st]}}
+                  </ion-card-content>
+                </ion-card>      
+              </div>  
+              <div *ngIf="bed._st==4">
+                <ion-card style="background-color: #0FF;color:black" >
+                  <ion-card-content>          
+                    id:{{bed._bedId}} estado:{{bedstates[bed._st]}}
+                  </ion-card-content>
+                </ion-card>      
+              </div>  
+              <div *ngIf="bed._st==5">
+                <ion-card style="background-color: #FF1;color:black" >
+                  <ion-card-content>          
+                    id:{{bed._bedId}} estado:{{bedstates[bed._st]}}
+                  </ion-card-content>
+                </ion-card>      
+              </div>  
+              <div *ngIf="bed._st==5">
+                <ion-card style="background-color: #F5F;color:black" >
+                  <ion-card-content>          
+                    id:{{bed._bedId}} estado:{{bedstates[bed._st]}}
+                  </ion-card-content>
+                </ion-card>      
+              </div>  
+          </div>    
+    </div>
+  </div>  
+</div>
+
+
+<div *ngIf="view==1">
+  
+  <div class="container-cards">
+      <div *ngFor="let user of messagesUsers">
+          <div *ngIf="user._userId!=0">
+              <div *ngIf="user._st==0">
+                  <ion-card style="background-color: black;color:white">
+                    <ion-card-content>
+                      id:{{user._userId}} estado:{{userstates[user._st]}}
+                    </ion-card-content>
+                  </ion-card>      
+              </div>
+              <div *ngIf="user._st==1">
+                <ion-card style="background-color:green;color:white">
+                  <ion-card-content>
+                    id:{{user._userId}} estado:{{userstates[user._st]}}
+                  </ion-card-content>
+                </ion-card>      
+              </div>
+          </div>    
+      </div>
+   </div>    
+</div>
+</ion-content>
