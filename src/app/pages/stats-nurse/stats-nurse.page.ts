@@ -12,8 +12,9 @@ import { count } from 'console';
 })
 export class StatsNursePage implements OnInit {
   private data: Array<String> = new Array<String>();
+  private dataNurseProm: Array<String> = new Array<String>();
   private selection=0;
-  
+  private totalNurseSpec=0;
   constructor(
     private statisticsServ: StatisticsService
   ) { }
@@ -33,10 +34,28 @@ export class StatsNursePage implements OnInit {
     
   }
 
+  async getAllNurseSpecs() {
+    console.log("here!")
+    this.totalNurseSpec=0;
+    let dataLocal=JSON.stringify(await this.statisticsServ.getStatsAllNurseSpec());
+    console.log(JSON.stringify(dataLocal));
+    let data2=JSON.parse(dataLocal)
+    this.dataNurseProm=[]
+    data2.forEach(element => {      
+      this.dataNurseProm.push(element);
+      this.totalNurseSpec+=parseInt(element.cn);
+    });
+    
+    
+  }
+  
+
  async onClickG(){
     this.selection=1;
    await this.getAllNurseStats();
    await this.barChartUsers(this.data);
+   await this.getAllNurseSpecs();
+   this.pieChartNurseSpec();
   }
   onClickI(){
     this.selection=2;
@@ -45,10 +64,9 @@ export class StatsNursePage implements OnInit {
   //chart events
   
   ionViewDidEnter() {
-    this.barChartPopulation();
-    this.pieChartBrowser();
+    
   }
-
+/*examples of use
   barChartPopulation() {
     HighCharts.chart('barChart', {
       chart: {
@@ -157,7 +175,7 @@ export class StatsNursePage implements OnInit {
       }]
     });
   }
-
+*/
  public barChartUsers(users: Array<String>){
     let ident=[] 
     let counts=[]
@@ -208,4 +226,48 @@ export class StatsNursePage implements OnInit {
     });
   }
 
+ public pieChartNurseSpec() {
+    let localSeries=[]
+    
+    this.dataNurseProm.forEach(element => {
+      let elementLocal=JSON.parse(JSON.stringify(element))
+      console.log(elementLocal.name)
+      localSeries.push({
+        name: elementLocal.name,
+        y: elementLocal.cn/this.totalNurseSpec,
+      })
+
+    });
+    console.log("series:"+JSON.stringify(localSeries))
+     HighCharts.chart('pieChartSpec', {
+      chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+      },
+      title: {
+        text: 'Especialidades de enfermeras'
+      },
+      tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+      },
+      plotOptions: {
+        pie: {
+          allowPointSelect: true,
+          cursor: 'pointer',
+          dataLabels: {
+            enabled: true,
+            format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+          }
+        }
+      },
+      series: [{
+        name: 'Tipo de tratamiento',
+        colorByPoint: true,
+        type: undefined,
+        data: localSeries
+      }]
+    });
+  }
 }

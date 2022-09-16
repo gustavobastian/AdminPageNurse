@@ -36,4 +36,26 @@ export class StatisticsService {
       });
   }
 
+  //getting all treatment information
+  getStatsAllTreatment(): Promise<string> {    
+    return this._http
+      .get(this.urlApi + "/api/Statistics/promTreatment")
+      .toPromise()
+      .then((response: string) => {
+        console.log(response);
+        return response;
+      });
+  }
+
+  //getting all treatment information
+  getStatsAllNurseSpec(): Promise<string> {    
+    return this._http
+      .get(this.urlApi + "/api/Statistics/promNurseSpec")
+      .toPromise()
+      .then((response: string) => {
+        console.log(response);
+        return response;
+      });
+  }
+
 }

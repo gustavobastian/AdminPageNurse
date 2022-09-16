@@ -14,17 +14,30 @@
 </ion-item>
 
 <div *ngIf="selection==1">
-<ion-label>General</ion-label>
-<ion-label>Total Llamados a la habitación por paciente</ion-label>
-<ul>
-  <div *ngFor="let item of data" class>
-    <li>
-      Paciente {{item.pacientID}} => {{item.cn}} veces
-    </li>
+    <ion-label>General</ion-label>
+    <ion-label>Total Llamados a la habitación por paciente</ion-label>
+    <ul>
+      <div *ngFor="let item of data" class>
+        <li>
+          Paciente {{item.pacientID}} => {{item.cn}} veces
+        </li>
 
-  </div>
-</ul>
+      </div>
+    </ul>
 
+    <div class="ion-padding">     
+  
+      <ion-card>
+        <!--
+        <ion-card-header>
+          <ion-card-title>Tratamientos/pacientes</ion-card-title>
+        </ion-card-header>-->
+        <ion-card-content>
+          <div id="pieChartTreatment" style="width:100%; height:400px;"></div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+    
 </div>
 
 
