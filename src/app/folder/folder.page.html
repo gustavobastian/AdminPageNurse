@@ -8,10 +8,10 @@
       <div *ngIf="logStatus.logged==true">
         <p>Logeado: {{logStatus.username}}</p>
         <p>Modo: {{logStatus.mode}}</p>
-        <ion-button (click)="onClick2()">logout</ion-button>
+        <ion-button (click)="onClick2()">Cerrar Sesión</ion-button>
       </div>  
       <div *ngIf="logStatus.logged!=true">
-        <ion-button (click)="onClickLogin()">login</ion-button>
+        <ion-button (click)="onClickLogin()">Acceder</ion-button>
       </div>  
   </ion-item>
   </ion-toolbar>

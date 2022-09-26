@@ -24,7 +24,7 @@ export class MonitoringPage implements OnInit {
   private view=0;//1 for beds, 2 for users...0 nothing
 
   bedstates = ["Desocupada","Ocupada","Llamando","Por ser atendida","Siendo atendida","Llamada programada","Solicita Ayuda"]
-  userstates=["no Logeado","Logeado"]
+  userstates=["no Logeado","Logeado","Atendiendo"]
   
   constructor(
     private activatedRoute: ActivatedRoute,

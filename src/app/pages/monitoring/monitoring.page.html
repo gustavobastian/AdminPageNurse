@@ -85,7 +85,19 @@
                   </ion-card>      
               </div>
               <div *ngIf="user._st==1">
-                <ion-card style="background-color:green;color:white">
+                <ion-card style="background-color:green;color:white">                  
+                  <ion-card-content>
+                    <div *ngIf="user._userId==15">
+                      id:15 Sistema
+                    </div>  
+                    <div *ngIf="user._userId!=15">
+                    id:{{user._userId}} estado:{{userstates[user._st]}}
+                    </div>
+                  </ion-card-content>
+                </ion-card>      
+              </div>
+              <div *ngIf="user._st==2">
+                <ion-card style="background-color:rgb(243, 245, 120);color:rgb(17, 16, 16)">
                   <ion-card-content>
                     id:{{user._userId}} estado:{{userstates[user._st]}}
                   </ion-card-content>
