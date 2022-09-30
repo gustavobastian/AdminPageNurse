@@ -10,12 +10,12 @@
 <ion-content>
   <ion-item>
     <ion-button (click)="onClickG()">General</ion-button>
-    <ion-button (click)="onClickI()">Individual</ion-button>
+   <!-- <ion-button (click)="onClickI()">Individual</ion-button>-->
     </ion-item>
-    
+      
     <div *ngIf="selection==1">
       <ion-label>General</ion-label>
-      <ion-label>Total Llamados a la habitación atendidos por usuario</ion-label>
+   <!--   <ion-label>Total Llamados a la habitación atendidos por usuario</ion-label>
       <ul>
         <div *ngFor="let item of data" class>
           <div *ngIf="item.userID!=0">
@@ -25,6 +25,7 @@
           </div>
         </div>
       </ul>
+      -->
       <div class="ion-padding">
         <ion-card>
             <ion-card-header>
@@ -52,26 +53,5 @@
     <p>Individual</p>
     </div>
 
-    <!--
-    <div class="ion-padding">
-      <ion-card>
-        <ion-card-header>
-          <ion-card-title>Bar Chart - Population </ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          <div id="barChart" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
-        </ion-card-content>
-      </ion-card>
-  
-      <ion-card>
-        <ion-card-header>
-          <ion-card-title>Pie Chart - Browser market</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          <div id="pieChart" style="width:100%; height:400px;"></div>
-        </ion-card-content>
-      </ion-card>
-    </div>
-    -->
     
 </ion-content>

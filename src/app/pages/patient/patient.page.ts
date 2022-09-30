@@ -174,7 +174,7 @@ export class PatientPage implements OnInit {
     let local=((this.ionicForm.value.firstName));
     if(this.ionicForm.value.pacientId<1){alert("Error en nro de paciente!!!");return;}
     
-    localsend.firstName=(this.ionicForm.value.firstName).toString();
+    localsend.firstName=(this.ionicForm.value.firstName);
    // console.log("nombre : "+localsend.firstName);
     localsend.lastName=this.ionicForm.value.lastName;
     localsend.pacientId=this.ionicForm.value.pacientId;

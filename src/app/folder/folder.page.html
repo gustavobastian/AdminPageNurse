@@ -124,7 +124,7 @@
                 <p>{{ roleMessage }}</p>                     
           </ion-item>     
         </div>
-    <!--***************************** Messages*********************************************************************************************************************-->  
+    <!--***************************** Log eventos*********************************************************************************************************************-->  
         <div *ngIf="folder === 'LogEventos'">
           <div *ngFor="let element of messages; let i=index">    
             <ion-label style="box-shadow: none">LogEventos:
@@ -152,7 +152,7 @@
               
               <div *ngIf="item.Note2!=''">
                   <ion-item>
-                    Nota:{{logEventsLocal[i].Note2}} 
+                    {{logEventsLocal[i].Note2}} 
                   </ion-item>  
               </div>      
             </li>
