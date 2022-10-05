@@ -27,9 +27,16 @@ export class LoginPage implements OnInit {
     //this.navCtrl.navigateRoot("/app/tabs/(home:home)")
 }
    public async onclick(){
-    this.logStatus.setLogged(true);
-    console.log("setting status logged")
-    this.logStatus.askToken(this.username, this.password)
+    
+    
+    if(await this.logStatus.askToken(this.username, this.password)==true){
+      console.log("setting status logged")
+      this.logStatus.setLogged(true);}
+    else{this.logStatus.setLogged(false);
+      console.log("setting status not logged")
+      alert("usuario o password incorrectos");
+    }  
+
   }
  
 }

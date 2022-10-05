@@ -2,6 +2,15 @@ ion-menu-button {
   color: var(--ion-color-primary);
 }
 
+#container2 {
+  text-align: center;
+  position: sticky;
+  left: 0;
+  right: 0;
+  top: 10%;
+ // transform: translateY(-50%);
+}
+
 #container {
   text-align: center;
   position: sticky;

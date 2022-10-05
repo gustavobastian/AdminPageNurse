@@ -9,10 +9,11 @@ import { LoginPageModule } from "./pages/login/login.module";
 })
 export class AppComponent implements OnInit{
   public appPages = [
+    { title: "Login", url: "/folder/Login", icon: "person" },
     { title: "MQTT", url: "/folder/Mqtt", icon: "wifi" },
     { title: "Monitoreo", url: "/folder/Monitoreo", icon: "Desktop" },
     { title: "Camas", url: "/folder/Camas", icon: "bed" },
-    { title: "Usuarios", url: "/folder/Usuarios", icon: "person" },
+    { title: "Usuarios", url: "/folder/Usuarios", icon: "people" },
     { title: "Pacientes", url: "/folder/Pacientes", icon: "medkit" },
     { title: "Log Eventos", url: "/folder/LogEventos", icon: "mail" },
     { title: "Calendario", url: "/folder/Calendario", icon: "calendar" },

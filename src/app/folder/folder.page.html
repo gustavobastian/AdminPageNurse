@@ -11,7 +11,7 @@
         <ion-button (click)="onClick2()">Cerrar Sesión</ion-button>
       </div>  
       <div *ngIf="logStatus.logged!=true">
-        <ion-button (click)="onClickLogin()">Acceder</ion-button>
+        <ion-button routerLink="../Login">Acceder</ion-button> <!--(click)="onClickLogin()"-->
       </div>  
   </ion-item>
   </ion-toolbar>
@@ -24,6 +24,13 @@
         </ion-toolbar>
       </ion-header>
     -->
+    <!--***************************** Login*********************************************************************************************************************-->  
+    <div id="container2">
+    <div *ngIf="folder === 'Login'">
+     <ion-button style="box-shadow: none;width: 100%;" routerLink="/">Logearse</ion-button>  
+     
+    </div>
+    </div>
     <div *ngIf="logStatus.logged==true && logStatus.mode==='Administrador'" >
     
       <div id="container">
@@ -237,7 +244,9 @@
 </div>
 
 <div *ngIf="logStatus.logged==false">
-  <p class="MensajeNoLogeado">No logeado</p>
+  <div *ngIf="folder != 'Login'">
+    <p class="MensajeNoLogeado">No logeado</p>
+  </div>  
 </div>
 
 
