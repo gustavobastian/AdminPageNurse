@@ -21,15 +21,15 @@ export class MonitoringPage implements OnInit {
   
   messagesUsers: Array<userStats> = new Array;
 
-  private view=0;//1 for beds, 2 for users...0 nothing
+  public view=0;//1 for beds, 2 for users...0 nothing
 
   bedstates = ["Desocupada","Ocupada","Llamando","Por ser atendida","Siendo atendida","Llamada programada","Solicita Ayuda"]
   userstates=["no Logeado","Logeado","Atendiendo"]
   
   constructor(
-    private activatedRoute: ActivatedRoute,
+    public activatedRoute: ActivatedRoute,
     public localSto: LocalStorageService, 
-    private MQTTServ:MqttService,
+    public MQTTServ:MqttService,
 
   ) { }
 

@@ -8,14 +8,14 @@ import * as HighCharts from 'highcharts';
   styleUrls: ['./stats-patient.page.scss'],
 })
 export class StatsPatientPage implements OnInit {
-  private data: Array<String> = new Array<String>();
-  private dataTreatment: Array<String> = new Array<String>();
-  private selection=0;
-  private totalPatient=0;
+  public data: Array<String> = new Array<String>();
+  public dataTreatment: Array<String> = new Array<String>();
+  public selection=0;
+  public totalPatient=0;
 
 
     constructor(
-    private statisticsServ: StatisticsService
+      public statisticsServ: StatisticsService
   ) { }
 
   async ngOnInit() {

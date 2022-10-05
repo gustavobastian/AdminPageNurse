@@ -68,18 +68,18 @@
     </ion-toolbar>
 
     <ul>
-      <div *ngFor="let item of NurseSpecTable">          
+      <div *ngFor="let item of NurseSpecTable; let i = index">          
           <li>
             Especialidad: {{item.Name}}
-            <ion-button color="warning"  type="rounded" (click)="onDeleteSpec(item.nurseSpecId)">Quitar</ion-button> 
+            <ion-button color="warning"  type="rounded" (click)="onDeleteSpec(NurseSpecTable[i]._id)">Quitar</ion-button> 
           </li>
       </div>
     </ul>
     <ion-item>
     <ion-label>otra</ion-label>
       <ion-select color="primary" #WW (ionChange)="upgradeSpecId(WW.value)" >
-        <div *ngFor="let spec of specTable">          
-            <ion-select-option value="{{spec.id}}" >{{spec.Name}}</ion-select-option>                          
+        <div *ngFor="let spec of specTable; let j = index">          
+            <ion-select-option value="{{specTable[j].id}}" >{{spec.Name}}</ion-select-option>                          
         </div>
       </ion-select>
     </ion-item>   

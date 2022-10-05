@@ -21,7 +21,7 @@
   <div *ngIf="addingSpec==true">
     <ion-item>
       <ion-label>Nombre de la especialidad:</ion-label>
-      <ion-input placeholder="Nombre de la especialidad" type="text" #W (ionChange)="upgradingName(W.value)" ></ion-input>
+      <ion-input placeholder="Nombre de la especialidad" type="text" #W (ionChange)="upgradingName((W.value).toString())" ></ion-input>
     </ion-item>
   <ion-button (click)="onClickSend()">Enviar</ion-button>
   </div>

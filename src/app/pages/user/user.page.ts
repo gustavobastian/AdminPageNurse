@@ -14,15 +14,15 @@ import { NurseSpec } from 'src/app/models/nurseSpec';
   styleUrls: ['./user.page.scss'],
 })
 export class UserPage implements OnInit {
-  private id: string;
-  private user: User=new User(0,"","","","",0,"");
-  private newUser= true; 
-  private modeNurse=false;
-  private specTable: Array<Spec> = new Array<Spec>();
-  private NurseSpecTable: Array<NurseSpec> = new Array<NurseSpec>();
-  private specToAddId = 0;
-  private specToDeleteId = 0;
-  private needNurseOptions=false;
+  public id: string;
+  public user: User=new User(0,"","","","",0,"");
+  public newUser= true; 
+  public modeNurse=false;
+  public specTable: Array<Spec> = new Array<Spec>();
+  public NurseSpecTable: Array<NurseSpec> = new Array<NurseSpec>();
+  public specToAddId = 0;
+  public specToDeleteId = 0;
+  public needNurseOptions=false;
 
   ionicForm: FormGroup = new FormGroup({
     firstName: new FormControl(),

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
 import { ActivatedRoute } from '@angular/router';
 import { CalendarEvent } from '../../models/calendarEvent';
-import { Pacient } from '../../models/pacient';
+import { Patient } from '../../models/pacient';
 import { BedsService } from '../../services/beds.service';
 import { CalendarEventsService } from '../../services/calendar-events.service';
 import { PacientService } from '../../services/pacient.service';
@@ -15,7 +15,7 @@ import { PacientService } from '../../services/pacient.service';
 export class EventPage implements OnInit {
   private calendarEventLocal: CalendarEvent=new CalendarEvent(0,0,"","","")    
   private pacientNumber=0;
-  private pacientLocal: Pacient=new Pacient(0,"giac ","como ",0,0,0);
+  private pacientLocal: Patient=new Patient(0,"giac ","como ",0,0,0);
 
   ionicForm: FormGroup = new FormGroup({    
     type: new FormControl(),

@@ -22,7 +22,9 @@ export class NurseSpec {
   public get_name() {
     return this._name;
   }
-
+  public Name() {
+    return this._name;
+  }
   public set_userId(name: string) {
     this._name = name;
   }
@@ -32,5 +34,7 @@ export class NurseSpec {
   public get_id(): number {
     return this._id ;
   }
-  
+  public id(): number {
+    return this._id ;
+  }
 }

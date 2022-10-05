@@ -10,15 +10,15 @@ import { TableSpecService } from 'src/app/services/table-spec.service';
   styleUrls: ['./tabla-spec-treat.page.scss'],
 })
 export class TablaSpecTreatPage implements OnInit {
-  private specTable: Array<Spec> = new Array<Spec>();
-  private addingSpec= false;
-  private Name="";
+  public specTable: Array<Spec> = new Array<Spec>();
+  public addingSpec= false;
+  public Name="";
   interval:any;
   
 
 
   constructor(
-    private tableSpecServ:TableSpecService
+    public tableSpecServ:TableSpecService
     ) { }
 
   ngOnInit() {

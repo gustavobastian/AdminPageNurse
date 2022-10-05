@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { BedsService } from "../services/beds.service";
 import { Bed } from "../models/bed";
 import { User } from "../models/user";
-import { Pacient } from "../models/pacient";
+import { Patient } from "../models/pacient";
 import { Message } from "../models/message";
 import { UsersService } from "../services/users.service";
 import { PacientService } from "../services/pacient.service";
@@ -22,14 +22,14 @@ import { LogStatusService } from "../services/log-status.service";
 })
 export class FolderPage implements OnInit {
   public folder: string;
-  private beds: Array<Bed> = new Array<Bed>();
-  private users: Array<User> = new Array<User>();
+  public beds: Array<Bed> = new Array<Bed>();
+  public users: Array<User> = new Array<User>();
   public pacientNumber: number = 0;
   public userNumber: number = 0;
   public bedNumber: number = 0;
-  private pacients: Array<Pacient> = new Array<Pacient>();
-  private messages: Array<Message> = new Array<Message>();
-  private logEventsLocal: Array<logEvent> = new Array<logEvent>();
+  public pacients: Array<Patient> = new Array<Patient>();
+  public messages: Array<Message> = new Array<Message>();
+  public logEventsLocal: Array<logEvent> = new Array<logEvent>();
 
 
   priorities: Array<number> = [0,1,2,3,4,5];
@@ -39,14 +39,14 @@ export class FolderPage implements OnInit {
 
 
   constructor(
-    private routes: Router,
-    private activatedRoute: ActivatedRoute,
+    public routes: Router,
+    public activatedRoute: ActivatedRoute,
     public bedServ: BedsService,
     public userServ: UsersService,
     public pacientServ: PacientService,
-    private alertController: AlertController,
+    public alertController: AlertController,
     public messageServ: MessagesService,
-    private logStatus: LogStatusService,
+    public logStatus: LogStatusService,
     public logEvents: LogEventsService
   ) {
     //console.log("in constructor");

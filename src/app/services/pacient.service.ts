@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Pacient } from "../models/pacient";
+import { Patient } from "../models/pacient";
 import { environment } from "src/environments/environment";
 
 @Injectable({
@@ -9,34 +9,34 @@ import { environment } from "src/environments/environment";
 export class PacientService {
   postId;
   //array of Pacient
-  private beds: Array<Pacient> = new Array<Pacient>();
+  private beds: Array<Patient> = new Array<Patient>();
   //port for api--> must be changed to a global variable
   urlApi = environment.urlApi;
 
   constructor(private _http: HttpClient) {}
 
   //getting all patients information
-  getAllPacients(): Promise<Pacient[]> {
+  getAllPacients(): Promise<Patient[]> {
     return this._http
       .get(this.urlApi + "/api/patient")
       .toPromise()
-      .then((pacients: Pacient[]) => {
+      .then((pacients: Patient[]) => {
         console.log(pacients);
         return pacients;
       });
   }
   //getting single patients information
-  getPatient(id: number): Promise<Pacient> {
+  getPatient(id: number): Promise<Patient> {
     return this._http
       .get(this.urlApi + "/api/patient/"+id)
       .toPromise()
-      .then((pacient: Pacient) => {
+      .then((pacient: Patient) => {
         console.log(pacient[0]);
         return pacient[0];
       });
   }
 
-  sendNewPatient(newPatient: Pacient) {
+  sendNewPatient(newPatient: Patient) {
     console.log(newPatient);
     let output = JSON.stringify(newPatient);
     console.log(output);
@@ -49,7 +49,7 @@ export class PacientService {
       });
   }
 
-  sendAlterPatient(patient: Pacient) {
+  sendAlterPatient(patient: Patient) {
     console.log(patient);
     let output = JSON.stringify(patient);
     console.log(output);

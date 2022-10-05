@@ -7,7 +7,7 @@ import { PatientTreatService } from 'src/app/services/patient-treat.service';
 import { TableSpecService } from 'src/app/services/table-spec.service';
 import { Bed } from '../../models/bed';
 import { medicalTable } from '../../models/medicalTable';
-import { Pacient } from '../../models/pacient';
+import { Patient } from '../../models/pacient';
 import { User } from '../../models/user';
 import { BedsService } from '../../services/beds.service';
 import { MedicalTableService } from '../../services/medical-table.service';
@@ -36,7 +36,7 @@ class BedStatus{
 })
 export class PatientPage implements OnInit {
   public id: string;
-  public pacientLocal: Pacient = new Pacient(0,"giac ","como ",0,0,0);
+  public pacientLocal: Patient = new Patient(0,"giac ","como ",0,0,0);
   public newPacient= true;
   private beds: Array<Bed> = new Array<Bed>();
   public bedState: Array<BedStatus> = new Array<BedStatus>();
@@ -168,7 +168,7 @@ export class PatientPage implements OnInit {
   
   submitForm() {    
     //console.log("id:"+this.id);
-    let localsend: Pacient=new Pacient(0,"giac ","como ",0,0,0);
+    let localsend: Patient=new Patient(0,"giac ","como ",0,0,0);
     //console.log("nombre : "+localsend.firstName);
     
     let local=((this.ionicForm.value.firstName));

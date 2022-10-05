@@ -26,5 +26,11 @@ export class Spec {
   public set_specId(specId: number) {
     this._id = specId;
   }
-  
+
+  public Name(){
+    return this._name;
+  }
+  public id(){
+    return this._id;
+  }
 }

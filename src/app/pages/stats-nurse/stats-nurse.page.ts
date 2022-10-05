@@ -11,12 +11,12 @@ import { count } from 'console';
   styleUrls: ['./stats-nurse.page.scss'],
 })
 export class StatsNursePage implements OnInit {
-  private data: Array<String> = new Array<String>();
-  private dataNurseProm: Array<String> = new Array<String>();
-  private selection=0;
-  private totalNurseSpec=0;
+  public data: Array<String> = new Array<String>();
+  public dataNurseProm: Array<String> = new Array<String>();
+  public selection=0;
+  public totalNurseSpec=0;
   constructor(
-    private statisticsServ: StatisticsService
+    public statisticsServ: StatisticsService
   ) { }
 
   ngOnInit() {

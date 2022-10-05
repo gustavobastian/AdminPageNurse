@@ -1,4 +1,4 @@
-export class Pacient {
+export class Patient {
 /*  private _pacientId: number;
   private _firstName: string;
   private _lastName: string;

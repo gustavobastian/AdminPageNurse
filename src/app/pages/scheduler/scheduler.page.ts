@@ -5,7 +5,7 @@ import { CalendarEvent } from '../../models/calendarEvent';
 import { BedsService } from '../../services/beds.service';
 import { PacientService } from '../../services/pacient.service';
 import {CalendarEventsService} from '../../services/calendar-events.service'
-import { Pacient } from '../../models/pacient';
+import { Patient } from '../../models/pacient';
 
 
 
@@ -15,13 +15,13 @@ import { Pacient } from '../../models/pacient';
   styleUrls: ['./scheduler.page.scss'],
 })
 export class SchedulerPage implements OnInit {
-  private calendarEventLocal: CalendarEvent=new CalendarEvent(0,0,"","","")
-  private calendarEventsLocal: Array<CalendarEvent>=new Array<CalendarEvent>();
-  private pacients: Array<Pacient>=new Array<Pacient>();
-  private pacientNumber=0;
-  private pacientLocal: Pacient=new Pacient(0,"giac ","como ",0,0,0);
-  private eventsUpgraded: boolean=false;
-  private id =0; //used to now what the user wants to do
+  public calendarEventLocal: CalendarEvent=new CalendarEvent(0,0,"","","")
+  public calendarEventsLocal: Array<CalendarEvent>=new Array<CalendarEvent>();
+  public pacients: Array<Patient>=new Array<Patient>();
+  public pacientNumber=0;
+  public pacientLocal: Patient=new Patient(0,"giac ","como ",0,0,0);
+  public eventsUpgraded: boolean=false;
+  public id =0; //used to now what the user wants to do
   public title="";
 
   
@@ -41,7 +41,7 @@ export class SchedulerPage implements OnInit {
   async ngOnInit() {
     this.id = parseInt(this.activatedRoute.snapshot.paramMap.get("id"));    
     await this.retrievePacients();
-    console.log("Pacients:"+JSON.stringify(this.pacients[0]));
+    console.log("Patients:"+JSON.stringify(this.pacients[0]));
     if(this.id===1){this.title="Agregando eventos para paciente";
             
             } 
