@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { environment } from '../../environments/environment'
-
+import { QR } from "../models/qr";
 
 
 @Injectable({
@@ -10,7 +10,7 @@ import { environment } from '../../environments/environment'
 export class QRService {
   postId;
   //array of qrs
-  private qrs: Array<string> = new Array<string>();
+  private qrs: Array<QR> = new Array<QR>();
   //port for api--> must be changed to a global variable
   urlApi = environment.urlApi;
 
@@ -71,11 +71,11 @@ getSingleQR(id: number): Promise<string> {
  }
 
 //getting all QR information
-getAllQR(): Promise<string[]> {
+getAllQR(): Promise<QR[]> {
   return this._http
     .get(this.urlApi + "/api/QR/")
     .toPromise()
-    .then((output: string[]) => {
+    .then((output: QR[]) => {
       console.log(output);
       return output;
     });

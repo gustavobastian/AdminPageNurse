@@ -13,11 +13,11 @@
   
     <ion-item lines="full">
       <ion-label position="fixed">Nota</ion-label>
-      <ion-input placeholder="{{calendarEventLocal.note}}" #L (ionChange)="upgradingNote(L.value)" type="text" ></ion-input>
+      <ion-input placeholder="{{calendarEventLocal.note}}" #L (ionChange)="upgradingNote((L.value).toString())" type="text" ></ion-input>
     </ion-item>
     <ion-item lines="full">
       <ion-label position="fixed">Tipo</ion-label>
-      <ion-select interface="action-sheet" #C (ionChange)="upgradingtype(C.value)" type="text" >
+      <ion-select interface="action-sheet" #C (ionChange)="upgradingtype((C.value).toString())" type="text" >
          <ion-select-option  value="daily">Diario</ion-select-option>                   
          <ion-select-option  value="weekly">Semanal</ion-select-option>                   
          <ion-select-option  value="monthly">Mensual</ion-select-option>                          

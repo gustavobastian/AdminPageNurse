@@ -13,9 +13,9 @@ import { PacientService } from '../../services/pacient.service';
   styleUrls: ['./event.page.scss'],
 })
 export class EventPage implements OnInit {
-  private calendarEventLocal: CalendarEvent=new CalendarEvent(0,0,"","","")    
-  private pacientNumber=0;
-  private pacientLocal: Patient=new Patient(0,"giac ","como ",0,0,0);
+  public calendarEventLocal: CalendarEvent=new CalendarEvent(0,0,"","","")    
+  public pacientNumber=0;
+  public pacientLocal: Patient=new Patient(0,"giac ","como ",0,0,0);
 
   ionicForm: FormGroup = new FormGroup({    
     type: new FormControl(),
@@ -28,7 +28,7 @@ export class EventPage implements OnInit {
   public title="";
 
   constructor(
-    private activatedRoute: ActivatedRoute,
+    public activatedRoute: ActivatedRoute,
     public formBuilder: FormBuilder,
     public bedServ: BedsService,
     public pacientServ: PacientService,

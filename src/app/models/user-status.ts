@@ -1,6 +1,6 @@
 export class userStats{      
-    private _userId: number;    
-    private _st: number;
+    public _userId: number;    
+    public _st: number;
     
     constructor(userId: number, st: number){        
         this._userId= userId;

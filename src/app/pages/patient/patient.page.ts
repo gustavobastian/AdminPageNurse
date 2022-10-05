@@ -38,23 +38,23 @@ export class PatientPage implements OnInit {
   public id: string;
   public pacientLocal: Patient = new Patient(0,"giac ","como ",0,0,0);
   public newPacient= true;
-  private beds: Array<Bed> = new Array<Bed>();
+  public beds: Array<Bed> = new Array<Bed>();
   public bedState: Array<BedStatus> = new Array<BedStatus>();
-  private users: Array<User> = new Array<User>();
-  private pacientUsers: Array<User> = new Array<User>();
-  private addingDoctor= false;
-  private doctorNumber=0;
-  private editingTreatment=false;
-  private specToAddId=0;
-  private canSend=false;
+  public users: Array<User> = new Array<User>();
+  public pacientUsers: Array<User> = new Array<User>();
+  public addingDoctor= false;
+  public doctorNumber=0;
+  public editingTreatment=false;
+  public specToAddId=0;
+  public canSend=false;
 
-  private specTable: Array<Spec> = new Array<Spec>();
+  public specTable: Array<Spec> = new Array<Spec>();
 
-  private patientTreatLocal= new PatientTreat(0,0,0,"")
+  public patientTreatLocal= new PatientTreat(0,0,0,"")
 
 
-  private MDT : Array<medicalTable>=new Array<medicalTable>;
-  private allMDT : Array<medicalTable>=new Array<medicalTable>;
+  public MDT : Array<medicalTable>=new Array<medicalTable>;
+  public allMDT : Array<medicalTable>=new Array<medicalTable>;
 
 
   ionicForm: FormGroup = new FormGroup({
@@ -69,17 +69,17 @@ export class PatientPage implements OnInit {
 
 
   constructor(
-    private activatedRoute: ActivatedRoute,
+    public activatedRoute: ActivatedRoute,
     public formBuilder: FormBuilder,
     public bedServ: BedsService,
-    private medTabServ: MedicalTableService,
+    public medTabServ: MedicalTableService,
     public pacientServ: PacientService,
     public userServ: UsersService,
-    private patientTreatServ: PatientTreatService,
-    private tableSpecServ:TableSpecService,
+    public patientTreatServ: PatientTreatService,
+    public tableSpecServ:TableSpecService,
     ) { }
 
-  async ngOnInit() {
+    public async ngOnInit() {
     this.id = this.activatedRoute.snapshot.paramMap.get("id");    
     this.specTable= await this.tableSpecServ.getAllSpec();
     
@@ -124,7 +124,7 @@ export class PatientPage implements OnInit {
     
   }
 
-   lookForUsers(userIdP: number): string  {
+  public lookForUsers(userIdP: number): string  {
     let i=1;
     let d=0;
     if(this.users.length>0){
@@ -138,7 +138,7 @@ export class PatientPage implements OnInit {
     else {return ""}
   }
 
-  async retrieveSinglePatient(id:number) {
+  public async retrieveSinglePatient(id:number) {
     
     let pacientLocal2 = await this.pacientServ.getPatient(id);    
     await this.retrieveMedicalTable(pacientLocal2.userTableId);
@@ -146,13 +146,13 @@ export class PatientPage implements OnInit {
    
   }
 
-  async retrieveBeds() {
+  public async retrieveBeds() {
 
     let listado = await this.bedServ.getAllbed();
 
     this.beds = listado;
   }
-  async retrieveBedStates() {
+  public async retrieveBedStates() {
     let  localState= new BedStatus(0,0);
 
     let listado = JSON.stringify(await this.bedServ.getAllBedStatus());
@@ -166,7 +166,7 @@ export class PatientPage implements OnInit {
   }
 
   
-  submitForm() {    
+  public submitForm() {    
     //console.log("id:"+this.id);
     let localsend: Patient=new Patient(0,"giac ","como ",0,0,0);
     //console.log("nombre : "+localsend.firstName);
@@ -204,7 +204,7 @@ export class PatientPage implements OnInit {
   }
 
 
-  async upgradingpacientID(i:number){
+  public async upgradingpacientID(){
     this.canSend=true;
   }
 
@@ -212,7 +212,7 @@ export class PatientPage implements OnInit {
  * Medical table 
  */
   
-  async retrieveMedicalTable(index: number) {
+ public async retrieveMedicalTable(index: number) {
     this.MDT= [];
     
     let listado = JSON.stringify(await this.medTabServ.getSingleMedicalsTable(index));
@@ -220,7 +220,7 @@ export class PatientPage implements OnInit {
     
     return;
   }
-  async retrieveAllMedicalTable() {
+  public async  retrieveAllMedicalTable() {
     let listado = JSON.stringify(await this.medTabServ.getAllMedicalsTable());
       this.allMDT=JSON.parse(listado);
   }
@@ -229,16 +229,16 @@ export class PatientPage implements OnInit {
    * Adding new doctors to the list of doctors
    */
 
-  addingNewDoctor(){
+  public addingNewDoctor(){
     this.addingDoctor=true;
   }
-  quitAddingNewDoctor(){
+  public quitAddingNewDoctor(){
     this.addingDoctor=false;
   }
-  upgradingDoctorNumber(userId:number){
+  public upgradingDoctorNumber(userId:number){
     this.doctorNumber=userId;
   }
-  async sendDoctor(){
+  public async sendDoctor(){
    
     let correct=true;
     this.MDT.forEach(element => {
@@ -259,7 +259,7 @@ export class PatientPage implements OnInit {
     else console.log("already present:", this.doctorNumber);
   }
 
-  async removeDoctor(i:number){
+  public async removeDoctor(i:number){
     let index=0;
     console.log(JSON.stringify(this.MDT))
     this.MDT.forEach(element => {      
@@ -275,7 +275,7 @@ export class PatientPage implements OnInit {
     
     
   }
-  async newMDT(){
+  public async newMDT(){
     let maximunUlist = 0;
     this.allMDT.forEach(element => {
       if (maximunUlist<element.userTableId){maximunUlist=element.userTableId;}

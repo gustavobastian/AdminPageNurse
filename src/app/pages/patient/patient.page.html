@@ -49,7 +49,7 @@
     
     <ion-item lines="full">
       <ion-label position="fixed">PacientId</ion-label> 
-      <ion-input  color="primary" placeholder="{{pacientLocal.pacientId}}" value="{{pacientLocal.pacientId}}" #LZ (ionChange)="upgradingpacientID(LZ.value)" formControlName="pacientId" type="number" required></ion-input>        
+      <ion-input  color="primary" placeholder="{{pacientLocal.pacientId}}" value="{{pacientLocal.pacientId}}" #LZ (ionChange)="upgradingpacientID()" formControlName="pacientId" type="number" required></ion-input>        
     </ion-item>     
      
     <div *ngIf="canSend==true">
@@ -109,7 +109,7 @@
           </div>
         </ion-select>
         <ion-button (click)="sendDoctor()" type="rounded">Agregar</ion-button>
-        <ion-button (click)="done()" (click)="quitAddingNewDoctor()" type="rounded">Finalizar</ion-button>
+        <ion-button (click)="quitAddingNewDoctor()" type="rounded">Finalizar</ion-button>
       </ion-item>
     </ion-list>
   </div>

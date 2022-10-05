@@ -5,6 +5,7 @@ import { BedsService } from '../../services/beds.service';
 import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
 import { QRService } from '../../services/qr.service';
 import { AuthInterceptorService } from 'src/app/services/auth-interceptor.service';
+import {QR} from '../../models/qr'
 
 
 @Component({
@@ -20,7 +21,7 @@ export class BedsPage implements OnInit {
   public qr_string :string
   public qrIdLocal: number;
   public qrIdLocalE: number;//for deleting
-  public qrs : Array<string> = new Array<string>();
+  public qrs : Array<QR> = new Array<QR>();
   
   ionicForm: FormGroup = new FormGroup({
     roomId: new FormControl(),
