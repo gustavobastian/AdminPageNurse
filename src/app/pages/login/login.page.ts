@@ -31,7 +31,10 @@ export class LoginPage implements OnInit {
     
     if(await this.logStatus.askToken(this.username, this.password)==true){
       console.log("setting status logged")
-      this.logStatus.setLogged(true);}
+      this.logStatus.setLogged(true);
+      alert("Logeado correctamente");
+      this.routes.navigateByUrl("/folder/Monitoreo");
+    }
     else{this.logStatus.setLogged(false);
       console.log("setting status not logged")
       alert("usuario o password incorrectos");
