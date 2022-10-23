@@ -5,7 +5,7 @@ import { CalendarEvent } from '../../models/calendarEvent';
 import { BedsService } from '../../services/beds.service';
 import { PacientService } from '../../services/pacient.service';
 import {CalendarEventsService} from '../../services/calendar-events.service'
-import { Patient } from '../../models/pacient';
+import { Patient } from '../../models/patient';
 
 
 

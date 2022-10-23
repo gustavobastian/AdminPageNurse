@@ -1,15 +1,15 @@
 export class CalendarEvent {
     public _eventId: number;
-    public _pacientId: number;    
+    public _patientId: number;    
     public _dateTime: string;
     public _type: string;
     public _note: string;
 
-    constructor(eventId: number, pacientId: number, dateTime:string, type:string, note:string){
+    constructor(eventId: number, patientId: number, dateTime:string, type:string, note:string){
         this._dateTime=dateTime;
         this._eventId= eventId;
         this._note=note;
-        this._pacientId= pacientId;
+        this._patientId= patientId;
         this._type=type
 
     }
@@ -23,8 +23,8 @@ export class CalendarEvent {
     public get dateTime():string{
         return this._dateTime;
     }
-    public get pacientId():number{
-        return this._pacientId;
+    public get patientId():number{
+        return this._patientId;
     }
     public get eventId():number{
         return this._eventId;
@@ -38,8 +38,8 @@ export class CalendarEvent {
     public set dateTime(dateTimeL:string){
         this._dateTime=dateTimeL;
     }
-    public set pacientId(i:number){
-        this._pacientId=i;
+    public set patientId(i:number){
+        this._patientId=i;
     }
     public set eventId(i:number){
         this._eventId=i;

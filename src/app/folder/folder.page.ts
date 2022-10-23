@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { BedsService } from "../services/beds.service";
 import { Bed } from "../models/bed";
 import { User } from "../models/user";
-import { Patient } from "../models/pacient";
+import { Patient } from "../models/patient";
 import { Message } from "../models/message";
 import { UsersService } from "../services/users.service";
 import { PacientService } from "../services/pacient.service";

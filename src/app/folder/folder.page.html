@@ -117,7 +117,7 @@
             <ion-select interface="action-sheet" #C (ionChange)="upgradingNumber(C.value)" type="number" required>
               <div *ngFor="let element of pacients; let i=index">           
               
-              <ion-select-option  value="{{pacients[i].pacientId}}">{{pacients[i].pacientId}}:{{pacients[i].lastName}},{{pacients[i].firstName}}</ion-select-option>                   
+              <ion-select-option  value="{{pacients[i].patientId}}">{{pacients[i].patientId}}:{{pacients[i].lastName}},{{pacients[i].firstName}}</ion-select-option>                   
               </div>
             </ion-select>
           </ion-item>
@@ -150,7 +150,7 @@
                   <ion-icon style="padding-top: 10pt; padding-left: 10pt;" name="alarm"></ion-icon>     
                 </div>                   
                   <br> 
-                  Paciente: {{logEventsLocal[i].pacientId}} Atendió: {{logEventsLocal[i].userId}}
+                  Paciente: {{logEventsLocal[i].patientId}} Atendió: {{logEventsLocal[i].userId}}
               </ion-item>  
               <ion-item>
                 Hora inicio: {{logEventsLocal[i].init | date :'medium'}} <br>

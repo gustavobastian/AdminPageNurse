@@ -7,7 +7,7 @@ import { PatientTreatService } from 'src/app/services/patient-treat.service';
 import { TableSpecService } from 'src/app/services/table-spec.service';
 import { Bed } from '../../models/bed';
 import { medicalTable } from '../../models/medicalTable';
-import { Patient } from '../../models/pacient';
+import { Patient } from '../../models/patient';
 import { User } from '../../models/user';
 import { BedsService } from '../../services/beds.service';
 import { MedicalTableService } from '../../services/medical-table.service';
@@ -58,7 +58,7 @@ export class PatientPage implements OnInit {
 
 
   ionicForm: FormGroup = new FormGroup({
-    pacientId: new FormControl(),
+    patientId: new FormControl(),
     firstName: new FormControl(),
     lastName: new FormControl(),
     bedId: new FormControl(),
@@ -172,12 +172,12 @@ export class PatientPage implements OnInit {
     //console.log("nombre : "+localsend.firstName);
     
     let local=((this.ionicForm.value.firstName));
-    if(this.ionicForm.value.pacientId<1){alert("Error en nro de paciente!!!");return;}
+    if(this.ionicForm.value.patientId<1){alert("Error en nro de paciente!!!");return;}
     
     localsend.firstName=(this.ionicForm.value.firstName);
    // console.log("nombre : "+localsend.firstName);
     localsend.lastName=this.ionicForm.value.lastName;
-    localsend.pacientId=this.ionicForm.value.pacientId;
+    localsend.patientId=this.ionicForm.value.patientId;
     localsend.bedId=this.ionicForm.value.bedId;
     let status=0;
     this.beds.forEach(element => {
@@ -204,7 +204,7 @@ export class PatientPage implements OnInit {
   }
 
 
-  public async upgradingpacientID(){
+  public async upgradingpatientId(){
     this.canSend=true;
   }
 
@@ -308,7 +308,7 @@ export class PatientPage implements OnInit {
       //  console.log("find:"+element2.Name);
         this.patientTreatLocal.specId=element2.id;
         this.patientTreatLocal.Name=element2.Name;
-        this.patientTreatLocal.patientId=this.pacientLocal.pacientId;
+        this.patientTreatLocal.patientId=this.pacientLocal.patientId;
        
       //  console.log("Treatment:"+JSON.stringify( this.patientTreatLocal));
       }

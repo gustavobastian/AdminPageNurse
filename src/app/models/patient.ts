@@ -1,11 +1,11 @@
 export class Patient {
-/*  private _pacientId: number;
+/*  private _patientId: number;
   private _firstName: string;
   private _lastName: string;
   private _bedId: number;
   private _notesTableId: number;
   private _userTableId: number;*/
-  public _pacientId: number;
+  public _patientId: number;
   public _firstName: string;
   public _lastName: string;
   public _bedId: number;
@@ -13,14 +13,14 @@ export class Patient {
   public _userTableId: number;
 
   constructor(
-    pacientId: number,
+    patientId: number,
     firstName: string,
     lastName: string,
     bedId: number,
     notesTableId: number,
     userTableId: number
   ) {
-    this._pacientId = pacientId;
+    this._patientId = patientId;
     this._firstName = firstName;
     this._lastName = lastName;
     this._bedId = bedId;
@@ -28,11 +28,11 @@ export class Patient {
     this._userTableId = userTableId;
   }
 
-  public set pacientId(pacient: number) {
-    this._pacientId = pacient;
+  public set patientId(pacient: number) {
+    this._patientId = pacient;
   }
-  public get pacientId(): number {
-    return this._pacientId;
+  public get patientId(): number {
+    return this._patientId;
   }
 
   public set firstName(pacient: string) {

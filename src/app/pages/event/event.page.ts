@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
 import { ActivatedRoute } from '@angular/router';
 import { CalendarEvent } from '../../models/calendarEvent';
-import { Patient } from '../../models/pacient';
+import { Patient } from '../../models/patient';
 import { BedsService } from '../../services/beds.service';
 import { CalendarEventsService } from '../../services/calendar-events.service';
 import { PacientService } from '../../services/pacient.service';
@@ -23,7 +23,7 @@ export class EventPage implements OnInit {
   });
 
 
-  pacientId = 0;
+  patientId = 0;
   
   public title="";
 
@@ -36,9 +36,9 @@ export class EventPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.pacientId = parseInt(this.activatedRoute.snapshot.paramMap.get("id"));    
-    console.log("pacientId: " + this.pacientId);
-    this.calendarEventLocal.pacientId=this.pacientId;
+    this.patientId = parseInt(this.activatedRoute.snapshot.paramMap.get("id"));    
+    console.log("patientId: " + this.patientId);
+    this.calendarEventLocal.patientId=this.patientId;
   }
   
   async send() {

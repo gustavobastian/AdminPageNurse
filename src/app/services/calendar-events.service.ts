@@ -53,7 +53,7 @@ export class CalendarEventsService {
     
     calevent
     
-    let data= {"pacientId":calevent.pacientId,
+    let data= {"patientId":calevent.patientId,
               "type": calevent.type,
               "note": calevent.note,
               "dateTime": JSON.stringify(calevent.dateTime)

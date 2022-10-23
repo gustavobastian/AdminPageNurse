@@ -16,9 +16,9 @@
   <ion-item>
     <ion-label>Paciente:</ion-label>
     <ion-item>
-      <ion-select interface="action-sheet" placeholder="{{pacientLocal.pacientId}} " #C (ionChange)="upgradingNumber(C.value)"  type="number" required>
+      <ion-select interface="action-sheet" placeholder="{{pacientLocal.patientId}} " #C (ionChange)="upgradingNumber(C.value)"  type="number" required>
         <div *ngFor="let element of pacients; let i=index">                    
-          <ion-select-option value="{{element.pacientId}}">{{element.pacientId}}:{{element.lastName}},{{element.firstName}}</ion-select-option>          
+          <ion-select-option value="{{element.patientId}}">{{element.patientId}}:{{element.lastName}},{{element.firstName}}</ion-select-option>          
         </div>
       </ion-select>
     </ion-item>
@@ -36,9 +36,9 @@
   <ion-item>
     <ion-label>Paciente:</ion-label>
     <ion-item>
-      <ion-select interface="action-sheet" placeholder="{{pacientLocal.pacientId}} " #D (ionChange)="upgradingNumber(D.value)" type="number" required>
+      <ion-select interface="action-sheet" placeholder="{{pacientLocal.patientId}} " #D (ionChange)="upgradingNumber(D.value)" type="number" required>
         <div *ngFor="let element of pacients; let i=index">                    
-          <ion-select-option value="{{element.pacientId}}">{{element.pacientId}}:{{element.lastName}},{{element.firstName}}</ion-select-option>                   
+          <ion-select-option value="{{element.patientId}}">{{element.patientId}}:{{element.lastName}},{{element.firstName}}</ion-select-option>                   
         </div>
       </ion-select>
     </ion-item>
@@ -47,7 +47,7 @@
   <div *ngIf="eventsUpgraded==true">
     <ul>
             <div *ngFor="let event of calendarEventsLocal; let i=index">        
-                <div *ngIf="calendarEventsLocal[i].pacientId==pacientNumber"> 
+                <div *ngIf="calendarEventsLocal[i].patientId==pacientNumber"> 
                   
                 
                     <li>
@@ -112,7 +112,7 @@
              </ion-item>
              <ion-item style="box-shadow: none">
               <ion-label style="box-shadow: none">Paciente:
-                 {{calendarEventsLocal[i].pacientId}}</ion-label>
+                 {{calendarEventsLocal[i].patientId}}</ion-label>
              </ion-item>            
             <ion-button style="box-shadow: none" color="success" (click)="editEvent(i)"> Editar</ion-button>
             <ion-button style="box-shadow: none" color="danger" (click)="deleteEvent(i)" >Dar de baja</ion-button>

@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Patient } from "../models/pacient";
+import { Patient } from "../models/patient";
 import { environment } from "src/environments/environment";
 
 @Injectable({
@@ -53,9 +53,9 @@ export class PacientService {
     console.log(patient);
     let output = JSON.stringify(patient);
     console.log(output);
-    let id=patient.pacientId;
+    let id=patient.patientId;
     const headers = new HttpHeaders();
-    delete patient.pacientId;
+    delete patient.patientId;
     this._http
       .put<any>(this.urlApi + "/api/patient/"+id, patient,{ headers: headers})
       .subscribe((data) => {

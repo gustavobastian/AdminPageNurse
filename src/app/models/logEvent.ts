@@ -3,19 +3,19 @@ export class logEvent {
     public _type: number;    
     public _init: string;
     public _finish: string;
-    public _pacientId: number;
+    public _patientId: number;
     public _userId: number;
     public _Note: string;
     public _Note2: string;
 
-    constructor(logEventId: number, type: number, init: string, finish: string, pacientId: number, userId: number, Note: string, Note2: string){
+    constructor(logEventId: number, type: number, init: string, finish: string, patientId: number, userId: number, Note: string, Note2: string){
         this._logeventId=logEventId;
         this._userId=userId;
         this._Note=Note;
         this._Note2=Note2;  
         this._init=init;
         this._finish=finish;
-        this._pacientId=pacientId;
+        this._patientId=patientId;
         this._type=type;
 
     }
@@ -26,8 +26,8 @@ export class logEvent {
     get type():number{
         return this._type;
     }
-    get pacientId():number{
-        return this._pacientId;
+    get patientId():number{
+        return this._patientId;
     }
     get userId():number{
         return this._userId;
@@ -53,8 +53,8 @@ export class logEvent {
     set type(n:number){
         this._type=n;
     }
-    set pacientId(n:number){
-        this._pacientId=n;
+    set patientId(n:number){
+        this._patientId=n;
     }
     set userId(n:number){
         this._userId=n;
