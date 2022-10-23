@@ -6,29 +6,28 @@ import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
 const routes: Routes = [
   {
     path: '',
+    loadChildren: () =>
+    import("./folder/folder.module").then((m) => m.FolderPageModule),
     //redirectTo: "folder/Login", //'loging',//'folder/:id',
-    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule),
+    //loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule),
+    
     
   },
-  {
-    path: 'Login',
-    redirectTo: 'folder/Login',
-    
-  },
+  
   {
     path: "main",
     redirectTo: "folder/Login", //'loging',//'folder/:id',
     
-  },
-  {
-    path: "folder/Login", //'folder/:id',
-    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule),
   },  
   {
     path: "folder/:id", //'folder/:id',
     loadChildren: () =>
       import("./folder/folder.module").then((m) => m.FolderPageModule),
-  },  
+  },
+  {
+    path: "Login", //'folder/:id',
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule),
+  },    
   {
     path: 'user/:id',
     loadChildren: () => import('./pages/user/user.module').then( m => m.UserPageModule)
