@@ -20,7 +20,7 @@ export class AuthInterceptorService implements HttpInterceptor {
     let request = req;
 
     if (token) {
-      request = this.agregarToken(request, token);
+      request = this.addToken(request, token);
       // console.log(request);
       return next.handle(request)
       .pipe(catchError((error: HttpErrorResponse) => {
@@ -45,8 +45,8 @@ export class AuthInterceptorService implements HttpInterceptor {
     
   }
 
-  private agregarToken(request: HttpRequest<any>, token: string) {
-    // console.log("Agrego token",`Bearer ${token}`)
+  private addToken(request: HttpRequest<any>, token: string) {
+    
     return request.clone({
       setHeaders: {
         'Authorization': `Bearer ${token}`
