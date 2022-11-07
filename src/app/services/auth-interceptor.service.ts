@@ -16,21 +16,21 @@ export class AuthInterceptorService implements HttpInterceptor {
       return next.handle(req);
     }
     const token: string = localStorage.getItem('token');
-    // console.log("TOKEN EN LA REQUEST "+token)
+    
     let request = req;
 
     if (token) {
       request = this.addToken(request, token);
-      // console.log(request);
+    
       return next.handle(request)
       .pipe(catchError((error: HttpErrorResponse) => {
         let errorMsg = '';
         if (error.error instanceof ErrorEvent) {
-          console.log('Error del lado Cliente');
+          console.log('Client Error');
           errorMsg = `Error: ${error.error.message}`;
         }
         else {
-          console.log('Error del lado del Server');
+          console.log('Server Error');
           errorMsg = `Error Code: ${error.status},  Message: ${error.message}`;
         }
         console.log(errorMsg);
@@ -39,7 +39,7 @@ export class AuthInterceptorService implements HttpInterceptor {
       );
     }else{
       return next.handle(request)
-      //si no tengo token, voy al login
+      //if i have no token navigate to login
       this._router.navigate(['/login']);
     }
     
