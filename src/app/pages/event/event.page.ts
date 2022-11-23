@@ -52,7 +52,11 @@ export class EventPage implements OnInit {
   console.log(data);
   this.calendarEventLocal._dateTime=data;
   
-  
+  if(this.calendarEventLocal._note=="")
+  {
+    alert("No se puede enviar");
+    return;
+  }
   await this.calServ.sendNewEvent(this.calendarEventLocal);
   
   }
