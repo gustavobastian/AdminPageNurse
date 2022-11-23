@@ -57,7 +57,7 @@
                               <ion-button style="box-shadow: none" color="danger" (click)="deleteEvent(i)" >Dar de baja</ion-button>
                           </ion-item>
                           <ion-item style="box-shadow: none">
-                              <ion-label style="box-shadow: none">Hora:{{calendarEventsLocal[i]._dateTime | date :'shortTime'}}</ion-label>
+                              <ion-label style="box-shadow: none">Hora:{{calendarEventsLocal[i].datetime | date :'shortTime'}}</ion-label>
                               <!--<ion-label style="box-shadow: none">Hora:{{calendarEventsLocal[i].datetime}}</ion-label>-->
                           </ion-item>                          
                           <div *ngIf="event.type=== 'daily'">
