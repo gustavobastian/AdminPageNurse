@@ -6,7 +6,7 @@
     <ion-item>
       <ion-title>{{ folder }}</ion-title>
       <div *ngIf="logStatus.logged==true">
-        <p>Logueado: {{logStatus.username}}</p>
+        <p>Logeado: {{logStatus.username}}</p>
         <p>Modo: {{logStatus.mode}}</p>
         <ion-button (click)="onClick2()">Cerrar Sesión</ion-button>
       </div>  
@@ -21,7 +21,7 @@
     <!--***************************** Login*********************************************************************************************************************-->  
     <div id="container2">
       <div *ngIf="folder === 'Login'">
-      <ion-button style="box-shadow: none;" routerLink="/Login">Loguearse</ion-button>  
+      <ion-button style="box-shadow: none;" routerLink="/Login">Logearse</ion-button>  
       
       </div>
     </div>
