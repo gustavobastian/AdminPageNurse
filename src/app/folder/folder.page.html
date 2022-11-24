@@ -6,7 +6,7 @@
     <ion-item>
       <ion-title>{{ folder }}</ion-title>
       <div *ngIf="logStatus.logged==true">
-        <p>Logeado: {{logStatus.username}}</p>
+        <p>Logueado: {{logStatus.username}}</p>
         <p>Modo: {{logStatus.mode}}</p>
         <ion-button (click)="onClick2()">Cerrar Sesión</ion-button>
       </div>  
@@ -17,17 +17,11 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-    <!--  <ion-header collapse="condense" [translucent]="true">
-        <ion-toolbar>
-          <ion-title size="large">{{ folder }}</ion-title>
-        </ion-toolbar>
-      </ion-header>
-    -->
+<ion-content [fullscreen]="true">    
     <!--***************************** Login*********************************************************************************************************************-->  
     <div id="container2">
       <div *ngIf="folder === 'Login'">
-      <ion-button style="box-shadow: none;" routerLink="/Login">Logearse</ion-button>  
+      <ion-button style="box-shadow: none;" routerLink="/Login">Loguearse</ion-button>  
       
       </div>
     </div>
@@ -245,7 +239,7 @@
 
 <div *ngIf="logStatus.logged==false">
   <div *ngIf="folder != 'Login'">
-    <p class="MensajeNoLogeado">No logeado</p>
+    <p class="MensajeNoLogeado">No logueado</p>
   </div>  
 </div>
 

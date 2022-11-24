@@ -24,9 +24,7 @@ export class SchedulerPage implements OnInit
   public eventsUpgraded: boolean=false;
   public id =0; //used to now what the user wants to do
   public title="";
-
   
-
   constructor(
     private activatedRoute: ActivatedRoute,
     public formBuilder: FormBuilder,
