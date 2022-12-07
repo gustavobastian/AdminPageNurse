@@ -11,7 +11,7 @@
         <ion-button (click)="onClick2()">Cerrar Sesión</ion-button>
       </div>  
       <div *ngIf="logStatus.logged!=true">
-        <ion-button routerLink="../Login">Acceder</ion-button> <!--(click)="onClickLogin()"-->
+        <ion-button id="botonAcceder" routerLink="../Login">Acceder</ion-button> <!--(click)="onClickLogin()"-->
       </div>  
   </ion-item>
   </ion-toolbar>
@@ -135,28 +135,34 @@
 
       <ul>
           <div *ngFor="let item of logEventsLocal; let i=index">
-            <li>
-              <ion-item>            
-                <div *ngIf="logEventsLocal[i].type === 1">
-                  <ion-icon style="padding-top: 10pt; padding-left: 10pt;" name="notifications"></ion-icon>     
-                </div>
-                <div *ngIf="logEventsLocal[i].type === 2">
-                  <ion-icon style="padding-top: 10pt; padding-left: 10pt;" name="alarm"></ion-icon>     
-                </div>                   
-                  <br> 
-                  Paciente: {{logEventsLocal[i].patientId}} Atendió: {{logEventsLocal[i].userId}}
-              </ion-item>  
-              <ion-item>
-                Hora inicio: {{logEventsLocal[i].init | date :'medium'}} <br>
-                Hora fin: {{logEventsLocal[i].finish | date :'medium'}}                                               
+            <div *ngIf="logEventsLocal[i].userId != '0'">
+              <li>
+                <ion-item>            
+                  
+                  <div *ngIf="logEventsLocal[i].type === 1">
+                    <ion-icon style="padding-top: 10pt; padding-left: 10pt;" name="notifications"></ion-icon>     
+                  </div>
+                  <div *ngIf="logEventsLocal[i].type === 2">
+                    <ion-icon style="padding-top: 10pt; padding-left: 10pt;" name="alarm"></ion-icon>     
+                  </div>                   
+                    <br> 
+                    Paciente: {{logEventsLocal[i].patientId}} Atendió: {{logEventsLocal[i].userId}}
                 </ion-item>  
-              
-              <div *ngIf="logEventsLocal[i].note2 !=''">
-                  <ion-item>
-                    {{logEventsLocal[i].note2}} 
+                <ion-item>
+                <!-- Hora inicio: {{logEventsLocal[i].init | date :'medium'}} <br>
+                  Hora fin: {{logEventsLocal[i].finish | date :'medium'}}                                               
+                  -->
+                  Hora inicio: {{logEventsLocal[i].init | date :'medium' }} <br>
+                  Hora fin: {{logEventsLocal[i].finish | date :'medium' }}                                               
                   </ion-item>  
-              </div>      
-            </li>
+                
+                <div *ngIf="logEventsLocal[i].Note2 !=''">
+                    <ion-item>
+                      {{logEventsLocal[i].Note2}} 
+                    </ion-item>  
+                </div>      
+              </li>
+            </div>  
           </div>
           
         </ul>
@@ -239,7 +245,7 @@
 
 <div *ngIf="logStatus.logged==false">
   <div *ngIf="folder != 'Login'">
-    <p class="MensajeNoLogeado">No logueado</p>
+    <p class="MensajeNoLogeado">No logeado</p>
   </div>  
 </div>
 

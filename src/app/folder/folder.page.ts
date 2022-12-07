@@ -13,6 +13,9 @@ import { LogEventsService } from "../services/log-events.service";
 import { logEvent } from "../models/logEvent";
 import { LogStatusService } from "../services/log-status.service";
 
+import { interval } from 'rxjs';
+import { takeWhile } from 'rxjs/operators';
+
 
 
 @Component({
@@ -61,6 +64,13 @@ export class FolderPage implements OnInit {
     this.folder = this.activatedRoute.snapshot.paramMap.get("id");
     this.bedPriority=0;
     //this.logStatus.setLogged(false);
+    interval(5000)
+    .pipe(takeWhile(() => !stop))
+    .subscribe(() => {
+      console.log("asking for logs")
+      this.retrieveLogs();
+    });
+
   }
 
   async retrieveBeds() {
@@ -181,15 +191,17 @@ export class FolderPage implements OnInit {
   async retrieveLogs() {
     console.log("Estoy en el retrieveLogs y llame al service");
     let listado = JSON.stringify(await this.logEvents.getAllLogEvents());
-    let listado2= JSON.parse(JSON.stringify( listado));
-    /*listado.forEach(element => {
+    console.log(listado);
+    let listado2= JSON.parse( listado)
+    console.log(listado2);
+    /*listado2.forEach(element => {
       console.log("logs:"+element);  
       
-    });*/
+    });
+    */
     
-    
-    this.logEventsLocal=JSON.parse(listado2);
-    console.log(this.logEventsLocal)
+    this.logEventsLocal=(listado2);
+    console.log(this.logEventsLocal[0])
   }
   /**
    *  getting priority information of a single bed
@@ -220,4 +232,6 @@ export class FolderPage implements OnInit {
   public onClickLogin(){    
     this.routes.navigateByUrl("/login");
   }
+
+  
 }
