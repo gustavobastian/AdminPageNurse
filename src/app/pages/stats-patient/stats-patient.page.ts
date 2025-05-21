@@ -48,11 +48,11 @@ export class StatsPatientPage implements OnInit {
   }
   
 
-  async onClickG(){
+  onClickG(){
     this.selection=1;
     this.getAllPatientsStats();
-    await this.getAllPatientsTreatment();
-    await this.pieChartPatientTreatment();
+    this.getAllPatientsTreatment();
+    this.pieChartPatientTreatment();
   }
   onClickI(){
     this.selection=2;

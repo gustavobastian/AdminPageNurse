@@ -132,13 +132,13 @@ export class UserPage implements OnInit {
   }
 
   //do not repeat spec for a person
-  public async checkIfPresent(specId: number): Promise<boolean>{
+  public checkIfPresent(specId: number): boolean{
     let d=0;
-    await this.NurseSpecTable.forEach(element => {
+    this.NurseSpecTable.forEach(element => {
       console.log(element)
-      if(element.specId==specId){
-        console.log("found")
-        d=1;
+      if (element.get_specId() == specId) {
+        console.log("found");
+        d = 1;
       } 
       
     });

@@ -38,8 +38,7 @@ export class AuthInterceptorService implements HttpInterceptor {
       })
       );
     }else{
-      return next.handle(request)
-      //if i have no token navigate to login
+      return next.handle(request)      
       this._router.navigate(['/login']);
     }
     

@@ -28,8 +28,8 @@ export class NurseSpec {
   public set_userId(name: string) {
     this._name = name;
   }
-  public set specId(specId: number) {
-    this._id = specId;
+  public set_specId(specId: number) {
+    this._specId = specId;
   }
   public get_id(): number {
     return this._id ;

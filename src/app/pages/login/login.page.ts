@@ -9,7 +9,7 @@ import { LogStatusService } from 'src/app/services/log-status.service';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage implements OnInit {
+export class LoginPage {
   username=""
   password=""
   
@@ -18,9 +18,6 @@ export class LoginPage implements OnInit {
     private logStatus: LogStatusService
     ) { }
 
-  ngOnInit() {
-  }
-  
   async navTabs(){
     //you can use either of below
     this.routes.navigateByUrl("/folder/camas");

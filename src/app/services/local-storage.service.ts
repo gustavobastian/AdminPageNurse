@@ -6,7 +6,9 @@ import { Storage } from '@capacitor/storage';
 })
 export class LocalStorageService {
 
-  constructor() { }
+  constructor() { 
+    console.log("starting localStorage");
+  }
 
   /**
    * Saving a string in the local storage
