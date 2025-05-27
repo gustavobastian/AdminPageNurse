@@ -16,13 +16,31 @@ export class BedsService {
   constructor(private _http: HttpClient) {}
 
   getAllbed(): Promise<Bed[]> {
-    return this._http
+    /*return this._http
       .get(this.urlApi + "/api/beds")
       .toPromise()
       .then((beds: Bed[]) => {
         console.log(beds);
         return beds;
       });
+      */
+      const headers = new HttpHeaders();
+      headers.append('Content-Type', 'application/json');
+      return new Promise ((resolve,reject)=>{
+      this._http
+        .get<Bed[]>(this.urlApi + "/api/beds/", { headers: headers})
+        .subscribe({          
+          next:data =>{
+
+          console.log(data);
+          //bed[]=data;          
+          resolve(data);
+        },
+          error: err =>{
+          reject(err);
+        }
+      })
+      })
   }
 // Ask for information of bed status in order to get not used ones
   getAllBedStatus(): Promise< String []> {
@@ -51,17 +69,21 @@ export class BedsService {
  */
   sendNewBed(newBed: Bed) {
     newBed.bedId=22;
+    delete newBed.bedId;
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
-    
-    delete newBed.bedId;
-    
     this._http
       .post<any>(this.urlApi + "/api/beds/", newBed,{ headers: headers})
-      .subscribe((data) => {
-        this.postId = data.id;
-        console.log(data.id)
-      });
+      .subscribe({
+        next: data => {
+            this.postId = data.id;
+            alert("done!");
+        },
+        error: error => {
+            let errorMessage = error.message;
+            console.error('There was an error!', error);
+        }
+    });
    }
 /**
  * Modify a bed parameters in the system
@@ -76,9 +98,17 @@ export class BedsService {
     
     this._http
       .put<any>(this.urlApi + "/api/beds/"+id, newBed,{ headers: headers})
-      .subscribe((data) => {
-        this.postId = data.id;
-      });
+      .subscribe({
+        next: data => {
+            this.postId = data.id;
+            alert("done!");
+        },
+        error: error => {
+            let errorMessage = error.message;
+            console.error('There was an error!', error);
+        }
+    });
+      
   }
 
   /**
@@ -108,9 +138,17 @@ export class BedsService {
   console.log(data)
   this._http
     .put<any>(this.urlApi + "/api/beds/priority/"+bedNumber, data,{ headers: headers})
-    .subscribe((data) => {
-      this.postId = data.id;
-    });
+    .subscribe({
+      next: data => {
+          this.postId = data.id;
+          alert("done!");
+      },
+      error: error => {
+          let errorMessage = error.message;
+          alert('There was an error!');
+      }
+  });
+    
 }
 
 }

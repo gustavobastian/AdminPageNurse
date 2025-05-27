@@ -81,14 +81,12 @@ export class FolderPage implements OnInit {
   }
   async retrieveUsers() {
     console.log("Estoy en el retrieveUsers y llame al service");
-    let listado = await this.userServ.getAllUsers();
-    //console.log("llego2");
+    let listado = await this.userServ.getAllUsers();    
     this.users = listado;
   }
   async retrievePacients() {
     console.log("Estoy en el retrievePacient y llame al service");
-    let listado = await this.pacientServ.getAllPacients();
-    //console.log("llego2");
+    let listado = await this.pacientServ.getAllPacients();    
     this.pacients = listado;
   }
 

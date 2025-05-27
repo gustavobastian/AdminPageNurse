@@ -1,4 +1,4 @@
-export class bedStats{      
+export class BedStats{      
     public _bedId: number;    
     public _st: number;
     public _spec: number;
@@ -16,7 +16,7 @@ export class bedStats{
         return this._st;    
     }    
     public get_spec():number{
-        return this._st;    
+        return this._spec;    
     }    
     
     public set_bedId(num:number){

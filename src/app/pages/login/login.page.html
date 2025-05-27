@@ -1,23 +1,20 @@
+<!DOCTYPE html>
 <ion-header>
- 
   </ion-header>
 
 <ion-content>
-<!--  <ion-card class="m">-->
+
     <h4 text-center margin-top>Acceso</h4>
 
     <ion-item>
       <ion-label stacked>Usuario</ion-label>
       <ion-input [(ngModel)]="username"></ion-input>
     </ion-item>
-
     <ion-item>
       <ion-label stacked>Contraseña</ion-label>
       <ion-input type="password" [(ngModel)]="password"></ion-input>
     </ion-item>
 
-    
-    <ion-button (click)="onclick()" expand="block">Acceder</ion-button>
-  
-<!--</ion-card>-->
+    <ion-button (click)="onclick()" expand="block" (keydown)="onclick()">Acceder</ion-button>
+
 </ion-content>

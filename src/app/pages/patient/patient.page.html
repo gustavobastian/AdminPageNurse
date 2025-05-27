@@ -1,9 +1,10 @@
+<!DOCTYPE html>
 <ion-header>
   <ion-toolbar>
     <ion-title>Pacientes</ion-title>
     <ion-buttons slot="start">
       <ion-back-button text="Volver" defaultHref="folder/Pacientes"></ion-back-button>
-    </ion-buttons>    
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -19,13 +20,11 @@
       <ion-input color="primary" placeholder="{{pacientLocal.lastName}}" value="{{pacientLocal.lastName}}" formControlName="lastName" type="text" required></ion-input>
     </ion-item>
     <ion-item lines="full">
-    
     <ion-label position="fixed" >Cama</ion-label>
     <ion-list>
       <ion-item>
         <ion-select interface="action-sheet" value="{{pacientLocal.bedId}}" placeholder="{{pacientLocal.bedId}} " formControlName="bedId" type="number" required>
           <div *ngFor="let element of bedState; let i=index">
-            
             <div *ngIf="element.st==0 && element.id>0">
               <ion-select-option value="{{element.id}}">{{element.id}}</ion-select-option>
             </div>
@@ -33,28 +32,24 @@
         </ion-select>
       </ion-item>
     </ion-list>
-    
-    
-    </ion-item >     
+    </ion-item>
     <ion-item>
     <ion-label position="fixed">Lista Médicos</ion-label><br>
     <ion-select interface="action-sheet" value="{{pacientLocal.userTableId}}" placeholder="{{pacientLocal.userTableId}}" #Z (ionChange)="upgradingMDTNumber(Z.value)"  formControlName="userTableId" type="number" required>
       <div *ngFor="let element of allMDT; let i=index">            
         <div *ngIf="element.MedicalTableId>0">
           <ion-select-option value="{{element.MedicalTableId}}">{{element.MedicalTableId}}</ion-select-option>              
-        </div>        
+        </div>
       </div>
     </ion-select>
-  </ion-item >     
-    
+  </ion-item >
     <ion-item lines="full">
-      <ion-label position="fixed">patientId</ion-label> 
+      <ion-label position="fixed">patientId</ion-label>
       <ion-input  color="primary" placeholder="{{pacientLocal.patientId}}" value="{{pacientLocal.patientId}}" #LZ (ionChange)="upgradingpatientId()" formControlName="patientId" type="number" required></ion-input>        
-    </ion-item>     
-     
+    </ion-item>
     <div *ngIf="canSend==true">
-      <ion-item>            
-          <ion-button type="submit"  expand="block">Enviar</ion-button>        
+      <ion-item>
+          <ion-button type="submit"  expand="block">Enviar</ion-button>
       </ion-item>
     </div>
   </Form>
@@ -62,54 +57,49 @@
   <div *ngIf="editingTreatment==false">
     <ion-item > <p class="User_Label_Treatment">Tratamiento:{{patientTreatLocal.Name}} </p>    </ion-item>     
     <ion-item > <ion-button (click)="editTreatment()" item-end>Modificar</ion-button>  </ion-item> 
-  </div>  
+  </div>
   <div *ngIf="editingTreatment==true">
-    
     <ion-item > <p class="User_Label_Treatment" position="fixed">Tratamiento: </p>    </ion-item>
     <ion-item>
       <ion-select color="primary" #WF (ionChange)="upgradeSpecId(WF.value)" >
           <div *ngFor="let spec of specTable"> 
               <ion-item>
-                <ion-label position="fixed">Seleccione:</ion-label>       
-                <ion-select-option value="{{spec.id}}" >{{spec.Name}}</ion-select-option>                          
+                <ion-label position="fixed">Seleccione:</ion-label>
+                <ion-select-option value="{{spec.id}}" >{{spec.Name}}</ion-select-option>
               </ion-item>
           </div>
         </ion-select>
-      </ion-item>   
+      </ion-item>
 
 
     <ion-item >  <ion-button item-end (click)="updateTreatment()">Enviar</ion-button> <ion-button (click)="exitEditTreatment() " item-end>Salir</ion-button>  </ion-item> 
-  </div>    
+  </div>
 
   <!--Medical list -->
   <ion-button type="round" (click)="newMDT()" >Generar Lista de Medicos nueva</ion-button>
-  <ion-item >  
-    <p class="User_Label_Medical">Medicos responsables:</p>    
-  </ion-item> 
-   
-   
-   
-  <div *ngFor="let element of MDT; let i=index">            
-          <ion-item>         
+  <ion-item >
+    <p class="User_Label_Medical">Medicos responsables:</p>
+  </ion-item>
+  <div *ngFor="let element of MDT; let i=index">
+          <ion-item>
             <ion-item >{{lookForUsers(element.userId)}}</ion-item>
             <ion-button color="warning" (click)="removeDoctor(element.userId)" type="rounded">Quitar</ion-button>
           </ion-item>
-  </div>   
+  </div>
   <ion-button (click)="addingNewDoctor()" type="rounded">+</ion-button>
-  <div *ngIf="addingDoctor===true">      
+  <div *ngIf="addingDoctor===true">
     <ion-label position="fixed" >Busqueda de Doctor</ion-label>
     <ion-list>
       <ion-item>
         <ion-select interface="action-sheet"  #G (ionChange)="upgradingDoctorNumber(G.value)"  type="number" required>
-          <div *ngFor="let element of users; let i=index">            
+          <div *ngFor="let element of users; let i=index">
             <div *ngIf="element.userId>0 && element.occupation=== 'Médico'">
               <ion-select-option value="{{element.userId}}">{{element.userId}}:{{element.lastname}},{{element.firstname}}</ion-select-option>              
             </div>
-            
           </div>
         </ion-select>
-        <ion-button (click)="sendDoctor()" type="rounded">Agregar</ion-button>
-        <ion-button (click)="quitAddingNewDoctor()" type="rounded">Finalizar</ion-button>
+        <ion-button (click)="sendDoctor()" type="rounded" (keydown)="sendDoctor()">Agregar</ion-button>
+        <ion-button (click)="quitAddingNewDoctor()" type="rounded" (keydown)="quitAddingNewDoctor()">Finalizar</ion-button>
       </ion-item>
     </ion-list>
   </div>

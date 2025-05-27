@@ -9,12 +9,10 @@ import { environment } from '../../environments/environment'
 })
 export class CalendarEventsService {
   urlApi = environment.urlApi;
-  private CalendarEventsLocal: Array<CalendarEvent> = new Array<CalendarEvent>();
+  public CalendarEventsLocal: Array<CalendarEvent> = new Array<CalendarEvent>();
   postId;
 
-  constructor(private _http: HttpClient) { 
-
-
+  constructor(private readonly _http: HttpClient) {
   
   }
 
@@ -49,9 +47,8 @@ export class CalendarEventsService {
    sendNewEvent(calevent: CalendarEvent){
     
     const headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
+    headers.append('Content-Type', 'application/json');    
     
-    calevent
     
     let data= {"patientId":calevent.patientId,
               "type": calevent.type,

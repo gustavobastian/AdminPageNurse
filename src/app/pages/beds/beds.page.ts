@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { Bed } from '../../models/bed';
 import { BedsService } from '../../services/beds.service';
-import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
+import { FormGroup, FormBuilder, FormControl } from "@angular/forms";
 import { QRService } from '../../services/qr.service';
-import { AuthInterceptorService } from 'src/app/services/auth-interceptor.service';
 import {QR} from '../../models/qr'
 
 
@@ -32,7 +31,7 @@ export class BedsPage implements OnInit {
 
 
   constructor(
-    private activatedRoute: ActivatedRoute,    
+    private readonly activatedRoute: ActivatedRoute,    
     public formBuilder: FormBuilder,
     public QRServ: QRService,
     public bedServ: BedsService) { 
@@ -78,8 +77,7 @@ export class BedsPage implements OnInit {
   }
 
   async submitForm() {
-      console.log("original bed:"+JSON.stringify(this.bed));
-    //console.log(this.ionicForm.value)
+    console.log("original bed:"+JSON.stringify(this.bed));    
     let local=(this.ionicForm.value);
     console.log(JSON.stringify(local));
     this.bed.roomId=parseInt(local.roomId);
@@ -90,17 +88,15 @@ export class BedsPage implements OnInit {
     console.log(JSON.stringify(this.bed));
     if(this.newBed===true){            
       console.log("bed:"+JSON.stringify(this.bed))
-      await this.bedServ.sendNewBed(this.bed);      
+      this.bedServ.sendNewBed(this.bed);      
     }
       
-    else{      
-      
+    else{            
       let qrdata= JSON.stringify("QR:"+this.qr_string+",bed:"+this.bed.bedId);
-      console.log(qrdata)
-    
+      console.log(qrdata)    
       console.log("bed:"+JSON.stringify(this.bed))
-      await this.bedServ.sendAlterBed(this.bed);      
-      await this.QRServ.sendAlterQR(this.qrIdLocal,qrdata)
+      this.bedServ.sendAlterBed(this.bed);      
+      this.QRServ.sendAlterQR(this.qrIdLocal,qrdata)
       console.log("modificando")}
 
   }
@@ -110,18 +106,16 @@ export class BedsPage implements OnInit {
     console.log(JSON.stringify(this.qrs[qr]));
     let d=JSON.stringify(this.qrs[qr]);
     let data = JSON.parse(d);
-    console.log(data.QR)
-    //this.qr_string=JSON.parse(this.qrs[qr]).QR;
+    console.log(data.QR)    
   }
   async upgradingQRENumber(qr: number){
     this.qrIdLocalE=qr;
   }
 
   async submitQR(qr: string) {   
-  //console.log("qr:" + qr)
-  await this.QRServ.sendNewQR(this.qr_string);
-  this.qrs=[];
-  this.qrs=await this.QRServ.getAllQR();     
+    this.QRServ.sendNewQR(this.qr_string);
+    this.qrs=[];
+    this.qrs=await  this.QRServ.getAllQR();     
   }
  
   async upgradingQR(qr: string) {

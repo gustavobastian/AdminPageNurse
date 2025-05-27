@@ -35,7 +35,7 @@ export class logEvent {
     get note():string{
         return this._Note;
     }
-    get note2():string{
+    get Note2():string{
         return this._Note2;
     }
     get init():string{
@@ -62,7 +62,7 @@ export class logEvent {
     set note(s:string){
         this._Note=s;
     }
-    set note2(s:string){
+    set Note2(s:string){
         this._Note2=s;
     }
     set init(s:string){

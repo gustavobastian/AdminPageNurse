@@ -1,29 +1,27 @@
+<!DOCTYPE html>
 <ion-header>
   <ion-header>
-    <ion-toolbar>    
+    <ion-toolbar>
       <ion-buttons slot="start">
         <ion-back-button text="Volver" defaultHref="folder/"></ion-back-button>
-      </ion-buttons>    
+      </ion-buttons>
     </ion-toolbar>
-  </ion-header>  
+  </ion-header>
 </ion-header>
 
-<ion-content>  
+<ion-content>
   <ul>
-    <div *ngFor="let item of specTable">
-        <li>
-          <p>Especialidad : {{item.Name}}</p>          
-        </li>
-    </div>
+    <li *ngFor="let item of specTable">
+          <p>Especialidad : {{item.Name}}</p>
+    </li>
   </ul>
   <ion-button (click)="onClickAdd()">Agregar Nueva</ion-button>
-
   <div *ngIf="addingSpec==true">
     <ion-item>
       <ion-label>Nombre de la especialidad:</ion-label>
       <ion-input placeholder="Nombre de la especialidad" type="text" #W (ionChange)="upgradingName((W.value).toString())" ></ion-input>
     </ion-item>
-  <ion-button (click)="onClickSend()">Enviar</ion-button>
+  <ion-button (click)="onClickSend()" (keydown)="onClickSend()">Enviar</ion-button>
   </div>
 
 </ion-content>

@@ -1,57 +1,46 @@
+
+<!DOCTYPE html>
 <ion-header>
   <ion-toolbar>
     <ion-title>Configuración </ion-title>
-    
       <!-- Back button with a default href -->
       <ion-buttons slot="start">
-        <ion-back-button    defaultHref="home" [text]=""></ion-back-button>
+        <ion-back-button defaultHref="home" [text]=""></ion-back-button>
       </ion-buttons>
     </ion-toolbar>
   </ion-header>
 
 <ion-content >
-    <div  >    
+    <div>
       <br>
-      <div class = "list">
-        <label class = "item item-input">
-          
-           <ion-label color="primary" class = "input-label">MQTT SERVER IP:</ion-label>
-           <input type = "text" color="primary"  [(ngModel)]=this.MQTTSERVER placeholder = {{MQTTSERVER}} />
-          <!-- <input type="ipaddress"  class="form-control"  [(ngModel)]=this.MQTTSERVER  placeholder = {{MQTTSERVER}}  formControlName="ipaddress"  required pattern="^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$">-->
+      <div class="list">
+        <label class="item item-input">
+           <ion-label color="primary" for="mqttserver" class="input-label">MQTT SERVER IP:</ion-label>
+           <input id="mqttserver" type="text" color="primary" [(ngModel)]=this.MQTTSERVER placeholder = {{MQTTSERVER}} />
         </label>
       <br>
-      
-      <label class = "item item-input ">
-           <ion-label color ="primary" class = "input-label">MQTT SERVER PORT:</ion-label>
-           <input  color="primary" type = "text" [(ngModel)]= this.MQTTPORT placeholder = {{MQTTPORT}} />
+      <label class="item item-input ">
+           <ion-label for="mqttport" color="primary" class="input-label">MQTT SERVER PORT:</ion-label>
+           <input id="mqttport" color="primary" type="text" [(ngModel)]= this.MQTTPORT placeholder = {{MQTTPORT}} />
       </label>
-
       <br>
-    
-            
       <br>
-      <ion-button color="primary" (click)="saveClick()">Guardar</ion-button>
-      <ion-button color="primary" (click)="Reset()">Reset</ion-button>
+      <ion-button color="primary" (click)="saveClick()" (keydown)="saveClick()">Guardar</ion-button>
+      <ion-button color="primary" (click)="Reset()" (keydown)="Reset()">Reset</ion-button>
       <br>
       <div *ngIf="connected==1">
-        <ion-button color="primary" disabled="false" (click)="pruebaClick()">Probar</ion-button>
+        <ion-button color="primary" disabled="false" (click)="pruebaClick()" (keydown)="pruebaClick()">Probar</ion-button>
         </div>
         <div *ngIf="connected==0">
-          <ion-button color="primary" disabled="true" (click)="pruebaClick()">Probar</ion-button>
+          <ion-button color="primary" disabled="true" (click)="pruebaClick()" (keydown)="pruebaClick()">Probar</ion-button>
         </div>
        </div>
-       <ion-item> 
-        <ion-label color="secondary" class = "input-label">{{general_data}} </ion-label>
+       <ion-item>
+        <ion-label color="secondary" class="input-label">{{general_data}} </ion-label>
         <br>
-        
-      </ion-item>   
-      <ion-item> 
+      </ion-item>
+      <ion-item>
         <pre>Cliente: {{this.MQTTClientLocal | json}} </pre>
-      </ion-item>   
+      </ion-item>
     </div>
-  
-
-
-    
-  
 </ion-content>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { bedStats } from 'src/app/models/bed-status';
+import { BedStats } from 'src/app/models/bed-status';
 import { MessageModel } from 'src/app/models/message-model';
 import { userStats } from 'src/app/models/user-status';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
@@ -17,7 +17,7 @@ export class MonitoringPage implements OnInit {
   number:number;  
   username="sistema";
   password="987654321";
-  messagesBeds2: Array<bedStats> = new Array;
+  messagesBeds2: Array<BedStats> = new Array;
   
   messagesUsers: Array<userStats> = new Array;
 
@@ -45,7 +45,6 @@ export class MonitoringPage implements OnInit {
 
     await new Promise(f => setTimeout(f, 1000));
     this.Log_in();
-    
   }
   async ngOnDestroy() {
     console.log("quitting");
@@ -56,7 +55,7 @@ export class MonitoringPage implements OnInit {
   
   async Log_out() {
     console.log("here")
-    let question="987654321";
+    
     let a=new MessageModel("sistema","987654321",  0, 2);    
     console.log(a)
     let mqttmessage=JSON.stringify(a);
@@ -65,11 +64,7 @@ export class MonitoringPage implements OnInit {
     this.MQTTServ.sendMesagge(topic, mqttmessage);
   }
   async Log_in() {
-    this.GetUserLogKind(); 
-    console.log("here")
-    let question="987654321";
-    
-    
+    this.GetUserLogKind();     
     let a=new MessageModel("sistema","987654321",  0, 1);    
     console.log(a)
     let mqttmessage=JSON.stringify(a);
@@ -82,12 +77,9 @@ export class MonitoringPage implements OnInit {
 
   GetUserLogKind()  {
     console.log("wainting for response");
-    let question="";
     let topic="/User/"+this.username+"/response";    
-    let localMessage;
     this.MQTTServ.MQTTClientLocal.subscribe(topic).on(Message=>{
       console.log("respuestaSystem:  "+Message.toString());
-    
     })
   };
 
@@ -102,19 +94,16 @@ export class MonitoringPage implements OnInit {
   console.log("subscribed")
   this.MQTTServ.MQTTClientLocal.subscribe(topic).on(Message=>{
     console.log("received")
-  // console.log(Message.string);            
+  
   let localMessage = JSON.parse(Message.string);        
   
   console.log(localMessage.message);    
   
   this.messagesBeds2=[];
-  localMessage.forEach(element => {      
-    {        
+  localMessage.forEach(element => {              
     console.log("element:"+JSON.stringify(element.id));  
-    let bedStatsLocal=new bedStats(element.id,element.st,element.spec)  
+    let bedStatsLocal=new BedStats(element.id,element.st,element.spec)  
     this.messagesBeds2.push(bedStatsLocal);
-    
-   }
   });
   
   });
@@ -134,25 +123,18 @@ public usersSubscription(): void{
   this.MQTTServ.MQTTClientLocal.subscribe(topic).on(Message=>{
    
   let localMessage = JSON.parse(Message.string);      
-  let local2=Message.string;
-  console.log(localMessage[0].message);    
-  
+  console.log(localMessage[0].message);      
   this.messagesUsers=[];
   localMessage.forEach(element => {      
-    {        
     let userStatsLocal =  new userStats(element.id,element.st)
     this.messagesUsers.push(userStatsLocal);
     console.log(JSON.stringify(userStatsLocal))
-  
-   }
   })
   })
 }
   
   public usersDesSubscription(){
     let topic="/User/status";
-    let receivedMessage;
-    
     this.MQTTServ.MQTTClientLocal.unsubscribe(topic)
     console.log("users status  unsubscribed")
   }

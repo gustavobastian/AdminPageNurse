@@ -9,8 +9,6 @@ import { catchError } from 'rxjs/operators';
 })
 export class AuthInterceptorService implements HttpInterceptor {
 
-  constructor(private _router:Router) { }
-
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (req.url.includes("/authenticate")){
       return next.handle(req);
@@ -39,8 +37,6 @@ export class AuthInterceptorService implements HttpInterceptor {
       );
     }else{
       return next.handle(request)
-      //if i have no token navigate to login
-      this._router.navigate(['/login']);
     }
     
   }
