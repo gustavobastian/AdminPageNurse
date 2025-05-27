@@ -1,11 +1,12 @@
+<!DOCTYPE html>
 <ion-header>
   <ion-header>
-    <ion-toolbar>    
+    <ion-toolbar>
       <ion-buttons slot="start">
         <ion-back-button text="Volver" defaultHref="folder/"></ion-back-button>
-      </ion-buttons>    
+      </ion-buttons>
     </ion-toolbar>
-  </ion-header>  
+  </ion-header>
 </ion-header>
 
 <ion-content>
@@ -17,16 +18,16 @@
     <ion-label>Paciente:</ion-label>
     <ion-item>
       <ion-select interface="action-sheet" placeholder="{{pacientLocal.patientId}} " #C (ionChange)="upgradingNumber(C.value)"  type="number" required>
-        <div *ngFor="let element of pacients; let i=index">                    
+        <div *ngFor="let element of pacients; let i=index">
           <ion-select-option value="{{element.patientId}}">{{element.patientId}}:{{element.lastName}},{{element.firstName}}</ion-select-option>          
         </div>
       </ion-select>
     </ion-item>
-  </ion-item>  
+  </ion-item>
   <div *ngIf="pacientNumber!=0">
     <ion-item>
       <ion-button type="button" routerLink="/event/{{pacientNumber}}">Agregar Evento</ion-button>
-    </ion-item>  
+    </ion-item>
   </div>
 
 

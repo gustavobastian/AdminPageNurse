@@ -2,6 +2,9 @@
 
 Administration page for Message Nurse System
 
+DISCLAIMER: "this work was part of the end project for the IoT specialist diploma of UBA, in order to run it is needed, you mus install dependencies with --legacy-peer-deps, and after that audit fix.
+The repository owner makes no warranties or guarantees regarding the accuracy, completeness, or usefulness of the information provided. The user is solely responsible for any risks associated with using the repository's contents. Any use of the software or documentation is at the user's own risk."
+
 ## Overall system description
 
 This web page is part of a system that includes a mobile messaging application, a MQTT broker and a backend server.
@@ -18,7 +21,7 @@ The page was developed using Ionic/angular. Some libraries that were used are:
 In order to launch  the webpage in debug mode, the system must be running the backend server ([https://github.com/gustavobastian/ServerNurse](https://github.com/gustavobastian/ServerNurse)), and then run:
 
 ```\
-npm install
+npm install --legacy-peer-deps
 ionic serve
 ```
 

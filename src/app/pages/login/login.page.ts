@@ -14,8 +14,8 @@ export class LoginPage {
   password=""
   
   constructor(
-    private routes: Router,
-    private logStatus: LogStatusService
+    private readonly routes: Router,
+    private readonly logStatus: LogStatusService
     ) { }
 
   async navTabs(){

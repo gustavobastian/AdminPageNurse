@@ -44,7 +44,7 @@ export class TablaSpecTreatPage implements OnInit {
   }
   async onClickSend(){
     this.addingSpec=false;
-    this.Name.toLowerCase();
+    this.Name = this.Name.toLowerCase();
     let strinti= this.Name;
     let strinti2=strinti[0].toLocaleUpperCase()+strinti.slice(1)
     this.Name=strinti2

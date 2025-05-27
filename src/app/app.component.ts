@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { LoginPageModule } from "./pages/login/login.module";
+
 
 @Component({
   selector: "app-root",
@@ -24,7 +24,7 @@ export class AppComponent implements OnInit{
   
 
   constructor(
-    private activatedRoute: ActivatedRoute,
+    private readonly activatedRoute: ActivatedRoute,
   ) {
     
     this.activatedRoute.url.subscribe(url =>{

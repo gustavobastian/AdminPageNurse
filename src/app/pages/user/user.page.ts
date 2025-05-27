@@ -36,11 +36,11 @@ export class UserPage implements OnInit {
 
 
   constructor(
-    private activatedRoute: ActivatedRoute,
+    private readonly activatedRoute: ActivatedRoute,
     public formBuilder: FormBuilder,
     public userServ: UsersService,
     public nurseSpecServ:NurseSpecService,
-    private tableSpecServ:TableSpecService,
+    public tableSpecServ:TableSpecService,
 
     ) {
     
@@ -96,7 +96,7 @@ export class UserPage implements OnInit {
     this.specToAddId=0;
     this.modeNurse=true;
     this.specTable= await this.tableSpecServ.getAllSpec();
-    if(this.newUser!=true){
+    if(!this.newUser){
       console.log("debo buscar tabla de especialidades")
       this.NurseSpecTable= await this.nurseSpecServ.getAllNurseSpec(parseInt(this.id))
     }
@@ -104,13 +104,13 @@ export class UserPage implements OnInit {
 
   public async onAddNewSpect(): Promise<boolean>{
     console.log("check if it is in the actual list")
-    if(await this.checkIfPresent(this.specToAddId)===true){
+    if(this.checkIfPresent(this.specToAddId)){
       alert("la especificación ya está en la lista")
+      return false;
     }
     else{
-    console.log("user:"+this.id+" spec to add:"+this.specToAddId)
-
-                  this.nurseSpecServ.sendNurseNewSpec(this.specToAddId,parseInt(this.id))
+      console.log("user:"+this.id+" spec to add:"+this.specToAddId)
+      this.nurseSpecServ.sendNurseNewSpec(this.specToAddId,parseInt(this.id))
     }
     return true;
   }

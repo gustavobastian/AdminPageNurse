@@ -1,9 +1,10 @@
+<!DOCTYPE html>
 <ion-header>
   <ion-toolbar>
-    <ion-title>Usuarios</ion-title>    
+    <ion-title>Usuarios</ion-title>
       <ion-buttons slot="start">
         <ion-back-button text="Volver" defaultHref="folder/Usuarios"></ion-back-button>
-      </ion-buttons>    
+      </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -21,16 +22,11 @@
     <ion-item lines="full">
       <ion-label position="fixed" >Usuario</ion-label>
       <ion-input color="primary" placeholder="{{user.username}}" value="{{user.username}}" formControlName="userName" type="text" required></ion-input>        
-    </ion-item>         
+    </ion-item>
     <ion-item lines="full">
       <ion-label position="fixed">Contraseña</ion-label>
-      <ion-input  color="primary" formControlName="password" type="text" required></ion-input>        
-    </ion-item>     
-        
-    <!--<ion-item lines="full">
-      <ion-label position="floating">Ocupacion</ion-label>
-      <ion-input placeholder="{{user.occupation}}" formControlName="occupation" type="text" required></ion-input>        
-    </ion-item>-->
+      <ion-input  color="primary" formControlName="password" type="text" required></ion-input>
+    </ion-item>
 
     <ion-item lines="full">
       <ion-label>Ocupacion</ion-label>
@@ -39,51 +35,47 @@
         <ion-select-option seleccion="Medico">Médico</ion-select-option>
         <ion-select-option seleccion="Enfermero">Enfermero</ion-select-option>
       </ion-select>
-    </ion-item>   
+    </ion-item>
     <ion-item lines="full">
       <ion-label>Estado</ion-label>
-      <ion-select  formControlName="state" type="number" required placeholder="1">
+      <ion-select formControlName="state" type="number" required placeholder="1">
         <ion-select-option seleccion="1">1</ion-select-option>
         <ion-select-option seleccion="0">0</ion-select-option>
-        
       </ion-select>
-    </ion-item>   
-
-    <ion-item>      
-        <ion-button type="submit"  expand="block">Submit</ion-button>      
+    </ion-item>
+    <ion-item>
+        <ion-button type="submit"  expand="block">Submit</ion-button>
     </ion-item>
   </Form>
 
 
-    <ion-item>      
-      <ion-button (click)="onClickAddingNurses()"  expand="block">Opciones Enfermera?</ion-button>  
+    <ion-item>
+      <ion-button (click)="onClickAddingNurses()"  expand="block">Opciones Enfermera?</ion-button>
     </ion-item>
 
   <div *ngIf="modeNurse===true">
     <ion-toolbar>
-      <ion-item>      
+      <ion-item>
         <label>Especialidades</label>
         <ion-button (click)="onClickNoAddingNurses()" slot="end" >Salir Opciones Enfermera</ion-button>            <!--slot="start"-->  
       </ion-item>
     </ion-toolbar>
 
     <ul>
-      <div *ngFor="let item of NurseSpecTable; let i = index">          
-          <li>
-            Especialidad: {{item.Name}}
-            <ion-button color="warning"  type="rounded" (click)="onDeleteSpec(NurseSpecTable[i]._id)">Quitar</ion-button> 
-          </li>
-      </div>
+      <li *ngFor="let item of NurseSpecTable; let i = index">
+             Especialidad: {{item.Name}}
+            <ion-button color="warning"  type="rounded" (click)="onDeleteSpec(NurseSpecTable[i]._id)">Quitar</ion-button>
+      </li>
     </ul>
     <ion-item>
     <ion-label>otra</ion-label>
       <ion-select color="primary" #WW (ionChange)="upgradeSpecId(WW.value)" >
-        <div *ngFor="let spec of specTable; let j = index">          
+        <div *ngFor="let spec of specTable; let j = index">
             <ion-select-option value="{{specTable[j].id}}" >{{spec.Name}}</ion-select-option>                          
         </div>
       </ion-select>
-    </ion-item>   
-    <ion-button (click)="onAddNewSpect()">Agregar</ion-button>
+    </ion-item>
+    <ion-button (click)="onAddNewSpect()" (keydown)="onAddNewSpect()">Agregar</ion-button>
   </div>
 
  </ion-content>

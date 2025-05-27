@@ -17,6 +17,7 @@ ion-menu-button {
   left: 0;
   right: 0;
   top: 10%;
+  width:100%;
  // transform: translateY(-50%);
 }
 
@@ -54,4 +55,39 @@ ion-menu-button {
 .MensajeNoLogeado{
   text-align: center;
   font-size: 50px ;
+}
+.buttonShadow{
+  box-shadow: none
+}
+.buttonStyle{
+  width: 50%;
+}
+.iconStyle{
+  padding-top: 10pt;
+  padding-left: 10pt;
+}
+
+#containerLocal {
+  text-align: center;
+  position: sticky;
+  left: 0;
+  right: 0;
+  top: 10%;
+  // transform: translateY(-50%);
+}
+
+#containerLocal strong {
+  font-size: 20px;
+  line-height: 26px;
+}
+
+#containerLocal p {
+  font-size: 16px;
+  line-height: 22px;
+  color: #8c8c8c;
+  margin: 0;
+}
+
+#containerLocal a {
+  text-decoration: none;
 }

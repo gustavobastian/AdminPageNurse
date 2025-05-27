@@ -1,4 +1,4 @@
-export class bedStats{      
+export class BedStats{      
     public _bedId: number;    
     public _st: number;
     public _spec: number;

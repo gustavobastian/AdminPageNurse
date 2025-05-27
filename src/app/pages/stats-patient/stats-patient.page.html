@@ -1,50 +1,30 @@
+<!DOCTYPE html>
 <ion-header>
   <ion-toolbar>
     <ion-title>Estadisticas Pacientes</ion-title>
     <ion-buttons slot="start">
       <ion-back-button text="Volver" defaultHref="folder/Estadisticas"></ion-back-button>
-    </ion-buttons>    
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 <ion-item>
-<ion-button (click)="onClickG()">General</ion-button>
-        <!--<ion-button (click)="onClickI()">Individual</ion-button>-->
+<ion-button (click)="onClickG()" (keydown)="onClickG()">General</ion-button>
 </ion-item>
 
 <div *ngIf="selection==1">
     <ion-label>General</ion-label>
-         <!--   <ion-label>Total Llamados a la habitación por paciente</ion-label>
-    <ul>
-      <div *ngFor="let item of data" class>
-        <li>
-          Paciente {{item.patientId}} => {{item.cn}} veces
-        </li>
-
-      </div>
-    </ul>
-  -->
-    <div class="ion-padding">     
-  
+    <div class="ion-padding">
       <ion-card>
-        <!--
-        <ion-card-header>
-          <ion-card-title>Tratamientos/pacientes</ion-card-title>
-        </ion-card-header>-->
         <ion-card-content>
-          <div id="pieChartTreatment" style="width:100%; height:400px;"></div>
+          <div id="pieChartTreatment" class="piechart"></div>
         </ion-card-content>
       </ion-card>
     </div>
-    
 </div>
-
 
 <div *ngIf="selection==2">
-<p>Individual</p>
+  <p>Individual</p>
 </div>
-
-
-
 </ion-content>

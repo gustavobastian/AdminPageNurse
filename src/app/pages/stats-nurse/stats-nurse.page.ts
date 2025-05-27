@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { StatisticsService } from '../../services/statistics.service';
 
 import * as HighCharts from 'highcharts';
-import { count } from 'console';
+
 
 
 @Component({
@@ -11,8 +11,8 @@ import { count } from 'console';
   styleUrls: ['./stats-nurse.page.scss'],
 })
 export class StatsNursePage  {
-  public data: Array<String> = new Array<String>();
-  public dataNurseProm: Array<String> = new Array<String>();
+  public data: Array<string> = new Array<string>();
+  public dataNurseProm: Array<string> = new Array<string>();
   public selection=0;
   public totalNurseSpec=0;
   constructor(
@@ -62,7 +62,7 @@ export class StatsNursePage  {
 
   //chart events
   
- public barChartUsers(users: Array<String>){
+ public barChartUsers(users: Array<string>){
     let ident=[] 
     let counts=[]
     users.forEach(element => {
